@@ -130,7 +130,7 @@ module.exports = {
             highscoreScram: user.scrambleHigh,
             memScores: user.memoryArray,
             scramScores: user.scrambleArray
-          }
+          };
           res.send(userObject);
         }
       });

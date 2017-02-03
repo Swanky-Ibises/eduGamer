@@ -10,6 +10,7 @@ import LogIn from './components/Login';
 import {Leaderboard} from './components/Leaderboard';
 import {Profile} from './components/Profile';
 import {GameScramble} from './components/GameScramble';
+import Timer from './components/Timer';
 
 const app = document.getElementById('app');
 
