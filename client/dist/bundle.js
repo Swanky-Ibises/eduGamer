@@ -25185,14 +25185,14 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit() {
 
-	      var data = {
+	      var object = {
 	        username: this.state.username,
 	        password: this.state.password
 	      };
 	      _jquery2.default.ajax({
 	        type: 'POST',
 	        url: '/login',
-	        data: JSON.stringify(data),
+	        data: JSON.stringify(object),
 	        contentType: "application/json",
 	        success: function success(data) {
 	          if (typeof data.redirect === 'string') {
@@ -35158,17 +35158,18 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit() {
 	      if (this.state.password === this.state.confirmPassword) {
-	        var data = {
+	        var object = {
 	          username: this.state.username,
 	          password: this.state.password
 	        };
 	        _jquery2.default.ajax({
 	          type: 'POST',
 	          url: '/signup',
-	          data: JSON.stringify(data),
+	          data: JSON.stringify(object),
 	          contentType: "application/json",
 	          success: function success(data) {
 	            if (typeof data.redirect === 'string') {
+	              console.log('redirection here');
 	              window.location = data.redirect;
 	            }
 	          }
