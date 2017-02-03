@@ -13,18 +13,18 @@ export default class SignUp extends React.Component {
   }
 
   updateUsername(text) {
-    this.setState({username: text.target.value})
-    console.log('state username', this.state.username)
+    this.setState({username: text.target.value});
+    console.log('state username', this.state.username);
   }
 
   updatePassword(text) {
-    this.setState({password: text.target.value})
-    console.log('state password', this.state.password)
+    this.setState({password: text.target.value});
+    console.log('state password', this.state.password);
   }
 
   updateConfirmPassword(text) {
-    this.setState({confirmPassword: text.target.value})
-    console.log('state confirmedPassword', this.state.confirmPassword)
+    this.setState({confirmPassword: text.target.value});
+    console.log('state confirmedPassword', this.state.confirmPassword);
   }
 
   handleSubmit() {
@@ -41,7 +41,7 @@ export default class SignUp extends React.Component {
       var object = {
         username: this.state.username,
         password: this.state.password
-      }
+      };
       $.ajax({
         type: 'POST',
         url: '/signup',
@@ -54,11 +54,11 @@ export default class SignUp extends React.Component {
             window.location = data.redirect;
           }
         }
-      })
+      });
     }
   }
 
-  render(){
+  render() {
     return (
       <div className="container">
         <div className = "row">
