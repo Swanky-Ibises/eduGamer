@@ -9,7 +9,6 @@ export default class Timer extends React.Component {
   }
 
   decrementTimer() {
-    console.log(this.state)
     this.setState({timeLeft: this.state.timeLeft - 1});
     if (this.state.timeLeft <= 0) {
       return;

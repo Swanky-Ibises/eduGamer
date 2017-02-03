@@ -24,12 +24,12 @@ export default class Login extends React.Component {
     var object = {
       username: this.state.username,
       password: this.state.password
-    }
+    };
     $.ajax({
       type: 'POST',
       url: '/login',
       data: JSON.stringify(object),
-      contentType: "application/json",
+      contentType: 'application/json',
       success: function(data) {
         if (typeof data === 'string') {
           localStorage.setItem( 'errorTextLogin', data);
@@ -38,11 +38,11 @@ export default class Login extends React.Component {
           window.location = data.redirect;
         }
       }
-    })
+    });
 
   }
 
-  render(){
+  render() {
     return (
       <div className="container">
         <div className = "row">
@@ -72,6 +72,6 @@ export default class Login extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
