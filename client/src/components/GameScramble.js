@@ -22,7 +22,7 @@ export default class GameScramble extends React.Component {
       score: 0,
       timeLeft: 60
     };
-    //send a GET for random word
+    //This for loop is for creating the wordData array which holds the words returned from the wordsapi
     var context = this;
     for (var i = 0; i < NUM_WORDS; i++) {
       this.getWord( function(word) {
@@ -31,7 +31,7 @@ export default class GameScramble extends React.Component {
     }
   }
 
-  //returns a word and a definition
+  //Makes a get request from the wordsapi and returns a random word and a definition
   getWord(callback) {
     var word = {};
     var context = this;
@@ -58,6 +58,8 @@ export default class GameScramble extends React.Component {
     });
   }
 
+
+  //This function shuffles the string passed in
   shuffle(string) {
     var characters = string.split('');
     var length = characters.length;
@@ -74,6 +76,8 @@ export default class GameScramble extends React.Component {
     return result;
   }
 
+
+  //This function changes this.state.word
   changeWord(context) {
     if (context.wordData.length > 0) {
       var thisWord = context.wordData[0].word;
@@ -90,9 +94,10 @@ export default class GameScramble extends React.Component {
       this.setState({definition: ''});
     }
     this.setState({shuffled: this.shuffle(thisWord)});
-
   }
 
+
+  //This function changes the state based on the text input
   changeInput(text) {
     var context = this;
     //console.log('the word in change input is ', this.state.word);
@@ -105,11 +110,15 @@ export default class GameScramble extends React.Component {
     }
   }
 
+
+  //This function skips the word and changes the word to the next
   skipWord() {
     this.setState({score: this.state.score - 1});
     this.changeWord(this);
   }
 
+
+  //This function decrements the timer by 1 second
   decrementTimer() {
     this.setState({timeLeft: this.state.timeLeft - 1});
     if (this.state.timeLeft <= 0) {
@@ -118,18 +127,21 @@ export default class GameScramble extends React.Component {
     }
   }
 
+
+  //When component mounts, the timer starts and the state word will be shuffled
   componentDidMount() {
     this.interval = setInterval(this.decrementTimer.bind(this), 1000);
     this.setState({shuffled: this.shuffle(this.state.word)});
   }
 
+  //On dismount, the timer will stop.
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
+  //After the game is ended, this function makes an AJAX post request to the server
   saveScore() {
     //post the score to the backend if user is logged in
-    console.log(this.state.score);
     if (localStorage.username) {
       console.log('scramble game username', localStorage.username);
       var obj = {
@@ -143,19 +155,13 @@ export default class GameScramble extends React.Component {
         data: JSON.stringify(obj),
         contentType: 'application/json',
         success: function(data) {
-          console.log('data', data);
+          console.log('Data posted to server', data);
         }
       });
-    } else {
-      //nothing happens if username is not defined
-      console.log('nothing happens', localStorage.username);
     }
   }
 
   render() {
-    // if (this.state.word) {
-    //   this.state.shuffled = this.state.shuffled || this.shuffle(this.state.word);
-    // }
     return (
       <div>
         <Timer time={this.state.timeLeft} />
