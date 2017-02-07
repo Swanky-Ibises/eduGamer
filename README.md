@@ -34,6 +34,13 @@ Main Components and their purposes:
  NavBar.js:
   Contains a logout function and renders the other components when the proper link is clicked on.
 
+  SignUp.js:
+  This component is a sign up form that makes posts requests to the server with data containing the username and password.
+  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
+
+  Login.js:
+  This component is a login form that is similar to the SignUp form in that it makes posts requests to the server with data containing the username and password.
+  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
 
 Back-End Components:
 
