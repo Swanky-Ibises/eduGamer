@@ -11,15 +11,19 @@ export default class Login extends React.Component {
     };
   }
 
+  //This method updates the state 'username'
   updateUsername(text) {
     this.setState({username: text.target.value});
   }
 
+  //This method updates the state 'password'
   updatePassword(text) {
     this.setState({password: text.target.value});
   }
 
+  //This method validates whether the user exists and passwords match. If match, log user in and save username to local storage
   handleSubmit() {
+    //Local storage is used in order to get persistent error messages after re rendering
     var object = {
       username: this.state.username,
       password: this.state.password
@@ -30,12 +34,12 @@ export default class Login extends React.Component {
       data: JSON.stringify(object),
       contentType: 'application/json',
       success: function(data) {
+        //on a successful post, check data. Error messages are returned so if data returns a string, an error happened
         if (typeof data === 'string') {
-          console.log('error message here', data);
           localStorage.setItem( 'errorTextLogin', data);
         } else if (typeof data.redirect === 'string') {
-          console.log('redirection here');
-          localStorage.setItem('errorTextLogin', '');
+          //On a successful login, redirect to homepage and remove errorTextLogin local storage
+          localStorage.removeItem('errorTextLogin');
           window.location = data.redirect;
         }
       }

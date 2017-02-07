@@ -12,24 +12,26 @@ export default class SignUp extends React.Component {
     };
   }
 
+  //This method updates the state 'username'
   updateUsername(text) {
     this.setState({username: text.target.value});
-    console.log('state username', this.state.username);
   }
 
+  //This method updates the state 'password'
   updatePassword(text) {
     this.setState({password: text.target.value});
-    console.log('state password', this.state.password);
   }
 
+  //This method updates the state 'confirmPassword'
   updateConfirmPassword(text) {
     this.setState({confirmPassword: text.target.value});
     console.log('state confirmedPassword', this.state.confirmPassword);
   }
 
+  //This method validates the form on submission. If validation is passed, the user information will be passed to the server and database
   handleSubmit() {
+    //Local storage is used in order to get persistent error messages after re rendering
     if (this.state.username.length < 6) {
-      console.log('username not long enough');
       localStorage.setItem( 'errorText', 'Please enter a username with at least 6 characters');
       this.setState({errorText: localStorage.errorText});
     } else if (this.state.password !== this.state.confirmPassword) {
@@ -53,7 +55,6 @@ export default class SignUp extends React.Component {
             localStorage.setItem('errorText', data);
           }
           if (typeof data.redirect === 'string') {
-            console.log('redirection from signup!');
             localStorage.removeItem('errorText');
             window.location = data.redirect;
           }
@@ -64,6 +65,7 @@ export default class SignUp extends React.Component {
     }
   }
 
+  //On dismount, the error text is cleared from local storage so it no longer shows up if user navigates to another component
   componentWillUnmount() {
     localStorage.removeItem('errorText');
   }
