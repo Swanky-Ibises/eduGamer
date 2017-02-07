@@ -39,3 +39,7 @@ input {
 .skipButton {
   margin-left: 3px;
 }
+
+li {
+  text-shadow: none;
+}
