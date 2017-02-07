@@ -43,3 +43,7 @@ input {
 li {
   text-shadow: none;
 }
+
+.homepageButton {
+  margin: 10px;
+}

@@ -6,10 +6,10 @@ export default class Homepage extends React.Component {
     return (
       <div>
         <h2>Welcome to MasterMind!</h2>
-        <h4>MasterMind is a collection of games designed to test and strengthen your mental fortitude. While everyone is allowed to play these games,  creating an account gives you the ability to keep track of your personal progress!</h4>
+        <h4>MasterMind is a collection of games designed to test and strengthen your mental fortitude.  <br/> While everyone is allowed to play these games,  creating an account gives you the ability to keep track of your personal progress!</h4>
         <div class="row">
-            <div class="col-xs-4 col-sm-offset-2"><Link to="/memorygame">Memory</Link></div>
-            <div class="col-sm-4"><Link to="/scramblegame">Scramble</Link></div>
+            <button className="btn btn-default homepageButton"><Link to="/memorygame">Memory</Link></button>
+            <button className="btn btn-default homepageButton"><Link to="/scramblegame">Scramble</Link></button>
         </div>
       </div>
     );
