@@ -68,7 +68,7 @@ export class Profile extends React.Component {
                 <th>Score</th>
                 {
                   scoreArr.map((eachScore, ind)=>{
-                    return <TableCol value={eachScore} key={eachScore}/>;
+                    return <TableCol value={eachScore} key={ind}/>;
                   })
                 }
               </tr>
