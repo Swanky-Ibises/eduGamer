@@ -59,7 +59,7 @@ export default class GameScramble extends React.Component {
   }
 
 
-  //This function shuffles the string passed in
+  //This method shuffles the string passed in
   shuffle(string) {
     var characters = string.split('');
     var length = characters.length;
@@ -77,7 +77,7 @@ export default class GameScramble extends React.Component {
   }
 
 
-  //This function changes this.state.word
+  //This method changes this.state.word
   changeWord(context) {
     if (context.wordData.length > 0) {
       var thisWord = context.wordData[0].word;
@@ -97,7 +97,7 @@ export default class GameScramble extends React.Component {
   }
 
 
-  //This function changes the state based on the text input
+  //This method changes the state based on the text input
   changeInput(text) {
     var context = this;
     //console.log('the word in change input is ', this.state.word);
@@ -111,14 +111,14 @@ export default class GameScramble extends React.Component {
   }
 
 
-  //This function skips the word and changes the word to the next
+  //This method skips the word and changes the word to the next
   skipWord() {
     this.setState({score: this.state.score - 1});
     this.changeWord(this);
   }
 
 
-  //This function decrements the timer by 1 second
+  //This method decrements the timer by 1 second
   decrementTimer() {
     this.setState({timeLeft: this.state.timeLeft - 1});
     if (this.state.timeLeft <= 0) {
@@ -139,7 +139,7 @@ export default class GameScramble extends React.Component {
     clearInterval(this.interval);
   }
 
-  //After the game is ended, this function makes an AJAX post request to the server
+  //After the game is ended, this method makes an AJAX post request to the server
   saveScore() {
     //post the score to the backend if user is logged in
     if (localStorage.username) {
