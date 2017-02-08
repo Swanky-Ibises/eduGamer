@@ -1,24 +1,21 @@
-#MasterMind! Documentation v. 0.1.
+# Membrain Documentation
 
-
-MasterMind runs on a NERD tech stack:
-Node.js, Express, React, Database (in this case, mongoDB).
-
-
+Membrain runs on the following tech stack:
+- Node.js
+- Express
+- React
+- MongoDB
+- Mongoose
 
 To start the application on a local machine:
 
 1. Run 'npm install'.
 2. Run 'npm install webpack -g'.
-3. Run 'webpack' on one terminal window, 'grunt start' on another, and mongoDB on a final terminal window.
-
-
+3. Run 'webpack --watch', 'npm start', and mongoDB on a final terminal window.
 
 ## End-Goal: ##
 
 We envisioned a plethora of games that test mental capabilities, including but not limited to a memory card game, a word scramble game, maybe even a 'trick' game that forces the user to think 'outside the box'. The website will track the user's performance and give them a timeline showing how they've improved or not. The leaderboard will show the top 10 scores accross all users within a specific game as well as the current users highest score. Unless the game has a set number of attempts (say a 20 question test), ideally the game would have a timer on it that defines an end point when the score is calculated and submitted to the server.
-
-
 
 ## Main Components and their purposes: ##
 
