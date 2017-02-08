@@ -25,7 +25,7 @@ mongoose.Promise = global.Promise;
 //Mongoose
 // var uri;
 // process.env.PORT ? uri = config.web : uri = config.local;
-var mLabUri = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPASS + '@ds137749.mlab.com:37749/mastermind';
+var mLabUri = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPASS + '@ds147069.mlab.com:47069/heroku_9lgrcthv';
 var localMongoUri = 'mongodb://localhost/mastermind';
 var MONGO_URI = (process.env.NODE_ENV === 'production') ? mLabUri : localMongoUri;
 mongoose.connect(MONGO_URI);
