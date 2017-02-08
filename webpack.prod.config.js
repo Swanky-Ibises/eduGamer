@@ -13,7 +13,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, '/client/src'),
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         presets: ["react", "es2015"]
       }
@@ -27,7 +27,5 @@ module.exports = {
         return o;
       }, {})
     })
-  ],
-
-  watch: true
+  ]
 };
