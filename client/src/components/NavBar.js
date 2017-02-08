@@ -46,9 +46,9 @@ export const NavBar = () => {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="/login">Login</Link></li>
-            <li onClick={handleLogout}><Link>Logout</Link></li>
-            <li><Link to="/signup">Signup</Link></li>
+            { !localStorage.username && <li><Link to="/login">Login</Link></li> }
+            { localStorage.username && <li><Link to="/" onClick={handleLogout}>Logout</Link></li> }
+            { !localStorage.username && <li><Link to="/signup">Signup</Link></li> }
           </ul>
         </div>
       </div>
