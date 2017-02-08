@@ -35,7 +35,7 @@ export const NavBar = () => {
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li><Link to="/leaderboard">Leaderboard</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
+            { localStorage.username && <li><Link to="/profile">Profile</Link></li> }
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span className="caret"></span></a>
               <ul className="dropdown-menu">
@@ -46,9 +46,9 @@ export const NavBar = () => {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="/login">Login</Link></li>
-            <li onClick={handleLogout}><Link>Logout</Link></li>
-            <li><Link to="/signup">Signup</Link></li>
+            { !localStorage.username && <li><Link to="/login">Login</Link></li> }
+            { localStorage.username && <li><Link to="/" onClick={handleLogout}>Logout</Link></li> }
+            { !localStorage.username && <li><Link to="/signup">Signup</Link></li> }
           </ul>
         </div>
       </div>
