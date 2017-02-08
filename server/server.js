@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 var userController = require('./users/userController.js');
 var session = require('express-session');
-var config = require('./config.js');
+// var config = require('./config.js');
 var app = express();
 
 //middlewares
