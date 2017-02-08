@@ -6,19 +6,18 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "mocha --bail --reporter nyan test/ServerSpec.js",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
-    "webpack": "webpack -p --config ./webpack.config.js --progress"
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Swanky-Ibises/MasterMind.git"
+    "url": "git+https://github.com/towering-cranes/Membrain.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Swanky-Ibises/MasterMind/issues"
+    "url": "https://github.com/towering-cranes/Membrain/issues"
   },
-  "homepage": "https://github.com/Swanky-Ibises/MasterMind#readme",
+  "homepage": "https://github.com/towering-cranes/Membrain#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.3.4",
