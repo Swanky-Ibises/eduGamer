@@ -123,9 +123,9 @@ module.exports = {
     User.find({}).exec(function(err, users) {
       if (err) {
         console.log('Error getting users', err);
-        res.status(500).send("There's an error");
+        res.status(500).send(users);
       } else {
-        res.status(200).send("Here's a user");
+        res.status(200).send(users);
         //filter the users by top 10 highest scores for a specific game
       }
     });
