@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import { Menu, Segment, Dropdown } from 'semantic-ui-react';
 import {Link} from 'react-router';
 
 
@@ -20,7 +20,7 @@ export const NavBar = () => {
   }
 
   return (
-    <Menu color='blue' inverted>
+    <Menu color='blue'>
       <Link to="/">
         <Menu.Item name='home'> Home </Menu.Item>
       </Link>
@@ -29,9 +29,16 @@ export const NavBar = () => {
         <Menu.Item name='leaderboard'> Leaderboard </Menu.Item>
       </Link>
 
-      <Link to="/scramblegame">
-        <Menu.Item name='games'> Games </Menu.Item>
-      </Link>
+      <Dropdown item text='Games'>
+        <Dropdown.Menu>
+          <Link to="/scramblegame">
+            <Dropdown.Item> Scramble </Dropdown.Item>
+          </Link>
+          <Link to="/memorygame">
+            <Dropdown.Item> Memory </Dropdown.Item>
+          </Link>
+        </Dropdown.Menu>
+      </Dropdown>
 
       <Menu.Menu position='right'>
         <Link to="/login">
