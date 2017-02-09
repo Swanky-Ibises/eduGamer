@@ -27,7 +27,6 @@ export default class SignUp extends React.Component {
   //This method updates the state 'confirmPassword'
   updateConfirmPassword(text) {
     this.setState({confirmPassword: text.target.value});
-    console.log('state confirmedPassword', this.state.confirmPassword);
   }
 
   //This method validates the form on submission. If validation is passed, the user information will be passed to the server and database
@@ -80,12 +79,16 @@ export default class SignUp extends React.Component {
           <Segment padded>
           <Form>
             <Form.Field>
-              <label>First Name</label>
+              <label>Username</label>
               <input placeholder='Username' value={this.state.username} onChange={this.updateUsername.bind(this)}/>
             </Form.Field>
             <Form.Field>
-              <label>Last Name</label>
+              <label>Password</label>
               <input placeholder='Password' value={this.state.password} onChange={this.updatePassword.bind(this)}/>
+            </Form.Field>
+            <Form.Field>
+              <label>Confirm Password</label>
+              <input placeholder='Confirm Password' value={this.state.confirmPassword} onChange={this.updateConfirmPassword.bind(this)}/>
             </Form.Field>
             <Button primary fluid type='submit' onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
           </Form>
