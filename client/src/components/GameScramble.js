@@ -2,8 +2,9 @@ import React from 'react';
 import { data }  from './Data.js';
 import { Timer } from './Timer.js';
 import { Score } from './Score.js';
+import { Button } from 'semantic-ui-react';
 import $ from 'jquery';
-import {X_MASHAPE_KEY} from '../config.js';
+// import {X_MASHAPE_KEY} from '../config.js';
 
 
 const NUM_WORDS = 5;
@@ -35,7 +36,7 @@ export default class GameScramble extends React.Component {
   getWord(callback) {
     var word = {};
     var context = this;
-    var THE_X_MASHAPE_KEY = process.env.X_MASHAPE_KEY || X_MASHAPE_KEY;
+    var THE_X_MASHAPE_KEY = process.env.X_MASHAPE_KEY || {};
     $.ajax({
       type: 'GET',
       url: 'https://wordsapiv1.p.mashape.com/words/?random=true',
@@ -168,7 +169,7 @@ export default class GameScramble extends React.Component {
         <h1> {this.state.shuffled} </h1>
         <h4> {this.state.definition} </h4>
         <input type="text" placeholder="Enter Word" onChange={this.changeInput.bind(this)}/>
-        <button className="btn btn-default skipButton" onClick={this.skipWord.bind(this)}>Skip</button>
+        <Button onClick={this.skipWord.bind(this)}>Skip</Button>
         <Score score={this.state.score}/>
       </div>
     );
