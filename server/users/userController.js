@@ -156,8 +156,8 @@ module.exports = {
       }
 
       });
-    }
-  },
+    },
+
 
   leaderBoard: function(req, res, next) {
    var gameHigh = req.params.gametype + 'High';
