@@ -7,7 +7,7 @@ export default class GameMemory extends React.Component {
       score: 0,
       cards: [
         { value: 1, flipped: false },
-        { value: 1, flipped: false },
+        { value: 1, flipped: true },
         { value: 2, flipped: false },
         { value: 2, flipped: false }
       ],
@@ -22,7 +22,10 @@ export default class GameMemory extends React.Component {
         <table className='table'>
           <tbody>
             <tr>
-            { this.state.cards.map((card, index) => (<td key={index}>{card.value}</td>)) }
+            { this.state.cards.map((card, index) => (
+              <td key={index}>
+                {card.flipped ? card.value : ''}
+              </td>)) }
             </tr>
           </tbody>
         </table>
