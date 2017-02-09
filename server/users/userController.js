@@ -2,6 +2,9 @@ var User = require('./userModel');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt-nodejs');
 
+var Promise = require('bluebird');
+var url = require('url');
+
 var mongoose = require('mongoose');
 //to remove the mongoose Promise deprecated warning
 mongoose.Promise = require('bluebird');
@@ -96,7 +99,7 @@ module.exports = {
               userProfile[gametype + 'Array'].push(score);
               console.log('array is ', userProfile[gametype + 'Array']);
               //here we compare the request score to the saved highscore
-              if (score > userProfile[gametype + 'High'] || !userProfile[gametype + 'High']) {
+              if (score > userProfile[gametype + 'High'] || !userProfile[gametype + 'High']) {//is the high score null
                 userProfile[gametype + 'High'] = score;
                 console.log('new high score recorded');
               }
@@ -114,13 +117,16 @@ module.exports = {
     }
   },
 
-  getAll: function(req, res) {
+  getAll: function(req, res, next) {
+    console.log('in get all');
+
     User.find({}).exec(function(err, users) {
       if (err) {
         console.log('Error getting users', err);
-        res.status(500).send(err);
+        res.status(500).send("There's an error");
       } else {
-        res.status(200).send(users);
+        res.status(200).send("Here's a user");
+        //filter the users by top 10 highest scores for a specific game
       }
     });
   },
@@ -146,8 +152,21 @@ module.exports = {
           };
           res.send(userObject);
         }
+
       }
+
+      });
+    }
+  },
+
+  leaderBoard: function(req, res, next) {
+   var gameHigh = req.params.gametype + 'High';
+   console.log(gameHigh); //-> gametype=scrambleHigh
+    User.find({}).sort('-'+gameHigh).limit(10).exec(function(err, highScoreUsers) {
+      res.send(highScoreUsers);
+
     });
   }
+
 };
 
