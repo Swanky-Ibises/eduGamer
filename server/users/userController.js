@@ -132,8 +132,6 @@ module.exports = {
         console.log('error in fetching user');
         res.send(err);
       } else {
-        console.log('null user fetched', user, typeof user);
-        //to get around the Profile display bug when the session is not cleared and another invalid user tries loggin in
         if (user === null) {
           console.log('user is null');
           res.send({redirect: '/#/login'});

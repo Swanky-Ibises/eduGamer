@@ -1,12 +1,22 @@
 import { Table } from 'semantic-ui-react';
 
-const GameMemoryCard = (props) => {
-  return (
-    <Table.Cell negative={!props.card.flipped} textAlign='center' onClick={() => props.onClick(props.index)}>
-      {/*<p>{props.index}</p>*/}
-      {props.card.flipped ? props.card.value : 'X'}
-    </Table.Cell>
-  );
-};
+export default class GameMemoryCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default GameMemoryCard;
+  handleClick(e) {
+    if (!this.props.card.flipped) {
+      this.props.checkMatch(this.props.card.value, this.props.index);
+    }
+  }
+
+  render() {
+    return (
+    <Table.Cell negative={!this.props.card.flipped} textAlign='center' onClick={this.handleClick.bind(this)}>
+      {/*<p>{props.index}</p>*/}
+      {this.props.card.flipped ? this.props.card.value : 'X'}
+    </Table.Cell>
+    );
+  }
+}
