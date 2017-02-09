@@ -1,4 +1,5 @@
 import React from 'react';
+import { Table } from 'semantic-ui-react';
 import GameMemoryCard from './GameMemoryCard.js';
 
 export default class GameMemory extends React.Component {
@@ -39,15 +40,19 @@ export default class GameMemory extends React.Component {
       <div>
         <h2>Memory</h2>
         <h3>Score: { this.state.score }</h3>
-        <table className='table'>
-          <tbody>
-            <tr>
-            { this.state.cards.map((card, index) => (
-              <GameMemoryCard card={card} index={index} onClick={this.handleClick.bind(this)} key={index} />
-            )) }
-            </tr>
-          </tbody>
-        </table>
+        <div className='ui grid'>
+          <div className='four wide centered column'>
+            <Table celled>
+              <Table.Body>
+                <Table.Row>
+                { this.state.cards.map((card, index) => (
+                  <GameMemoryCard card={card} index={index} onClick={this.handleClick.bind(this)} key={index} />
+                )) }
+                </Table.Row>
+              </Table.Body>
+            </Table>
+          </div>
+        </div>
       </div>
     );
   }
