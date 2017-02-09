@@ -11,10 +11,15 @@ export default class GameMemory extends React.Component {
         { value: 0, flipped: false },
         { value: 1, flipped: false },
         { value: 2, flipped: false },
-        { value: 3, flipped: false }
+        { value: 3, flipped: false },
+        { value: 4, flipped: false }
       ],
       selectedCards: []
     };
+  }
+
+  componentDidMount() {
+    this.shuffleCards();
   }
 
   handleClick(cardIndex) {
@@ -23,6 +28,20 @@ export default class GameMemory extends React.Component {
     this.setState({
       cards: this.state.cards.slice(0, cardIndex).concat(this.flipCard(cardIndex), this.state.cards.slice(cardIndex+1))
     });
+  }
+
+  shuffleCards() {
+    var copyCards = this.state.cards.slice();
+
+    function shuffle(a) {
+      for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+      }
+    }
+
+    shuffle(copyCards);
+    this.setState({cards: copyCards});
   }
 
   flipCard(cardIndex) {
