@@ -1,11 +1,10 @@
 var User = require('./userModel');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt-nodejs');
-var Promise = require('bluebird');
 
 var mongoose = require('mongoose');
 //to remove the mongoose Promise deprecated warning
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('bluebird');
 
 module.exports = {
   //function for signin in user
@@ -15,7 +14,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username})
-      .then(function(err, userProfile) {
+      .exec(function(err, userProfile) {
         //if the user profile does not exist, we will create the new user
         if (!userProfile) {
           //hashes the password
@@ -50,15 +49,15 @@ module.exports = {
       });
   },
   //function for logging in user
-  login: function(req, res, next) {
+  login: function(req, res) {
     console.log('username is ', req.body.username);
     console.log('password is ', req.body.password);
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username})
-      .then(function(err, userProfile) {
+      .exec(function(err, userProfile) {
         if (!userProfile) {
-          res.send('User does not exist');
+          res.send('No user found');
         } else {
           //bcrypt compare
           bcrypt.compare(password, userProfile.password, function(err, match) {
@@ -73,7 +72,7 @@ module.exports = {
       });
   },
 
-  logout: function(req, res, next) {
+  logout: function(req, res) {
     console.log('A logout was initiated.');
     res.send({redirect: '/#/'});
     console.log('Logout completed successfully.');
@@ -115,7 +114,7 @@ module.exports = {
     }
   },
 
-  getAll: function(req, res, next) {
+  getAll: function(req, res) {
     User.find({}).exec(function(err, users) {
       if (err) {
         console.log('Error getting users', err);
@@ -126,7 +125,7 @@ module.exports = {
     });
   },
 
-  getUser: function(req, res, next) {
+  getUser: function(req, res) {
     console.log(req.params);
     User.findOne({username: req.params.username}).exec(function(err, user) {
       if (err) {

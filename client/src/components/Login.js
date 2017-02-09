@@ -24,8 +24,9 @@ export default class Login extends React.Component {
   }
 
   //This method validates whether the user exists and passwords match. If match, log user in and save username to local storage
-  handleSubmit() {
+  handleSubmit(e) {
     //Local storage is used in order to get persistent error messages after re rendering
+    e.preventDefault();
     var object = {
       username: this.state.username,
       password: this.state.password
@@ -38,8 +39,8 @@ export default class Login extends React.Component {
       contentType: 'application/json',
       success: function(data) {
         //on a successful post, check data. Error messages are returned so if data returns a string, an error happened
-        if (data === 'string') {
-          this.setState({errorText: data});
+        if (data.redirect === undefined) {
+          context.setState({errorText: 'User doesn\'t exist'});
         } else {
           context.context.router.push('/');
         }
@@ -53,10 +54,10 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.state.errorText}</p>
         <Container textAlign='left'>
           <h1> Log in to Membrain </h1>
           <Segment padded>
+          <p>{this.state.errorText}</p>
           <Form>
             <Form.Field>
               <label>Username</label>
