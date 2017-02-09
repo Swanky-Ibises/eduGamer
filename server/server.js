@@ -4,14 +4,18 @@ var mongoose = require('mongoose');
 var path = require('path');
 var userController = require('./users/userController.js');
 var session = require('express-session');
+var morgan = require('morgan');
 var app = express();
 
 //middlewares
+app.use(morgan('dev'));
 app.use(bodyparser.json());
 app.use(session({
   user: null,
   secret: 'master of my domain',
-  cookie: {maxAge: 31536000000}
+  cookie: {maxAge: 31536000000},
+  resave: false,
+  saveUninitialized: true
 }));
 
 //require login
@@ -33,7 +37,7 @@ mongoose.connect(MONGO_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection to mongoose error:'));
 db.once('open', function() {
-  console.log('mLabUri', mLabUri);
+  console.log('Connected to:', MONGO_URI);
 });
 
 
@@ -61,7 +65,7 @@ app.get('/memory', function(req, res) {
 app.get('/scramble', function(req, res) {
   res.send('This is where we would serve the scramble game');
 });
-app.get('/:username', userController.getUser);
+// app.get('/:username', userController.getUser);
 app.get('/leaderboard', userController.getAll);
 
 //post routes
@@ -72,6 +76,6 @@ app.post('/logout', userController.logout);
 
 
 app.listen(port, function () {
-  console.log('Example app listening on port', port);
-  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+  console.log('Membrain server listening on port', port);
+  console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
 });
