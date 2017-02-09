@@ -87,7 +87,7 @@ export default class TypingSpeedmaster extends React.Component {
         <h2>Time taken: {this.state.timer}</h2>
         <Message warning>
           <h3>Enter this text as fast as you can: </h3>
-          {this.state.targetText}
+          <div className='typing-text'>{this.state.targetText}</div>
         </Message>
         {this.state.done && <h2>You win!!! Score: {this.state.score}</h2>}
         <Form>

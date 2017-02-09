@@ -8,3 +8,7 @@ body {
   margin-left:5%;
   margin-right:5%;
 }
+
+.typing-text {
+  user-select: none;
+}
