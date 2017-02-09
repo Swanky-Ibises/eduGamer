@@ -31,17 +31,20 @@ var rootPath = path.join(__dirname, '/..');
 var publicPath = path.join(rootPath, '/compiled/public');
 app.use(express.static(path.join(__dirname, '../')));
 
-//routes
-app.get('/:username', userController.getUser);
-app.get('/all', userController.getAll);
-app.get('/leaderboard/:gametype', userController.leaderBoard);
-//app.get('/scrambleWords', userController.scrambleWords);
-//app.get('/wordOfTheDay', userController.wordOfTheDay);
+//v2 routes
+app.get('/api/v2/user/:username', userController.getUser);
+app.get('/api/v2/users', userController.getAll);
+app.get('/api/v2/leaderboard/:gametype', userController.leaderBoard);
+app.post('/api/v2/user/:username/score', userController.postScore);
+
 //post routes
+//v1 routes
 app.post('/signup', userController.signup);
 app.post('/login', userController.login);
 app.post('/scores', userController.postScore);
 app.post('/logout', userController.logout);
+app.get('/:username', userController.getUser);
+app.get('/leaderboard', userController.getAll);
 
 app.listen(port, function () {
   console.log('Membrain server listening on port', port);
