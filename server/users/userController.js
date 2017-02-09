@@ -154,7 +154,8 @@ module.exports = {
    var gameHigh = req.params.gametype + 'High';
    console.log(gameHigh); //-> gametype=scrambleHigh
     User.find({}).sort('-'+gameHigh).limit(10).exec(function(err, highScoreUsers) {
-      res.send(highScoreUsers);
+
+      res.send(highScoreUsers); //[{username: blah, highscore: 2}, {etce}]
     });
   }
 
