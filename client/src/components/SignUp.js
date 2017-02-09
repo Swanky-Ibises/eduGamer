@@ -76,7 +76,7 @@ export default class SignUp extends React.Component {
     return (
       <div>
         <Container textAlign='left'>
-          <h3> Sign up for Membrain </h3>
+          <h1> Sign up for Membrain </h1>
           <Segment padded>
           <Form>
             <Form.Field>
