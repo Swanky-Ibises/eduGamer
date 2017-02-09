@@ -41,13 +41,17 @@ export const NavBar = () => {
       </Dropdown>
 
       <Menu.Menu position='right'>
-        <Link to="/login">
-          <Menu.Item name='login'> Login </Menu.Item>
-        </Link>
+        { localStorage.username && <Link to="/profile">
+          <Menu.Item name='profile'> Profile </Menu.Item>
+        </Link> }
 
-        <Link to="/" onClick={handleLogout}>
+        { !localStorage.username && <Link to="/login">
+          <Menu.Item name='login'> Login </Menu.Item>
+        </Link> }
+
+        { localStorage.username && <Link to="/" onClick={handleLogout}>
           <Menu.Item name='logout'> Logout </Menu.Item>
-        </Link>
+        </Link> }
       </Menu.Menu>
     </Menu>
   )

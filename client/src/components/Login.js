@@ -66,7 +66,7 @@ export default class Login extends React.Component {
             <label>Last Name</label>
             <input placeholder='Password' value={this.state.password} onChange={this.updatePassword.bind(this)}/>
           </Form.Field>
-          <Button primary fluid type='submit' onClick={this.handleSubmit.bind(this)}>Log In</Button>
+          <Link to="/"><Button primary fluid type='submit' onClick={this.handleSubmit.bind(this)}>Log In</Button></Link>
         </Form>
         <Divider horizontal>Or</Divider>
         <Link to="/signup"><Button secondary fluid>Sign up</Button></Link>
