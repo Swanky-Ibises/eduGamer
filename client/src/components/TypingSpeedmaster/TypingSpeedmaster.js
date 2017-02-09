@@ -33,7 +33,8 @@ export default class TypingSpeedmaster extends React.Component {
 
   gameEnd() {
     this.endTimer();
-    this.setState({done: true});
+    // Workaround so component doesn't update twice
+    this.state.done = true;
     this.submitScore();
   }
 
@@ -48,7 +49,10 @@ export default class TypingSpeedmaster extends React.Component {
     clearInterval(this.timer);
   }
 
-  submitScore() {}
+  submitScore() {
+    var invertScore = 500 - this.state.timer;
+    console.log(invertScore);
+  }
 
   render() {
     return (
