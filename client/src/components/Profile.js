@@ -27,7 +27,6 @@ export class Profile extends React.Component {
       contentType: 'application/json',
       dataType: 'json',
       success: function(data) {
-        console.log(data);
         if (typeof data.redirect === 'string') {
           console.log('redirect to login!');
           // localStorage.username = null;
