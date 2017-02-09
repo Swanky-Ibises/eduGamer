@@ -37,6 +37,9 @@ export const NavBar = () => {
           <Link to="/memorygame">
             <Dropdown.Item> Memory </Dropdown.Item>
           </Link>
+          <Link to="/typingspeedmaster">
+            <Dropdown.Item> Typing </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
 
