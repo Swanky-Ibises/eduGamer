@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import {Header, Table} from 'semantic-ui-react';
 
 export class Profile extends React.Component {
   constructor() {
@@ -53,34 +54,50 @@ export class Profile extends React.Component {
         <h2 className="text-center">Highest {gameType} Game Score: <span className="highscore">{score}</span></h2>
 
         <div className="table-responsive">
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>#</th>
-                {
-                  scoreArr.map((eachScore, ind)=>{
-                    return <TableCol value={ind + 1} key={ind}/>;
+          <Table celled striped>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell> # </Table.HeaderCell>
+                  {scoreArr.map((eachScore, ind)=>{
+                      return <Table.HeaderCell key={ind}> {ind + 1} </Table.HeaderCell>;
+                    })
+                  }
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell> Score </Table.Cell>
+                  {scoreArr.map((eachScore, ind)=>{
+                    return <Table.Cell key={ind}> {eachScore} </Table.Cell>;
                   })
                 }
-              </tr>
-              <tr>
-                <th>Score</th>
-                {
-                  scoreArr.map((eachScore, ind)=>{
-                    return <TableCol value={eachScore} key={ind}/>;
-                  })
-                }
-              </tr>
-            </tbody>
-          </table>
+              </Table.Row>
+            </Table.Body>
+          </Table>
         </div>
       </div>
     );
-
-    var TableCol = ({value}) =>(
-      <td>{value}</td>
-    );
-
+          // <table className="table">
+          //   <tbody>
+          //     <tr>
+          //       <th>#</th>
+          //       {
+          //         scoreArr.map((eachScore, ind)=>{
+          //           return <TableCol value={ind + 1} key={ind}/>;
+          //         })
+          //       }
+          //     </tr>
+          //     <tr>
+          //       <th>Score</th>
+          //       {
+          //         scoreArr.map((eachScore, ind)=>{
+          //           return <TableCol value={eachScore} key={ind}/>;
+          //         })
+          //       }
+          //     </tr>
+          //   </tbody>
+          // </table>
 
     //---- Logics for displaying game elem -----------------------
     //--- Potentially refactor for the games to reside in one array for easy data manipulation
