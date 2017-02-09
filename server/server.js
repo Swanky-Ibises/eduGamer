@@ -32,27 +32,7 @@ var publicPath = path.join(rootPath, '/compiled/public');
 app.use(express.static(path.join(__dirname, '../')));
 
 //routes
-
 app.get('/:username', userController.getUser);
-
-//get routes
-// app.get('/', function(req, res) {
-//   res.sendFile('hello world from server');
-// });
-app.get('/signup', function(req, res) {
-  res.send('This is where we would serve the signup');
-});
-app.get('/login', function(req, res) {
-  res.send('This is where we would serve the login');
-});
-app.get('/memory', function(req, res) {
-  res.send('This is where we would serve the memory game');
-});
-app.get('/scramble', function(req, res) {
-  res.send('This is where we would serve the scramble game');
-});
-//app.get('/:username', userController.getUser);
-
 app.get('/all', userController.getAll);
 app.get('/leaderboard/:gametype', userController.leaderBoard);
 //app.get('/scrambleWords', userController.scrambleWords);
