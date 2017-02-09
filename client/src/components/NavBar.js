@@ -49,7 +49,7 @@ export const NavBar = () => {
           <Menu.Item name='login'> Login </Menu.Item>
         </Link> }
 
-        { localStorage.username && <Link onClick={handleLogout}>
+        { localStorage.username && <Link to="/" onClick={handleLogout}>
           <Menu.Item name='logout'> Logout </Menu.Item>
         </Link> }
       </Menu.Menu>
