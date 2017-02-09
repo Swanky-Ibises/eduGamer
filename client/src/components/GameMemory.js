@@ -1,10 +1,12 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
+import $ from 'jquery';
 import GameMemoryCard from './GameMemoryCard.js';
 
 export default class GameMemory extends React.Component {
   constructor(props) {
     super(props);
+    this.gametype = 'memory',
     this.state = {
       score: 0,
       gameDisabled: false,
@@ -89,7 +91,32 @@ export default class GameMemory extends React.Component {
     this.setState({cards: cardsCopy});
   }
 
+  saveScore() {
+    //post the score to the backend if user is logged in
+    if (localStorage.username) {
+      console.log('Memory game username:', localStorage.username);
+      var obj = {
+        username: localStorage.username,
+        gametype: this.gametype,
+        score: this.state.score
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/scores',
+        data: JSON.stringify(obj),
+        contentType: 'application/json',
+        success: function(data) {
+          console.log('Data posted to server', data);
+        }
+      });
+    }
+  }
+
   render() {
+    if (this.state.score === 50) {
+      this.saveScore();
+    }
+
     return (
       <div>
         <h2>Memory</h2>
