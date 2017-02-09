@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Message } from 'semantic-ui-react';
 import $ from 'jquery';
 import GameMemoryCard from './GameMemoryCard.js';
 
@@ -118,7 +118,7 @@ export default class GameMemory extends React.Component {
     }
 
     return (
-      <div>
+      <Message>
         <h2>Memory</h2>
         <h3>Score: { this.state.score }</h3>
         <div className='ui grid'>
@@ -134,7 +134,7 @@ export default class GameMemory extends React.Component {
             </Table>
           </div>
         </div>
-      </div>
+      </Message>
     );
   }
 }
