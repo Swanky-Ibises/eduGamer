@@ -1,4 +1,5 @@
 import React from 'react';
+import GameMemoryCard from './GameMemoryCard.js';
 
 export default class GameMemory extends React.Component {
   constructor(props) {
@@ -23,9 +24,8 @@ export default class GameMemory extends React.Component {
           <tbody>
             <tr>
             { this.state.cards.map((card, index) => (
-              <td key={index}>
-                {card.flipped ? card.value : ''}
-              </td>)) }
+              <GameMemoryCard card={card} index={index} key={index} />
+            )) }
             </tr>
           </tbody>
         </table>
