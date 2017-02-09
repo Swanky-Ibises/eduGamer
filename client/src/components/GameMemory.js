@@ -7,19 +7,20 @@ export default class GameMemory extends React.Component {
     super(props);
     this.state = {
       score: 0,
+      gameDisabled: false,
       cards: [
-        { value: 0, flipped: false },
-        { value: 0, flipped: false },
-        { value: 1, flipped: false },
-        { value: 1, flipped: false },
-        { value: 2, flipped: false },
-        { value: 2, flipped: false },
-        { value: 3, flipped: false },
-        { value: 3, flipped: false },
-        { value: 4, flipped: false },
-        { value: 4, flipped: false }
+        { value: 0, flipped: false, matched: false },
+        { value: 0, flipped: false, matched: false },
+        { value: 1, flipped: false, matched: false },
+        { value: 1, flipped: false, matched: false },
+        { value: 2, flipped: false, matched: false },
+        { value: 2, flipped: false, matched: false },
+        { value: 3, flipped: false, matched: false },
+        { value: 3, flipped: false, matched: false },
+        { value: 4, flipped: false, matched: false },
+        { value: 4, flipped: false, matched: false }
       ],
-      selectedCards: []
+      lastCard: null
     };
   }
 
@@ -27,15 +28,55 @@ export default class GameMemory extends React.Component {
     this.shuffleCards();
   }
 
-  handleClick(cardIndex) {
-    // console.log(this.state.cards.slice(0, cardIndex).concat(this.flipCard(cardIndex), this.state.cards.slice(cardIndex+1)));
-    // Flip a card and render cards again
-    this.flipCard(cardIndex);
-    this.selectCard(cardIndex);
+  checkMatch(cardValue, cardIndex) {
+    var cards = this.state.cards;
+    var score = this.state.score;
+
+    if (this.state.gameDisabled) {
+      return;
+    }
+
+    cards[cardIndex].flipped = true;
+    this.setState({
+      cards: cards,
+      gameDisabled: true
+    });
+
+    // If one card already flipped
+    if (this.state.lastCard) {
+      // If match
+      if (this.state.lastCard.value === cardValue) {
+        cards[cardIndex].matched = true;
+        this.state.lastCard.matched = true;
+        this.setState({
+          cards: cards,
+          lastCard: null,
+          gameDisabled: false,
+          score: score + 10
+        });
+      } else {
+        // No match
+        setTimeout(() => {
+          cards[cardIndex].flipped = false;
+          this.state.lastCard.flipped = false;
+          this.setState({
+            cards: cards,
+            lastCard: null,
+            gameDisabled: false
+          });
+        }, 750);
+      }
+    } else {
+      // If no card flipped yet
+      this.setState({
+        lastCard: cards[cardIndex],
+        gameDisabled: false
+      });
+    }
   }
 
   shuffleCards() {
-    var copyCards = this.state.cards.slice();
+    var cardsCopy = this.state.cards.slice();
 
     function shuffle(a) {
       for (let i = a.length; i; i--) {
@@ -44,29 +85,8 @@ export default class GameMemory extends React.Component {
       }
     }
 
-    shuffle(copyCards);
-    this.setState({cards: copyCards});
-  }
-
-  flipCard(cardIndex) {
-    console.log('Flipped card:', cardIndex);
-    // Avoid mutating array
-    // Splice returns array and not object
-    var cardsCopy = this.state.cards.slice();
-    var flippedCard = cardsCopy.splice(cardIndex, 1);
-    flippedCard[0].flipped = !flippedCard[0].flipped;
-
-    this.setState({
-      cards: this.state.cards.slice(0, cardIndex).concat(flippedCard, this.state.cards.slice(cardIndex+1))
-    });
-  }
-
-  selectCard(cardIndex) {
-    var copySelected = this.state.selectedCards.slice();
-    var selectedCard = this.state.cards[cardIndex];
-    this.setState({
-      selectedCards: copySelected.concat([selectedCard])
-    });
+    shuffle(cardsCopy);
+    this.setState({cards: cardsCopy});
   }
 
   render() {
@@ -80,7 +100,7 @@ export default class GameMemory extends React.Component {
               <Table.Body>
                 <Table.Row>
                 { this.state.cards.map((card, index) => (
-                  <GameMemoryCard card={card} index={index} onClick={this.handleClick.bind(this)} key={index} />
+                  <GameMemoryCard card={card} index={index} checkMatch={this.checkMatch.bind(this)} key={index} />
                 )) }
                 </Table.Row>
               </Table.Body>
