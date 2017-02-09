@@ -14,7 +14,6 @@ export default class GameMemoryCard extends React.Component {
   render() {
     return (
     <Table.Cell negative={!this.props.card.flipped} textAlign='center' onClick={this.handleClick.bind(this)}>
-      {/*<p>{props.index}</p>*/}
       {this.props.card.flipped ? this.props.card.value : 'X'}
     </Table.Cell>
     );
