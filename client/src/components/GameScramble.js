@@ -2,7 +2,7 @@ import React from 'react';
 import { data }  from './Data.js';
 import { Timer } from './Timer.js';
 import { Score } from './Score.js';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import $ from 'jquery';
 // import {X_MASHAPE_KEY} from '../config.js';
 
@@ -16,12 +16,12 @@ export default class GameScramble extends React.Component {
     //this.wordData = [];
     this.state = {
       userInput: '',
-      // position: 1,
       word: null,
       definition: null,
       shuffled: null,
       score: 0,
-      timeLeft: 45
+      timeLeft: 45,
+      done: false
     };
   }
 
@@ -135,8 +135,10 @@ export default class GameScramble extends React.Component {
   decrementTimer() {
     this.setState({timeLeft: this.state.timeLeft - 1});
     if (this.state.timeLeft <= 0) {
-      clearInterval(this.interval);
+      console.log('timer stopped');
       this.saveScore();
+      this.setState({done: true});
+      clearInterval(this.interval);
     }
   }
 
@@ -151,10 +153,12 @@ export default class GameScramble extends React.Component {
   //On dismount, the timer will stop.
   componentWillUnmount() {
     clearInterval(this.interval);
+    console.log('timer stopped');
   }
 
   //After the game is ended, this method makes an AJAX post request to the server
   saveScore() {
+    console.log('score is being saved');
     //post the score to the backend if user is logged in
     if (localStorage.username) {
       console.log('scramble game username', localStorage.username);
@@ -181,8 +185,8 @@ export default class GameScramble extends React.Component {
         <Timer time={this.state.timeLeft} />
         <h1> {this.state.shuffled} </h1>
         <h4> {this.state.definition} </h4>
-        <input type="text" placeholder="Enter Word" onChange={this.changeInput.bind(this)}/>
-        <Button onClick={this.skipWord.bind(this)}>Skip</Button>
+        <Input placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
+        <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
         <Score score={this.state.score}/>
       </div>
     );
