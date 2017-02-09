@@ -4,16 +4,11 @@ import { Timer } from './Timer.js';
 import { Score } from './Score.js';
 import { Button, Input } from 'semantic-ui-react';
 import $ from 'jquery';
-// import {X_MASHAPE_KEY} from '../config.js';
-
-
-const NUM_WORDS = 5;
 
 export default class GameScramble extends React.Component {
   constructor(props) {
     super(props);
     this.gametype = 'scramble';
-    //this.wordData = [];
     this.state = {
       userInput: '',
       word: null,
@@ -25,44 +20,9 @@ export default class GameScramble extends React.Component {
     };
   }
 
-
-  //   //This for loop is for creating the wordData array which holds the words returned from the wordsapi
-  //   var context = this;
-  //   for (var i = 0; i < NUM_WORDS; i++) {
-  //     this.getWord( function(word) {
-  //       context.wordData.push(word);
-  //     });
-  //   }
-  // }
-
-  // //Makes a get request from the wordsapi and returns a random word and a definition
-  // getWord(callback) {
-  //   var word = {};
-  //   var context = this;
-  //   var THE_X_MASHAPE_KEY = process.env.X_MASHAPE_KEY || {};
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'https://wordsapiv1.p.mashape.com/words/?random=true',
-  //     headers: {
-  //       'X-Mashape-Key': THE_X_MASHAPE_KEY,
-  //       Accept: 'application/json'
-  //     },
-  //     contentType: 'application/json',
-  //     success: function(data) {
-  //       //sometimes API returns result without definition, handle that
-  //       if (!data.results) {
-  //         console.log('word without definiton! try again');
-  //         context.getWord(callback);
-  //       } else {
-  //         word.word = data.word.toUpperCase();
-  //         word.definition = data.results[0].definition;
-  //         callback(word);
-  //       }
-  //     }
-  //   });
-  // }
-
-
+  reload() {
+    window.location.reload();
+  }
   //This method shuffles the string passed in
   shuffle(string) {
     var characters = string.split('');
@@ -82,23 +42,6 @@ export default class GameScramble extends React.Component {
 
 
   //This method changes this.state.word
-  // changeWord(context) {
-  //   if (context.wordData.length > 0) {
-  //     var thisWord = context.wordData[0].word;
-  //     console.log(thisWord);
-  //     this.setState({
-  //       word: thisWord,
-  //       definition: context.wordData[0].definition
-  //     });
-  //     context.wordData.shift();
-  //   } else {
-  //     var thisWord = data[this.state.position];
-  //     this.setState({position: this.state.position + 1});
-  //     this.setState({word: thisWord});
-  //     this.setState({definition: ''});
-  //   }
-  //   this.setState({shuffled: this.shuffle(thisWord)});
-  // }
   changeWord() {
     var rng = Math.ceil(Math.random()*999);
     var wordData = data[rng];
@@ -112,7 +55,6 @@ export default class GameScramble extends React.Component {
 
   //This method changes the state based on the text input
   changeInput(text) {
-    // var context = this;
     console.log('the word in change input is ', this.state.word);
     this.setState({userInput: text.target.value});
     if (text.target.value.toUpperCase() === this.state.word) {
@@ -151,9 +93,9 @@ export default class GameScramble extends React.Component {
   }
 
   //On dismount, the timer will stop.
+  //Josephine's note: This currently isn't used?
   componentWillUnmount() {
     clearInterval(this.interval);
-    console.log('timer stopped');
   }
 
   //After the game is ended, this method makes an AJAX post request to the server
@@ -188,6 +130,7 @@ export default class GameScramble extends React.Component {
         <Input placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
         <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
         <Score score={this.state.score}/>
+        {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
       </div>
     );
   }
