@@ -35,7 +35,9 @@ app.use(express.static(path.join(__dirname, '../')));
 //routes
 app.get('/:username', userController.getUser);
 app.get('/leaderboard', userController.getAll);
-
+//app.get('/leaderBoard', userController.leaderBoard);
+//app.get('/scrambleWords', userController.scrambleWords);
+//app.get('/wordOfTheDay', userController.wordOfTheDay);
 //post routes
 app.post('/signup', userController.signup);
 app.post('/login', userController.login);
