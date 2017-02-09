@@ -44,7 +44,6 @@ app.post('/api/v2/user/:username/score', userController.postScore);
 app.post('/signup', userController.signup);
 app.post('/login', userController.login);
 app.post('/scores', userController.postScore);
-app.post('/api/v2/user/:username/score')
 app.post('/logout', userController.logout);
 app.get('/:username', userController.getUser);
 app.get('/leaderboard', userController.getAll);
