@@ -5,13 +5,20 @@ export default class TypingSpeedmaster extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      targetText: 'This is the text you should be typing!'
-    }
+      targetText: 'This is the text you should be typing!',
+      userText: ''
+    };
+    this.handleKeypress = this.handleKeypress.bind(this);
   }
 
-  handleKeypress() {}
+  handleKeypress(event) {
+    this.setState({ userText: event.target.value });
+  }
 
   render() {
+    if (this.state.targetText === this.state.userText) {
+      console.log('You win!');
+    }
     return (
       <Message>
         <h1>This is typing speedmaster!</h1>
@@ -20,7 +27,7 @@ export default class TypingSpeedmaster extends React.Component {
           {this.state.targetText}
         </Message>
         <Form>
-          <TextArea placeholder='user text' />
+          <TextArea placeholder='Type here' onChange={this.handleKeypress} />
         </Form>
       </Message>
     )
