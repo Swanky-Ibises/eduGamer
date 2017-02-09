@@ -1,18 +1,26 @@
 import React from 'react';
+import $ from 'jquery';
 import { Message, Form, TextArea } from 'semantic-ui-react';
 
 export default class TypingSpeedmaster extends React.Component {
   constructor(props) {
     super(props);
     this.timer = null;
+    this.sentScore = false;
     this.state = {
       timer: 0,
-      targetText: 'This is the text you should be typing!',
+      score: 0,
+      targetText: 'targetText should go here',
       userText: '',
       started: false,
-      done: false
+      done: false,
     };
     this.handleKeypress = this.handleKeypress.bind(this);
+  }
+
+  componentWillMount() {
+    // Replaces 'Some text' above
+    this.getTargetText();
   }
 
   componentWillUpdate() {
@@ -31,10 +39,24 @@ export default class TypingSpeedmaster extends React.Component {
     }
   }
 
+  getTargetText() {
+    var context = this;
+    $.ajax({
+      type: 'GET',
+      crossDomain: true,
+      // This is fine for now because this is the public wordnik key you can find on their site
+      url: 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
+      success: function(data) {
+        var words = [];
+        data.forEach(datem => {words.push(datem.word)});
+        context.setState({targetText: words.join(' ')});
+      }
+    });
+  }
+
   gameEnd() {
     this.endTimer();
-    // Workaround so component doesn't update twice
-    this.state.done = true;
+    this.setState({done: true});
     this.submitScore();
   }
 
@@ -50,8 +72,12 @@ export default class TypingSpeedmaster extends React.Component {
   }
 
   submitScore() {
-    var invertScore = 500 - this.state.timer;
-    console.log(invertScore);
+    this.setState({score: 200 - this.state.timer});
+    if (!this.sentScore) {
+      // Workaround to React's lifecycle hooks
+      // submitScore gets invoked twice because of componentWillUpdate functionality
+      this.sentScore = true;
+    }
   }
 
   render() {
@@ -63,7 +89,7 @@ export default class TypingSpeedmaster extends React.Component {
           <h3>Enter this text as fast as you can: </h3>
           {this.state.targetText}
         </Message>
-        {this.state.done && <h2>You win!!!</h2>}
+        {this.state.done && <h2>You win!!! Score: {this.state.score}</h2>}
         <Form>
           <TextArea placeholder='Type here' onChange={this.handleKeypress} />
         </Form>
