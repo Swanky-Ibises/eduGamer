@@ -6,18 +6,26 @@ export default class TypingSpeedmaster extends React.Component {
     super(props);
     this.state = {
       targetText: 'This is the text you should be typing!',
-      userText: ''
+      userText: '',
+      started: false,
+      done: false
     };
     this.handleKeypress = this.handleKeypress.bind(this);
   }
 
   handleKeypress(event) {
-    this.setState({ userText: event.target.value });
+    if (!this.state.done) {
+      this.setState({ userText: event.target.value });
+    }
+  }
+
+  gameEnd() {
+    console.log('You win!');
   }
 
   render() {
     if (this.state.targetText === this.state.userText) {
-      console.log('You win!');
+      this.gameEnd();
     }
     return (
       <Message>
