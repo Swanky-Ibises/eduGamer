@@ -3,3 +3,8 @@ body {
   text-align: center;
   background: #2185D0;
 }
+
+.score-table {
+  margin-left:5%;
+  margin-right:5%;
+}

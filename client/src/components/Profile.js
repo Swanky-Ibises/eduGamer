@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import {Header, Table} from 'semantic-ui-react';
 
 export class Profile extends React.Component {
   constructor() {
@@ -50,37 +51,32 @@ export class Profile extends React.Component {
     //---- Element for displaying one game ----
     var OneGameScoreDisplay = ({gameType, score, scoreArr})=>(
       <div className="game-profile">
-        <h2 className="text-center">Highest {gameType} Game Score: <span className="highscore">{score}</span></h2>
+        <h2>Highest {gameType} Game Score: <span className="highscore">{score}</span></h2>
+        <div className="score-table">
+          <Table celled striped>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell> # </Table.HeaderCell>
+                  {scoreArr.map((eachScore, ind)=>{
+                      return <Table.HeaderCell key={ind}> {ind + 1} </Table.HeaderCell>;
+                    })
+                  }
+              </Table.Row>
+            </Table.Header>
 
-        <div className="table-responsive">
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>#</th>
-                {
-                  scoreArr.map((eachScore, ind)=>{
-                    return <TableCol value={ind + 1} key={ind}/>;
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell> Score </Table.Cell>
+                  {scoreArr.map((eachScore, ind)=>{
+                    return <Table.Cell key={ind}> {eachScore} </Table.Cell>;
                   })
                 }
-              </tr>
-              <tr>
-                <th>Score</th>
-                {
-                  scoreArr.map((eachScore, ind)=>{
-                    return <TableCol value={eachScore} key={ind}/>;
-                  })
-                }
-              </tr>
-            </tbody>
-          </table>
+              </Table.Row>
+            </Table.Body>
+          </Table>
         </div>
       </div>
     );
-
-    var TableCol = ({value}) =>(
-      <td>{value}</td>
-    );
-
 
     //---- Logics for displaying game elem -----------------------
     //--- Potentially refactor for the games to reside in one array for easy data manipulation
@@ -105,13 +101,13 @@ export class Profile extends React.Component {
     //-------constructing profile elements -------
     let profileElem;
     const NoScoreDisplay = (
-      <h2 className="text-center">No Game Score</h2>
+      <h2>No Game Score</h2>
     );
     //--------------------------------------------
 
     //the logics to decide what elements to display
     //localStorage only stores strings
-    //do a usernmae check to avoid going into the next if statement causing error
+    //do a username check to avoid going into the next if statement causing error
     if (!localStorage.username) {
       console.log('no localStorage username');
       return;
@@ -128,7 +124,7 @@ export class Profile extends React.Component {
 
     return (
       <div>
-        <h1 className="text-center">{name}</h1>
+        <h1>{name}</h1>
             {this.displayProfile()}
       </div>
     );
