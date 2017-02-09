@@ -9,9 +9,14 @@ export default class GameMemory extends React.Component {
       score: 0,
       cards: [
         { value: 0, flipped: false },
+        { value: 0, flipped: false },
+        { value: 1, flipped: false },
         { value: 1, flipped: false },
         { value: 2, flipped: false },
+        { value: 2, flipped: false },
         { value: 3, flipped: false },
+        { value: 3, flipped: false },
+        { value: 4, flipped: false },
         { value: 4, flipped: false }
       ],
       selectedCards: []
@@ -28,6 +33,10 @@ export default class GameMemory extends React.Component {
     this.setState({
       cards: this.state.cards.slice(0, cardIndex).concat(this.flipCard(cardIndex), this.state.cards.slice(cardIndex+1))
     });
+  }
+
+  handleSelection(cardIndex) {
+
   }
 
   shuffleCards() {
