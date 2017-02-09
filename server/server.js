@@ -27,15 +27,14 @@ db.once('open', function() {
 
 //define port
 var port = process.env.PORT || 3000;
-
 var rootPath = path.join(__dirname, '/..');
 var publicPath = path.join(rootPath, '/compiled/public');
 app.use(express.static(path.join(__dirname, '../')));
 
 //routes
 app.get('/:username', userController.getUser);
-app.get('/leaderboard', userController.getAll);
-//app.get('/leaderBoard', userController.leaderBoard);
+app.get('/all', userController.getAll);
+app.get('/leaderboard/:gametype', userController.leaderBoard);
 //app.get('/scrambleWords', userController.scrambleWords);
 //app.get('/wordOfTheDay', userController.wordOfTheDay);
 //post routes
