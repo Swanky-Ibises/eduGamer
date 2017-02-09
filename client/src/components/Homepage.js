@@ -19,6 +19,7 @@ export default class Homepage extends React.Component {
                 <Header size='large'>Popular Games</Header>
                 <Link to="/scramblegame"><Button>Scramble</Button></Link>
                 <Link to="/memorygame"><Button>Memory</Button></Link>
+                <Link to="/typingspeedmaster"><Button>Typing</Button></Link>
               </Message>
             </Grid.Column>
             <Grid.Column width={8}>
