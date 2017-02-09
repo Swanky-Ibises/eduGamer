@@ -7,16 +7,15 @@ var mongoose = require('mongoose');
 //to remove the mongoose Promise deprecated warning
 mongoose.Promise = global.Promise;
 
-
 module.exports = {
   //function for signin in user
-  signup: function(req, res, next) {
+  signup: function(req, res) {
     console.log('username is ', req.body.username);
     console.log('password is ', req.body.password);
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username})
-      .exec(function(err, userProfile) {
+      .then(function(err, userProfile) {
         //if the user profile does not exist, we will create the new user
         if (!userProfile) {
           //hashes the password
@@ -39,14 +38,7 @@ module.exports = {
                   console.log('SAVE ERROR', err);
                 }
                 console.log('user saved here', user);
-                req.session.regenerate(function(err) {
-                  if (err) {
-                    console.log('session err', err);
-                  }
-                  console.log('req.session.user', username);
-                  req.session.user = username;
-                  res.send({redirect: '/#/'});
-                });
+                res.sendStatus(200);
               });
             }
           });
@@ -56,7 +48,6 @@ module.exports = {
           res.send('Account already exists');
         }
       });
-    // next();
   },
   //function for logging in user
   login: function(req, res, next) {
@@ -65,7 +56,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({username: username})
-      .exec(function(err, userProfile) {
+      .then(function(err, userProfile) {
         if (!userProfile) {
           res.send('User does not exist');
         } else {
@@ -73,15 +64,7 @@ module.exports = {
           bcrypt.compare(password, userProfile.password, function(err, match) {
             if (match) {
               console.log('passwords match');
-              req.session.regenerate(function(err) {
-                if (err) {
-                  console.log('session err', err);
-                }
-                //If this console.log is removed, Profile redirection will fail
-                console.log('req.session.user', username);
-                req.session.user = username;
-                res.send({redirect: '/#/'});
-              });
+              res.send({redirect: '/#/'});
             } else {
               res.send('Password is incorrect');
             }
@@ -89,20 +72,13 @@ module.exports = {
         }
       });
   },
+
   logout: function(req, res, next) {
     console.log('A logout was initiated.');
-    if(req.session.user) {
-      req.session.destroy(function(err) {
-        if(err) {
-          throw err;
-        }
-        res.send({redirect: '/#/'});
-        console.log('Logout completed successfully.');
-      });
-    } else {
-      console.log('There is no user logged in.');
-    }
+    res.send({redirect: '/#/'});
+    console.log('Logout completed successfully.');
   },
+
   postScore: function(req, res, next) {
     if (req.body.username) {
       var username = req.body.username;
@@ -138,6 +114,7 @@ module.exports = {
         });
     }
   },
+
   getAll: function(req, res, next) {
     User.find({}).exec(function(err, users) {
       if (err) {
@@ -148,36 +125,32 @@ module.exports = {
       }
     });
   },
-  getUser: function(req, res, next) {
-    if (!req.session.user) {
-      console.log('req.session.user in getUser', req.session.user);
-      res.send({redirect: '/#/login'});
-    } else {
-      User.findOne({username: req.params.username}).exec(function(err, user) {
-        if (err) {
-          console.log('error in fetching user');
-          res.send(err);
-        } else {
-          console.log('null user fetched', user, typeof user);
-          //to get around the Profile display bug when the session is not cleared and another invalid user tries loggin in
-          if (user === null) {
-            console.log('user is null');
-            res.send({redirect: '/#/login'});
-          } else {
-            console.log('fetched user', user);
-            var userObject = {
-              username: user.username,
-              highScoreMem: user.memoryHigh,
-              highScoreScram: user.scrambleHigh,
-              memScores: user.memoryArray,
-              scramScores: user.scrambleArray
-            };
-            res.send(userObject);
 
-          }
+  getUser: function(req, res, next) {
+    console.log(req.params);
+    User.findOne({username: req.params.username}).exec(function(err, user) {
+      if (err) {
+        console.log('error in fetching user');
+        res.send(err);
+      } else {
+        console.log('null user fetched', user, typeof user);
+        //to get around the Profile display bug when the session is not cleared and another invalid user tries loggin in
+        if (user === null) {
+          console.log('user is null');
+          res.send({redirect: '/#/login'});
+        } else {
+          console.log('fetched user', user);
+          var userObject = {
+            username: user.username,
+            highScoreMem: user.memoryHigh,
+            highScoreScram: user.scrambleHigh,
+            memScores: user.memoryArray,
+            scramScores: user.scrambleArray
+          };
+          res.send(userObject);
         }
-      });
-    }
+      }
+    });
   }
 };
 
