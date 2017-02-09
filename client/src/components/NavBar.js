@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 
 export const NavBar = () => {
   var handleLogout = () => {
-    console.log('hangleLogout has been invoked.');
+    console.log('handleLogout has been invoked.');
     $.ajax({
       type: 'POST',
       url: '/logout',
