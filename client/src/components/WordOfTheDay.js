@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Divider } from 'semantic-ui-react';
+import { Message, Divider, Dimmer, Loader } from 'semantic-ui-react';
 import $ from 'jquery';
 
 export default class WordOfTheDay extends React.Component {
@@ -36,7 +36,8 @@ export default class WordOfTheDay extends React.Component {
   render() {
     return (
       <Message compact>
-        <Message.Header>{this.state.word !== 'Loading word...' && 'Word Of The Day: '}{this.state.word}</Message.Header>
+        {this.state.word === 'Loading word...' && <Dimmer active><Loader>Loading Word of the Day...</Loader></Dimmer>}
+        <Message.Header>Word of the Day: {this.state.word}</Message.Header>
         <Divider />
         <Message.Content>{this.state.definition}</Message.Content>
       </Message>
