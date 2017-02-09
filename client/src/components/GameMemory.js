@@ -30,13 +30,7 @@ export default class GameMemory extends React.Component {
   handleClick(cardIndex) {
     // console.log(this.state.cards.slice(0, cardIndex).concat(this.flipCard(cardIndex), this.state.cards.slice(cardIndex+1)));
     // Flip a card and render cards again
-    this.setState({
-      cards: this.state.cards.slice(0, cardIndex).concat(this.flipCard(cardIndex), this.state.cards.slice(cardIndex+1))
-    });
-  }
-
-  handleSelection(cardIndex) {
-
+    this.flipCard(cardIndex);
   }
 
   shuffleCards() {
@@ -60,7 +54,10 @@ export default class GameMemory extends React.Component {
     var cardsCopy = this.state.cards.slice();
     var flippedCard = cardsCopy.splice(cardIndex, 1);
     flippedCard[0].flipped = !flippedCard[0].flipped;
-    return flippedCard;
+
+    this.setState({
+      cards: this.state.cards.slice(0, cardIndex).concat(flippedCard, this.state.cards.slice(cardIndex+1))
+    });
   }
 
   render() {
