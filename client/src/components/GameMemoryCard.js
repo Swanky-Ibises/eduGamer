@@ -1,8 +1,8 @@
 const GameMemoryCard = (props) => {
   return (
-    <td>
-      {props.card.flipped ? props.card.value : ''}
+    <td onClick={() => props.onClick(props.index)}>
       <p>{props.index}</p>
+      {props.card.flipped ? props.card.value : ''}
     </td>
   );
 };
