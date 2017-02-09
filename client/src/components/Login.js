@@ -30,6 +30,7 @@ export default class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
+    var context = this;
     $.ajax({
       type: 'POST',
       url: '/login',
@@ -39,6 +40,8 @@ export default class Login extends React.Component {
         //on a successful post, check data. Error messages are returned so if data returns a string, an error happened
         if (data === 'string') {
           this.setState({errorText: data});
+        } else {
+          context.context.router.push('/');
         }
       }
     });
@@ -72,4 +75,8 @@ export default class Login extends React.Component {
       </div>
     );
   }
+}
+
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
