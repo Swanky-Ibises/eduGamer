@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import { Grid, Header, Button, Message } from 'semantic-ui-react';
+import { Grid, Header, Button, Message, Divider } from 'semantic-ui-react';
 import WordOfTheDay from './WordOfTheDay.js';
 
 export default class Homepage extends React.Component {
@@ -17,14 +17,18 @@ export default class Homepage extends React.Component {
             <Grid.Column width={4}>
               <Message>
                 <Header size='large'>Popular Games</Header>
+                <Divider hidden />
                 <Grid.Row>
-                <Link to="/scramblegame"><Button>Scramble</Button></Link>
-                <Link to="/memorygame"><Button>Matching</Button></Link>
+                  <Link to="/scramblegame"><Button>Scramble</Button></Link>
+                  <Link to="/memorygame"><Button>Matching</Button></Link>
                 </Grid.Row>
+                <Divider hidden />
                 <Grid.Row>
-                <Link to="/typingspeedmaster"><Button>Typing</Button></Link>
-                <Link to="/simongame"><Button>Simon</Button></Link>
+                  <Link to="/typingspeedmaster"><Button>Typing</Button></Link>
+                  <Link to="/simongame"><Button>Simon</Button></Link>
+                  <Link to="/memorizetiles"><Button>Tiles</Button></Link>
                 </Grid.Row>
+                <Divider hidden />
               </Message>
             </Grid.Column>
             <Grid.Column width={8}>
