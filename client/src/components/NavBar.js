@@ -43,6 +43,9 @@ export const NavBar = () => {
           <Link to="/simongame">
             <Dropdown.Item> Simon </Dropdown.Item>
           </Link>
+          <Link to="/memorizetiles">
+            <Dropdown.Item> Memory Tiles </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
 
