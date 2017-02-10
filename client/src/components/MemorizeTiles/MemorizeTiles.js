@@ -114,11 +114,7 @@ export default class MemorizeTiles extends React.Component {
         <br />
         <Header size='medium'>Score: <span className='memorize-tile-score'>{this.state.score}</span></Header>
 
-        <br />
-
-        {!this.state.playerPlaying && this.state.startedTimer && <Header size='medium'>Time left: {this.state.timeLeft} seconds</Header>}
-
-        {this.state.playerPlaying && <Header size='medium'>Select the boxes you just saw...</Header>}
+        {this.state.playerPlaying && <Header size='medium'><br />Select the boxes you just saw...</Header>}
 
         <br />
 
@@ -126,7 +122,9 @@ export default class MemorizeTiles extends React.Component {
 
         <br />
 
-        {this.state.incorrect && <Header size='medium'>Sorry! The correct answer was:</Header>}
+        {!this.state.playerPlaying && this.state.startedTimer && <Header size='medium'><br />Time left: {this.state.timeLeft} seconds<br /></Header>}
+
+        {this.state.incorrect && <Header size='medium'><br />Sorry! The correct answer was:<br /></Header>}
 
         {!this.state.playerPlaying ?
           (<div className='memorize-tile-game'>
