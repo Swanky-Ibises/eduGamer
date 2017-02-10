@@ -110,7 +110,7 @@ export default class MemorizeTiles extends React.Component {
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
         <br />
-        <Header size='medium'>Score: {this.state.score}</Header>
+        <Header size='medium'>Score: <span className='memorize-tile-score'>{this.state.score}</span></Header>
         <br />
         {!this.state.playerPlaying && this.state.startedTimer && <Header size='medium'>Time left: {this.state.timeLeft} seconds</Header>}
 
