@@ -7,7 +7,9 @@ export default class MemorizeTiles extends React.Component {
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
         <br />
-        <Header size='medium'>Score: </Header>
+        <Header size='medium'>Score: 0</Header>
+        <br />
+        <Header size='medium'>Time left: 10 seconds</Header>
         <br />
         <Button>Start Game</Button>
         <div className='memorize-tile-game'>
