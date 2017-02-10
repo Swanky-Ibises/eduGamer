@@ -23,7 +23,6 @@ render(
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="memorygame" component={GameMemory}/>
       <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
-      <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
       <Route path="leaderboard" component={Leaderboard}/>
       <Route path="profile" component={Profile}/>
       <Route path="scramblegame" component={GameScramble}/>
