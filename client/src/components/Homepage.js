@@ -25,8 +25,12 @@ export default class Homepage extends React.Component {
                 <Divider hidden />
                 <Grid.Row>
                   <Link to="/typingspeedmaster"><Button>Typing</Button></Link>
-                  <Link to="/simongame"><Button>Simon</Button></Link>
                   <Link to="/memorizetiles"><Button>Tiles</Button></Link>
+                </Grid.Row>
+                <Divider hidden />
+                <Grid.Row>
+                  <Link to="/simongame"><Button>Simon</Button></Link>
+                  <Link to="/sudokugame"><Button>Sudoku</Button></Link>
                 </Grid.Row>
                 <Divider hidden />
               </Message>
