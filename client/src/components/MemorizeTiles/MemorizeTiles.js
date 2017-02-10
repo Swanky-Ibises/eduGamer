@@ -33,6 +33,7 @@ export default class MemorizeTiles extends React.Component {
   }
 
   render() {
+    console.log('Rendering gameBoard:');
     console.table(this.state.gameBoard);
     return (
       <Message>
@@ -45,30 +46,13 @@ export default class MemorizeTiles extends React.Component {
         <br />
         <Button>Start Game</Button>
         <div className='memorize-tile-game'>
-          <div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-red'></div>
-          </div>
-          <div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-white'></div>
-          </div>
-          <div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-white'></div>
-            <div className='memorize-tile tile-red'></div>
-          </div>
-          <div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-red'></div>
-            <div className='memorize-tile tile-red'></div>
-          </div>
+          {this.state.gameBoard.map((row, rowIndex) => (
+            <div key={rowIndex}>
+              {row.map((tile, tileIndex) => (
+                <div className={tile === 1 ? 'memorize-tile tile-red' : 'memorize-tile tile-white'} key={tileIndex}></div>
+              ))}
+            </div>
+          ))}
         </div>
         <br />
         <Button>Submit</Button>
@@ -76,3 +60,33 @@ export default class MemorizeTiles extends React.Component {
     );
   }
 }
+
+/*
+Mock code
+<div className='memorize-tile-game'>
+  <div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-red'></div>
+  </div>
+  <div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-white'></div>
+  </div>
+  <div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-white'></div>
+    <div className='memorize-tile tile-red'></div>
+  </div>
+  <div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-red'></div>
+    <div className='memorize-tile tile-red'></div>
+  </div>
+</div>
+*/
