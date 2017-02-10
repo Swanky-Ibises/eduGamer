@@ -9,12 +9,9 @@ import LogIn from './components/Login';
 import {Leaderboard} from './components/Leaderboard';
 import {Profile} from './components/Profile';
 import GameScramble from './components/GameScramble';
-<<<<<<< HEAD
 import GameMemory from './components/GameMemory';
 import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
-=======
 import GameSimon from './components/GameSimon';
->>>>>>> Connect (basic funcionality) Simon to rest of app
 
 const app = document.getElementById('app');
 
@@ -28,11 +25,8 @@ render(
       <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
       <Route path="leaderboard" component={Leaderboard}/>
       <Route path="profile" component={Profile}/>
-<<<<<<< HEAD
-=======
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="simongame" component={GameSimon}/>
->>>>>>> Connect (basic funcionality) Simon to rest of app
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>
