@@ -13,6 +13,10 @@ body {
   user-select: none;
 }
 
+.membrainHome {
+  margin-left:5%;
+  margin-right:5%;
+}
 .memorize-tile-game {
   margin-top: 10px;
 }

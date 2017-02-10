@@ -7,6 +7,7 @@ export default class GameSimon extends React.Component {
     this.state = {
       score: 0,
       simon: this.generateSimon(),
+      colors: [],
       color: 'black',
       lose: false,
       key: -1,
@@ -18,6 +19,8 @@ export default class GameSimon extends React.Component {
 
   componentDidMount() {
     var that = this;
+    this.setState({
+      colors: this.generateColors()});
     setTimeout(function() {that.playSimon();}, 500);
   }
   //Play game
@@ -25,17 +28,19 @@ export default class GameSimon extends React.Component {
     console.log('lets play');
     var that = this;
     //Don't allow button press until Simon has showed combo
-    this.setState({playerTurn: false});
-    for(var i = 0; i < this.state.level; i++){
+    that.setState({playerTurn: false});
+    for(var i = 0; i < that.state.level; i++){
       (function(index) {
-        setTimeout(function() { this.setState(
-          {key: this.state.simon[index]},
-          function() { this.setState({
-            level: this.state.level + 1 })});}, i * 500);
+        //time out after adding to the level
+        setTimeout(function() {
+          that.setState(
+          {key: that.state.simon[index]},
+          function() { that.setState({
+            level: that.state.level + 1})});}, i * 500);
     })(i);
      } //Reset check game to start checking again
      setTimeout(function() { that.checkGame(); },
-                this.state.level * 500 + 100);
+                that.state.level * 500 + 100);
   }
 
   checkGame() {
@@ -43,9 +48,8 @@ export default class GameSimon extends React.Component {
   }
 
   checkKey(key) {
-    console.log('checking');
     if(this.state.playerTurn){
-      console.log('checking', key);
+      console.log('input', key);
       key === this.state.simon[this.state.levelCheck] ?
       this.levelCorrect() :
       this.levelIncorrect();
@@ -53,12 +57,13 @@ export default class GameSimon extends React.Component {
   }
 
   levelCorrect() {
+    var that = this;
     this.setState({levelCheck: this.state.levelCheck + 1}, function() {
       if(this.state.levelCheck === this.state.level) {
         this.setState({score: this.state.score + 1});
         this.setState({level: this.state.level + 1}, function() {
           setTimeout(function() {
-            self.playSimon();
+            that.playSimon();
           }, 1000);
         })
       }
@@ -73,33 +78,75 @@ export default class GameSimon extends React.Component {
 
   //Adds to Simon array
   generateSimon() {
-    var simon = [];
+    var order = [];
     for (var i = 0; i < 10; i++) {
       var num = Math.round(Math.random()*3);
-      simon.push(num);
+      order.push(num);
     }
-    console.log('simon is', simon);
-    return simon;
+    console.log('simon is', order);
+    return order;
+  }
+
+  generateColors() {
+    var colors = [];
+    var simon = this.state.simon;
+    for (var i = 0; i < simon.length; i++){
+      if(simon[i] === 0) {
+        colors.push('black');
+        colors.push('red');
+      } else if (simon[i] === 1) {
+        colors.push('black');
+        colors.push('violet');
+      } else if (simon[i] === 2) {
+        colors.push('black');
+        colors.push('green');
+      } else if (simon[i] === 3) {
+        colors.push('black');
+        colors.push('yellow');
+      }
+    }
+    console.log('colors are', colors);
+    return colors;
   }
   //Not re-rendering color, probably sync issue
-  // simonColor(){
-  //   this.state.simon.map((num)=>{
-  //     setTimeout(()=>{
-  //       if(num === 0) {
+  // simonColor(num) {
+  //   if(num === 0) {
+  //     return 'red';
+  //   } else if (num === 1) {
+  //     return 'violet';
+  //   } else if (num === 2) {
+  //     return 'green';
+  //   } else if (num === 3) {
+  //     return 'yellow';
+  //   } else {
+  //     return 'black';
+  //   }
+  // }
+  // simonColor(num){
+  //   setTimeout(()=>{
+  //     if(num === 0) {
+  //       this.color = 'red';
   //       this.setState({color: 'red'});
+  //       //return 'red';
   //     } else if (num === 1) {
+  //       this.color = 'violet';
+  //       //return 'violet';
   //       this.setState({color: 'violet'});
   //     } else if (num === 2) {
+  //       this.color = 'green';
+  //       //return 'green';
   //       this.setState({color: 'green'});
   //     } else if (num === 3) {
-  //       this.setState({color: 'blue'});
+  //       this.color = 'yellow';
+  //       //return 'yellow';
+  //       this.setState({color: 'yellow'});
   //     }
   //     console.log('num is', num);
-  //     }, 500);
+  //   }, 500);
   //     setTimeout(()=>{
+  //       this.color = 'black';
   //       this.setState({color: 'black'})
   //     }, 400);
-  //   });
   // }
 
   handleButton(value) {
@@ -139,6 +186,7 @@ export default class GameSimon extends React.Component {
           <Grid.Row>
           <Grid.Column width={6}/>
           <Grid.Column width={4} color={this.state.color}/>
+          {this.state.color}
           </Grid.Row>
           <Grid.Row/>
         </Grid>
