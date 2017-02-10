@@ -6,7 +6,7 @@ import App from './components/App';
 import SignUp from './components/SignUp';
 import Homepage from './components/Homepage';
 import LogIn from './components/Login';
-import {Leaderboard} from './components/Leaderboard';
+import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';
 import GameScramble from './components/GameScramble';
 import GameMemory from './components/GameMemory';
@@ -22,6 +22,7 @@ render(
       <IndexRoute component={Homepage}></IndexRoute>
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="memorygame" component={GameMemory}/>
+      <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
       <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
       <Route path="leaderboard" component={Leaderboard}/>
       <Route path="profile" component={Profile}/>
