@@ -18,7 +18,9 @@ body {
 }
 
 .memorize-tile-score {
-  color: red;
+  font-size: 1.5em;
+  margin-left: 5px;
+  color: #2495ee;
 }
 
 .memorize-tile {
