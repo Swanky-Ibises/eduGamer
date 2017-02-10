@@ -31,13 +31,11 @@ var rootPath = path.join(__dirname, '/..');
 var publicPath = path.join(rootPath, '/compiled/public');
 app.use(express.static(path.join(__dirname, '../')));
 
-
 //v2 routes
 app.get('/api/v2/user/:username', userController.getUser);
 app.get('/api/v2/users', userController.getAll);
 app.get('/api/v2/leaderboard/:gametype', userController.leaderBoard);
 app.post('/api/v2/user/:username/score', userController.postScore);
-
 
 //post routes
 //v1 routes
