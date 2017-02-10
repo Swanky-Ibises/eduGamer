@@ -39,6 +39,8 @@ export const NavBar = () => {
           </Link>
           <Link to="/typingspeedmaster">
             <Dropdown.Item> Typing </Dropdown.Item>
+          <Link to="/simongame">
+            <Dropdown.Item> Simon </Dropdown.Item>
           </Link>
         </Dropdown.Menu>
       </Dropdown>
