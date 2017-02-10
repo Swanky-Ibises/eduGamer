@@ -41,7 +41,7 @@ body {
 
 .tile-white {
   background-color: white;
-
+}
 .sudokuBoard {
   margin-left: 30%;
   margin-right: 30%;
@@ -77,6 +77,7 @@ input.sudoku-cell {
   font-size: 18px;
   margin: 0;
   padding: 2px 5px;
+  padding-left: 20px;
 }
 input.sudoku-cell:hover:not([readonly]) {
   border-color: #584b4f;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
 import $ from 'jquery';
 import {sudoku} from '../vendor/sudoku.js';
+import SudokuCell from './SudokuCell.js';
 
 export default class GameSudoku extends React.Component {
   constructor(props) {
@@ -36,29 +37,30 @@ export default class GameSudoku extends React.Component {
     this.setState({
       cells: board
     });
-    console.log(board);
+    console.log('board is', board);
     return board;
   }
 
   //Puts the cells in array of row arrays
   arrayCells() {
+    console.log('this is', this.state.cells);
     var cells = Object.keys(this.state.cells);
-    var cells2D = [];
+    var arrayCell = [];
     var i;
     var j;
     for (i = 0, j = cells.length; i < j; i += 9) {
-      cells2D.push(cells.slice(i, i + 9));
+      arrayCell.push(cells.slice(i, i + 9));
     }
-    console.log(cells2D);
-    return cells2D;
+    console.log(arrayCell);
+    return arrayCell;
   }
   //Updates the cell
-  updateCell() {
+  updateCell(cellIndex, value) {
+    console.log('updating', cellIndex, value);
     var cells = this.state.cells;
     var keys = Object.keys(cells);
 
     cells[keys[cellIndex]] = value;
-
     this.setState({
       cells: cells,
       errored: []
@@ -95,6 +97,7 @@ export default class GameSudoku extends React.Component {
 
   render(){
     var that = this;
+    console.log('render cells');
     var cells = this.arrayCells();
     var cellsIndexed = Object.keys(this.state.cells);
     var cellIndex = -1;
@@ -111,18 +114,21 @@ export default class GameSudoku extends React.Component {
                 var errored = false;
                 var readonly = false;
                 if (that.state.errored.indexOf(cellsIndexed[cellIndex]) !== -1) {
+                  console.log('errored', cellsIndexed[cellIndex]);
                   errored = true;
                 }
                 if (that.state.board[cellsIndexed[cellIndex]] !== undefined) {
                   readonly = 'readonly';
                   cell = that.state.board[cellsIndexed[cellIndex]];
+                } else {
+                  (that.state.cells[cellsIndexed[cellIndex]] === undefined) ? cell = '' : cell = that.state.cells[cellsIndexed[cellIndex]];
                 }
-                return <Cell
+                return <SudokuCell
                       index={cellIndex}
                       value={cell}
                       readonly={readonly}
                       errored={errored}
-                      updateHandler={that.updateCell}/>;
+                      updateHandler={that.updateCell.bind(that)}/>;
                 })}
               </Table.Row>
               );
@@ -130,28 +136,9 @@ export default class GameSudoku extends React.Component {
       </Table.Body>
       </Table>
       <br />
-      <Button onclick={this.checkPuzzle}> Check </Button>
-      <Button> Reset </Button>
+      <Button onClick={this.checkPuzzle}> Check </Button>
+      <Button onClick={this.resetPuzzle}> Reset </Button>
     </div>
     )
   }
 }
-
-var Cell = React.createClass({
-  handleChange: function(event) {
-    var html = this.getDOMNode().firstChild.value;
-    this.props.updateHandler(this.props.index, html);
-  },
-  render: function() {
-    return (
-      <Table.Cell className = 'sudokuCell' textAlign='center' width={1}>
-        <input type="text"
-            value={this.props.value}
-            onChange={this.handleChange}
-            data-errored={this.props.errored}
-            className="sudoku-cell"
-            readOnly={this.props.readonly} />
-      </Table.Cell>
-    )
-  }
-});
