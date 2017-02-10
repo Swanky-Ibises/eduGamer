@@ -180,6 +180,7 @@ export default class GameSimon extends React.Component {
     return (
       <div>
         <h2>Simon</h2>
+        <h3>Sorry! This game isn't quite functioning at the moment. Check back later.</h3>
         <h3>Score: { this.state.score }</h3>
         <div className='simonSays'>
         <Grid padded>

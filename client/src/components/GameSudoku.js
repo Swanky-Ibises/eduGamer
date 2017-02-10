@@ -13,7 +13,7 @@ export default class GameSudoku extends React.Component {
       errored: []
     };
   }
-
+  //Create the board when starting
   componentDidMount() {
     this.createBoard();
   }
@@ -37,13 +37,11 @@ export default class GameSudoku extends React.Component {
     this.setState({
       cells: board
     });
-    console.log('board is', board);
     return board;
   }
 
   //Puts the cells in array of row arrays
   arrayCells() {
-    console.log('this is', this.state.cells);
     var cells = Object.keys(this.state.cells);
     var arrayCell = [];
     var i;
@@ -51,12 +49,10 @@ export default class GameSudoku extends React.Component {
     for (i = 0, j = cells.length; i < j; i += 9) {
       arrayCell.push(cells.slice(i, i + 9));
     }
-    console.log(arrayCell);
     return arrayCell;
   }
   //Updates the cell
   updateCell(cellIndex, value) {
-    console.log('updating', cellIndex, value);
     var cells = this.state.cells;
     var keys = Object.keys(cells);
 
@@ -68,42 +64,42 @@ export default class GameSudoku extends React.Component {
   }
   //Check puzzle
   checkPuzzle() {
-    var conflicts = sudoku.getConflicts(this.state.cells);
+    var that=this;
+    var conflicts = sudoku.getConflicts(that.state.cells);
     var erroredFields = [];
 
     if (!conflicts.length > 0) {
       return true;
     }
 
-    // Loop over all conflicts and add each conflicted cell to our error object
-    conflicts.each(function(value, key) {
-      value.errorFields.each(function(v, k) {
+    //Check for conflicts
+    conflicts.forEach(function(value, key) {
+      value.errorFields.forEach(function(v, k) {
         erroredFields.push(v);
       });
     });
 
     var erroredQuadrant = conflicts[0].unit;
 
-    this.setState({
+    that.setState({
       errored: erroredFields
     });
   }
-
+  //Reload the page
   resetPuzzle() {
-    this.replaceState(this.getInitialState(), function() {
-      this.createBoard();
-    });
+    window.location.reload();
   }
 
   render(){
     var that = this;
-    console.log('render cells');
     var cells = this.arrayCells();
     var cellsIndexed = Object.keys(this.state.cells);
     var cellIndex = -1;
 
     return (
       <div className = 'sudokuBoard'>
+      <h1> Sudoku </h1>
+      <h3> No high scores. Just Sudoku. Press 'Check' to check for conflicts. If you fill the whole board with no conflicts, you win!</h3>
       <Table celled fixed className = 'sudokuTable'>
       <Table.Body>
         {cells.map(function(row) {
@@ -114,7 +110,6 @@ export default class GameSudoku extends React.Component {
                 var errored = false;
                 var readonly = false;
                 if (that.state.errored.indexOf(cellsIndexed[cellIndex]) !== -1) {
-                  console.log('errored', cellsIndexed[cellIndex]);
                   errored = true;
                 }
                 if (that.state.board[cellsIndexed[cellIndex]] !== undefined) {
@@ -136,8 +131,8 @@ export default class GameSudoku extends React.Component {
       </Table.Body>
       </Table>
       <br />
-      <Button onClick={this.checkPuzzle}> Check </Button>
-      <Button onClick={this.resetPuzzle}> Reset </Button>
+      <Button onClick={this.checkPuzzle.bind(this)}> Check </Button>
+      <Button onClick={this.resetPuzzle.bind(this)}> Reset </Button>
     </div>
     )
   }

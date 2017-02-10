@@ -7,7 +7,6 @@ export default class SudokuCell extends React.Component {
   }
 
   handleChange (event) {
-    console.log('passing', this.props.index, event.target.value);
     this.props.updateHandler(this.props.index, event.target.value);
   }
 
