@@ -6,7 +6,7 @@ import App from './components/App';
 import SignUp from './components/SignUp';
 import Homepage from './components/Homepage';
 import LogIn from './components/Login';
-import {Leaderboard} from './components/Leaderboard';
+import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';
 import GameScramble from './components/GameScramble';
 import GameMemory from './components/GameMemory';
