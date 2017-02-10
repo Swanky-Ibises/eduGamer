@@ -12,3 +12,29 @@ body {
 .typing-text {
   user-select: none;
 }
+
+.memorize-tile-game {
+  margin-top: 10px;
+}
+
+.memorize-tile-score {
+  font-size: 1.5em;
+  margin-left: 5px;
+  color: #2495ee;
+}
+
+.memorize-tile {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 2px solid black;
+  margin: 2px 2px 0px 2px;
+}
+
+.tile-red {
+  background-color: red;
+}
+
+.tile-white {
+  background-color: white;
+}
