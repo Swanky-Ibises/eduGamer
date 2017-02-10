@@ -6,18 +6,43 @@ export default class MemorizeTiles extends React.Component {
     super(props);
     this.state = {
       score: 0,
-      timeLeft: 10,
-      locked: false,
+      timeLeft: 5,
+      startedTimer: false,
+      playerPlaying: false,
       gameBoard: [[0,0,0,0],
+                  [0,0,0,0],
+                  [0,0,0,0],
+                  [0,0,0,0]],
+      playerBoard: [[0,0,0,0],
                   [0,0,0,0],
                   [0,0,0,0],
                   [0,0,0,0]]
     };
   }
 
-  componentWillMount() {
+  startGame() {
     this.generateGameBoard();
+    this.setState({startedTimer: true});
+    this.timerStart();
   }
+
+  timerStart() {
+    var context = this;
+    var timer = setInterval(() => {
+      if (context.state.timeLeft > 0) {
+        context.setState({timeLeft: context.state.timeLeft - 1});
+      } else {
+        clearInterval(timer);
+        context.setupPlayerBoard();
+      }
+    }, 1000);
+  }
+
+  setupPlayerBoard() {
+    this.setState({playerPlaying: true});
+  }
+
+  submitBoard() {}
 
   generateGameBoard() {
     var zeroOrOne = function() {
@@ -44,18 +69,29 @@ export default class MemorizeTiles extends React.Component {
         <Header size='medium'>Time left: {this.state.timeLeft} seconds</Header>
         <Header size='medium'>Select the boxes you just saw...</Header>
         <br />
-        <Button>Start Game</Button>
-        <div className='memorize-tile-game'>
-          {this.state.gameBoard.map((row, rowIndex) => (
-            <div key={rowIndex}>
-              {row.map((tile, tileIndex) => (
-                <div className={tile === 1 ? 'memorize-tile tile-red' : 'memorize-tile tile-white'} key={tileIndex}></div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <Button disabled={this.state.startedTimer} onClick={this.startGame.bind(this)}>Start Game</Button>
+        {!this.state.playerPlaying ?
+          (<div className='memorize-tile-game'>
+            {this.state.gameBoard.map((row, rowIndex) => (
+              <div key={rowIndex}>
+                {row.map((tile, tileIndex) => (
+                  <div className={tile === 1 ? 'memorize-tile tile-red' : 'memorize-tile tile-white'} key={tileIndex}></div>
+                ))}
+              </div>
+            ))}
+          </div>) :
+          (<div className='memorize-tile-game'>
+            {this.state.playerBoard.map((row, rowIndex) => (
+              <div key={rowIndex}>
+                {row.map((tile, tileIndex) => (
+                  <div className={tile === 1 ? 'memorize-tile tile-red' : 'memorize-tile tile-white'} key={tileIndex}></div>
+                ))}
+              </div>
+            ))}
+          </div>)
+        }
         <br />
-        <Button>Submit</Button>
+        <Button disabled={!this.state.playerPlaying}>Submit</Button>
       </Message>
     );
   }
