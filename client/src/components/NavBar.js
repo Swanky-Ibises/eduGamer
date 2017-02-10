@@ -35,7 +35,7 @@ export const NavBar = () => {
             <Dropdown.Item> Scramble </Dropdown.Item>
           </Link>
           <Link to="/memorygame">
-            <Dropdown.Item> Memory </Dropdown.Item>
+            <Dropdown.Item> Matching </Dropdown.Item>
           </Link>
           <Link to="/typingspeedmaster">
             <Dropdown.Item> Typing </Dropdown.Item>
