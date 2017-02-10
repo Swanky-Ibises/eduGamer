@@ -10,6 +10,7 @@ export default class MemorizeTiles extends React.Component {
       timeLeft: 0,
       startedTimer: false,
       playerPlaying: false,
+      incorrect: false,
       gameBoard: [[0,0,0,0],
                   [0,0,0,0],
                   [0,0,0,0],
@@ -43,7 +44,10 @@ export default class MemorizeTiles extends React.Component {
 
   startGame() {
     this.generateGameBoard();
-    this.setState({startedTimer: true});
+    this.setState({
+      startedTimer: true,
+      incorrect: false
+    });
     this.timerStart();
   }
 
@@ -68,10 +72,8 @@ export default class MemorizeTiles extends React.Component {
   }
 
   clickTile(rowIndex, tileIndex) {
-    console.log(rowIndex, tileIndex);
     var board = this.state.playerBoard.slice();
     board[rowIndex][tileIndex] === 0 ? board[rowIndex][tileIndex] = 1 : board[rowIndex][tileIndex] = 0;
-    console.log(board[rowIndex][tileIndex]);
     this.setState({
       playerPlaying: true,
       playerBoard: board
@@ -82,6 +84,8 @@ export default class MemorizeTiles extends React.Component {
     // Slow but easy way to compare arrays
     if (JSON.stringify(this.state.gameBoard) === JSON.stringify(this.state.playerBoard)) {
       this.setState({score: this.state.score + 1});
+    } else {
+      this.setState({incorrect: true});
     }
     this.setState({
       playerPlaying: false,
@@ -104,20 +108,25 @@ export default class MemorizeTiles extends React.Component {
   }
 
   render() {
-    console.log('Rendering gameBoard:');
-    console.table(this.state.gameBoard);
     return (
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
         <br />
         <Header size='medium'>Score: <span className='memorize-tile-score'>{this.state.score}</span></Header>
+
         <br />
+
         {!this.state.playerPlaying && this.state.startedTimer && <Header size='medium'>Time left: {this.state.timeLeft} seconds</Header>}
 
         {this.state.playerPlaying && <Header size='medium'>Select the boxes you just saw...</Header>}
+
         <br />
 
         <Button disabled={this.state.startedTimer || this.state.playerPlaying} onClick={this.startGame.bind(this)}>{!this.state.gameStarted ? 'Start Game' : 'Next round'}</Button>
+
+        <br />
+
+        {this.state.incorrect && <Header size='medium'>Sorry! The correct answer was:</Header>}
 
         {!this.state.playerPlaying ?
           (<div className='memorize-tile-game'>
@@ -139,7 +148,9 @@ export default class MemorizeTiles extends React.Component {
             ))}
           </div>)
         }
+
         <br />
+
         <Button disabled={!this.state.playerPlaying} onClick={this.submitBoard.bind(this)}>Submit</Button>
       </Message>
     );
