@@ -1,5 +1,7 @@
 # Membrain Documentation
 
+Find the deployed version of Membrain at: [membrain.herokuapp.com](http://membrain.herokuapp.com)
+
 Membrain runs on the following tech stack:
 - Node.js
 - Express
