@@ -10,29 +10,32 @@ export default class MemorizeTiles extends React.Component {
     return (
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
-        <div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-red'></div>
-        </div>
-        <div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-white'></div>
-        </div>
-        <div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-white'></div>
-          <div className='memorize-tile tile-red'></div>
-        </div>
-        <div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-red'></div>
-          <div className='memorize-tile tile-red'></div>
+        <Header size='medium'>Score: </Header>
+        <div className='memorize-tile-game'>
+          <div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-red'></div>
+          </div>
+          <div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-white'></div>
+          </div>
+          <div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-white'></div>
+            <div className='memorize-tile tile-red'></div>
+          </div>
+          <div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-red'></div>
+            <div className='memorize-tile tile-red'></div>
+          </div>
         </div>
       </Message>
     );
