@@ -41,4 +41,53 @@ body {
 
 .tile-white {
   background-color: white;
+
+.sudokuBoard {
+  margin-left: 30%;
+  margin-right: 30%;
 }
+
+.sudokuTable {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+
+.sudokuCell {
+  padding: 0 !important;
+}
+
+.sudokuCell:nth-child(3n+1) {
+  border-left: 2px solid black !important;
+}
+.sudokuCell:nth-child(3n+0) {
+  border-right: 2px solid black !important;
+}
+.sudokuRow:nth-child(1) {
+  border-top: 2px solid black;
+}
+.sudokuRow:nth-child(3n+0) {
+  border-bottom: 2px solid black;
+}
+input[data-errored="true"] {
+  background-color: #F44F4F;
+  border-color: #F44F4F;
+}
+input.sudoku-cell {
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0;
+  padding: 2px 5px;
+}
+input.sudoku-cell:hover:not([readonly]) {
+  border-color: #584b4f;
+}
+button.sudoku-control {
+  margin: 10px 5px;
+  display: inline;
+  outline: 0;
+}
+input[readonly] {
+  background-color: #dce1ea;
+}
+input[readonly]:hover {
+  cursor: default;

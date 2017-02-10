@@ -13,6 +13,7 @@ import GameMemory from './components/GameMemory';
 import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
 import MemorizeTiles from './components/MemorizeTiles/MemorizeTiles';
 import GameSimon from './components/GameSimon';
+import GameSudoku from './components/GameSudoku';
 
 const app = document.getElementById('app');
 
@@ -29,6 +30,7 @@ render(
       <Route path="profile" component={Profile}/>
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="simongame" component={GameSimon}/>
+      <Route path="sudokugame" component={GameSudoku}/>
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>
