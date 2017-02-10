@@ -4,6 +4,7 @@ import { Header, Message, Button } from 'semantic-ui-react';
 export default class MemorizeTiles extends React.Component {
   constructor(props) {
     super(props);
+    this.timer = null;
     this.state = {
       gameStarted: false,
       score: 0,
@@ -26,11 +27,16 @@ export default class MemorizeTiles extends React.Component {
     this.resetTimer();
   }
 
+  componentWillUnmount() {
+    this.resetTimer();
+  }
+
   resetTimer() {
     this.setState({
       timeLeft: 10,
       startedTimer: false
     });
+    clearInterval(this.timer);
   }
 
   resetPlayerBoard() {
@@ -53,11 +59,11 @@ export default class MemorizeTiles extends React.Component {
 
   timerStart() {
     var context = this;
-    var timer = setInterval(() => {
+    this.timer = setInterval(() => {
       if (context.state.timeLeft > 0) {
         context.setState({timeLeft: context.state.timeLeft - 1});
       } else {
-        clearInterval(timer);
+        clearInterval(this.timer);
         context.resetTimer();
         context.setupPlayerBoard();
       }
