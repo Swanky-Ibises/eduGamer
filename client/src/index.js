@@ -4,7 +4,7 @@ import { IndexRoute, Router, Route, Link, hashHistory } from 'react-router';
 
 import App from './components/App';
 import SignUp from './components/SignUp';
-import Homepage from './components/Homepage';
+import Homepage from './components/homepage/Homepage';
 import LogIn from './components/Login';
 import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';

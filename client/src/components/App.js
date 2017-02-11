@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavBar } from './NavBar';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
-import Homepage from './Homepage';
+import Homepage from './homepage/Homepage';
 
 export default class App extends React.Component {
   constructor (props) {
