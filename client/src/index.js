@@ -8,12 +8,12 @@ import Homepage from './components/Homepage';
 import LogIn from './components/Login';
 import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';
-import GameScramble from './components/Games/Scramble/GameScramble';
-import GameMemory from './components/Games/GameMemory/GameMemory';
-import TypingSpeedmaster from './components/Games/TypingSpeedmaster/TypingSpeedmaster';
-import MemorizeTiles from './components/Games/MemorizeTiles/MemorizeTiles';
+import GameScramble from './components/games/Scramble/GameScramble';
+import GameMemory from './components/games/GameMemory/GameMemory';
+import TypingSpeedmaster from './components/games/TypingSpeedmaster/TypingSpeedmaster';
+import MemorizeTiles from './components/games/MemorizeTiles/MemorizeTiles';
 import GameSimon from './components/GameSimon';
-import GameSudoku from './components/Games/Sudoku/GameSudoku';
+import GameSudoku from './components/games/Sudoku/GameSudoku';
 
 const app = document.getElementById('app');
 
