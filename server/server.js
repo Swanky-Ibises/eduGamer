@@ -53,5 +53,8 @@ var server = app.listen(port, function () {
 
 // Socket.io
 var io = require('socket.io')(server);
+// Need to export before import...
+module.exports = io;
 var socketHandlers = require('./socketio/chatServer.js');
 io.on('connection', socketHandlers.connectionHandler);
+
