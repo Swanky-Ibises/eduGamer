@@ -46,7 +46,15 @@ app.post('/logout', userController.logout);
 app.get('/:username', userController.getUser);
 app.get('/leaderboard', userController.getAll);
 
-app.listen(port, function () {
+var server = app.listen(port, function () {
   console.log('Membrain server listening on port', port);
   console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
 });
+
+// Socket.io
+var io = require('socket.io')(server);
+// Need to export before import...
+module.exports = io;
+var socketHandlers = require('./socketio/chatServer.js');
+io.on('connection', socketHandlers.connectionHandler);
+

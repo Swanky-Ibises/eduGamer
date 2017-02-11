@@ -104,3 +104,14 @@ input[readonly]:hover {
 .leaderboardContainer table thead tr .leaderboardHeader {
   text-align: center;
 }
+
+/* Homepage Chat Styling */
+.chat-box {
+  height: 300px;
+  overflow: auto;
+  margin-bottom: 5px;
+}
+.chat-icon {
+  position: relative;
+  top: 10px;
+}
