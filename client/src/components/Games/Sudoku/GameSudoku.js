@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
 import $ from 'jquery';
-import {sudoku} from '../../vendor/sudoku.js';
+import {sudoku} from '../../../vendor/sudoku.js';
 import SudokuCell from './SudokuCell.js';
 
 export default class GameSudoku extends React.Component {
