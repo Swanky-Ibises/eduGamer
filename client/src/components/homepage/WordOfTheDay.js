@@ -18,22 +18,22 @@ export default class WordOfTheDay extends React.Component {
 
   getWordOfTheDay() {
     var context = this;
-    // $.ajax({
-    //   type: 'GET',
-    //   crossDomain: true,
-    //   // This is fine for now because this is the public wordnik key you can find on their site
-    //   url: 'http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
-    //   success: function(data) {
-    //     var word = data.word;
-    //     var definition = data.definitions[0].text;
-    //     var partOfSpeech = data.definitions[0].partOfSpeech;
-    //     context.setState({
-    //       word: word,
-    //       definition: definition,
-    //       partOfSpeech: partOfSpeech
-    //     });
-    //   }
-    // });
+    $.ajax({
+      type: 'GET',
+      crossDomain: true,
+      // This is fine for now because this is the public wordnik key you can find on their site
+      url: 'http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
+      success: function(data) {
+        var word = data.word;
+        var definition = data.definitions[0].text;
+        var partOfSpeech = data.definitions[0].partOfSpeech;
+        context.setState({
+          word: word,
+          definition: definition,
+          partOfSpeech: partOfSpeech
+        });
+      }
+    });
   }
 
   render() {
