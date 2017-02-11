@@ -20,6 +20,15 @@ export default class ChatClient extends React.Component {
     });
   }
 
+  sendMessage(message) {
+    var context = this;
+    var socket = this.socket;
+    socket.emit('newMessage', {
+      user: context.state.user,
+      message: message
+    });
+  }
+
   render() {
     return (
       <Grid.Column width={12}>
