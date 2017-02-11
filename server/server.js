@@ -55,4 +55,3 @@ var server = app.listen(port, function () {
 var io = require('socket.io')(server);
 var socketHandlers = require('./socketio/chatServer.js');
 io.on('connection', socketHandlers.connectionHandler);
-io.on('disconnect', socketHandlers.disconnectHandler);
