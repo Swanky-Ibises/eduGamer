@@ -70,10 +70,21 @@ export default class TypingSpeedmaster extends React.Component {
 
   submitScore() {
     this.setState({score: 200 - this.state.timer});
+    var score = 200 - this.state.timer;
     if (!this.sentScore) {
       // Workaround to React's lifecycle hooks
       // submitScore gets invoked twice because of componentWillUpdate functionality
       this.sentScore = true;
+    } else {
+      $.ajax({
+        type: 'POST',
+        url: '/api/v2/user/score',
+        data: JSON.stringify({username: localStorage.username, gametype: 'typing', score: score}),
+        contentType: 'application/json',
+        success: function(response) {
+          console.log('Typing posted score');
+        }
+      });
     }
   }
 
