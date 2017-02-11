@@ -8,7 +8,7 @@ import Homepage from './components/Homepage';
 import LogIn from './components/Login';
 import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';
-import GameScramble from './components/GameScramble';
+import GameScramble from './components/Scramble/GameScramble';
 import GameMemory from './components/GameMemory';
 import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
 import MemorizeTiles from './components/MemorizeTiles/MemorizeTiles';
