@@ -43,15 +43,15 @@ export default class Leaderboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Scramble Top Scores</h2>
-        <LeaderboardTable leaders={this.state.scrambleLeaders} />
-        <h2>Matching Top Scores</h2>
-        <LeaderboardTable leaders={this.state.matchingLeaders} />
-        <h2>Typing Top Scores</h2>
-        <LeaderboardTable leaders={this.state.typingLeaders} />
-        <h2>Simon Top Scores</h2>
-        <LeaderboardTable leaders={this.state.simonLeaders} />
+      <div className="leaderboardContainer">
+        <br/>
+        <LeaderboardTable leaders={this.state.scrambleLeaders} game={'scramble'} />
+        <br/>
+        <LeaderboardTable leaders={this.state.matchingLeaders} game={'matching'}/>
+        <br/>
+        <LeaderboardTable leaders={this.state.typingLeaders} game={'typing'}/>
+        <br/>
+        <LeaderboardTable leaders={this.state.simonLeaders} game={'simon'}/>
       </div>
     )
   }
