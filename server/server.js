@@ -53,9 +53,5 @@ var server = app.listen(port, function () {
 
 // Socket.io
 var io = require('socket.io')(server);
-io.on('connection', function(socket) {
-  socket.emit('hello', { message: 'You have joined the chat client!' });
-  socket.on('connected', function(data) {
-    console.log(data);
-  });
-});
+var socketHandler = require('./socketio/chatServer.js');
+io.on('connection', socketHandler);

@@ -12,7 +12,6 @@ export default class ChatClient extends React.Component {
     // Event handlers for messages
     socket.on('hello', function(data) {
       console.log(data);
-      console.log(localStorage.username);
       socket.emit('connected', {user: localStorage.username});
     });
   }
