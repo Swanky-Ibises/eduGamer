@@ -11,10 +11,14 @@ var UserSchema = new mongoose.Schema({
     type: String,
     require: true
   },
-  memoryHigh: Number,
+  matchingHigh: Number,
   scrambleHigh: Number,
-  memoryArray: [Number],
-  scrambleArray: [Number]
+  typingHigh: Number,
+  simonHigh: Number,
+  matchingArray: [Number],
+  scrambleArray: [Number],
+  typingArray: [Number],
+  simonArray: [Number]
 });
 
 
