@@ -1,6 +1,6 @@
 import DecodeRow from './DecodeRow.js';
 import HintsRow from './HintsRow.js';
-import {Button} from 'semantic-ui-react';
+import {Button, Grid} from 'semantic-ui-react';
 import classNames from 'classnames';
 
 export default class Row extends React.Component {
@@ -16,6 +16,7 @@ export default class Row extends React.Component {
 
   render() {
     var isCurrentRow = this.props.state.currentRow === this.props.rowId;
+    console.log('currentRow in row',isCurrentRow);
     var rowClassName = classNames({
       'row': true,
       'clearfix': true,
@@ -29,18 +30,18 @@ export default class Row extends React.Component {
     });
     return (
     <div className={rowClassName}>
-      <div className = 'left'>
+      <div className="left">
         <DecodeRow name = {rowName}
-        key = {this.props.rowId}
-        rowId = {this.props.rowId}
-        state = {this.props.state}
-        isCurrentRow = {isCurrentRow}
-        activatePeg = {this.props.activatePeg}/>
+          key = {this.props.rowId}
+          rowId = {this.props.rowId}
+          state = {this.props.state}
+          isCurrentRow = {isCurrentRow}
+          activatePeg = {this.props.activatePeg}/>
       </div>
-      <div className = 'left'>
+      <div className="left">
         <Button className={buttonClassName} onClick={this.props.submitPegs}></Button>
       </div>
-      <div className = 'right'>
+      <div className="right">
         <HintsRow name={hintsRowName} key={this.props.rowId} rowId={this.props.rowId} state={this.props.state}/>
       </div>
     </div>

@@ -5,6 +5,7 @@ import $ from 'jquery';
 import {Grid} from 'semantic-ui-react'
 import DecodingBoard from './DecodingBoard.js';
 import CodePegs from './CodePegs.js';
+import EndGame from './EndGame.js';
 
 export default class GameMemory extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ export default class GameMemory extends React.Component {
       valueMatches: 0,
       pegsInRow: 4,
       attempts: 10,
-      rules: false,
       success: false,
       endGame: false
     }
@@ -46,6 +46,7 @@ export default class GameMemory extends React.Component {
   }
 
   activatePeg(event) {
+    console.log('activated peg!', event.target.name);
     if (event.target.name.startsWith('peg')) {
       this.setState({selectedPeg: event.target.value});
     } else {
@@ -55,10 +56,10 @@ export default class GameMemory extends React.Component {
     }
   }
 
-
-
   submitPegs() {
+    console.log('submitPegs called');
     var code = new Map(this.state.code);
+    console.log('current guesses', this.state.currentGuess);
     var pegs = this.state.currentGuess;
     var foundKey;
     var exactMatches = 0;
@@ -109,32 +110,30 @@ export default class GameMemory extends React.Component {
 
   }
 
+  reloadGame() {
+    this.setState({
+      success: false,
+      endGame: false,
+      code: this.getCode(),
+      selectedPeg: this.colors.get(0),
+      currentRow: 0,
+      currentGuess: new Map(),
+      exactMatches: 0,
+      valueMatches: 0
+    });
+  }
+
   render() {
     return (
       <div className="mastermindGame">
-      <h2> Mastermind </h2>
-      Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position.
-      <br />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={13}>
-          <Grid>
-            <Grid.Column width={10}>
-              <DecodingBoard state={this.state} activatePeg={this.activatePeg} submitPegs={this.submitPegs}/>
-            </Grid.Column>
-            <Grid.Column width={1}>
-            Submit button
-            </Grid.Column>
-            <Grid.Column width={2}>
-            Hints go here
-            </Grid.Column>
-          </Grid>
-          </Grid.Column>
-          <Grid.Column width={2}>
-          <CodePegs selectedPeg={this.state.selectedPeg} colors={this.colors} activatePeg={this.activatePeg}/>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+        <h2> Mastermind </h2>
+        Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position.
+        <br />
+        <div className="clearfix">
+          <DecodingBoard state={this.state} activatePeg={this.activatePeg.bind(this)} submitPegs={this.submitPegs.bind(this)}/>
+          <CodePegs selectedPeg={this.state.selectedPeg} colors={this.colors} activatePeg={this.activatePeg.bind(this)}/>
+        </div>
+        <EndGame endGame={this.state.endGame} success={this.state.success} reloadGame={this.reloadGame}/>
       </div>
       )
   }

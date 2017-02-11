@@ -5,7 +5,6 @@ export default class CodePegs extends React.Component {
   }
   render() {
     var pegs = [];
-    console.log(this.props.colors);
     for(let [key, value] of this.props.colors) {
       var idVal = 'peg-' + key;
       var pegClass = 'peg ' + value;
