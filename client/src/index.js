@@ -19,7 +19,6 @@ import TypingSpeedmaster from './components/Games/TypingSpeedmaster/TypingSpeedm
 import MemorizeTiles from './components/Games/MemorizeTiles/MemorizeTiles.js';
 import GameSimon from './components/Games/Simon/GameSimon.js';
 import GameSudoku from './components/Games/Sudoku/GameSudoku.js';
-import GameMastermind from './components/Games/Mastermind/GameMastermind.js';
 
 const app = document.getElementById('app');
 
@@ -37,7 +36,6 @@ render(
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="simongame" component={GameSimon}/>
       <Route path="sudokugame" component={GameSudoku}/>
-      <Route path="mastermindgame" component={GameMastermind}/>
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>
