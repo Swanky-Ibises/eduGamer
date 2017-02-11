@@ -6,6 +6,16 @@ var userController = require('./users/userController.js');
 var morgan = require('morgan');
 var app = express();
 
+// Socket.io
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+io.on('connection', function(socket) {
+  socket.emit('hello world', { hello: 'world' });
+  socket.on('something else', function(data) {
+    console.log(data);
+  });
+});
+
 //middlewares
 app.use(morgan('dev'));
 app.use(bodyparser.json());
