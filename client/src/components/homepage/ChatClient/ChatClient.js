@@ -30,6 +30,17 @@ export default class ChatClient extends React.Component {
     this.sendMessage('test message');
   }
 
+  handleInputChange(e) {
+    var text = e.target.value;
+    this.setState({ userInput: text });
+    console.log('text:', text);
+  }
+
+  handleClick() {
+    this.sendMessage(this.state.userInput);
+    this.setState({userInput: ''});
+  }
+
   handleNewMessage(message) {
     var messagesCopy = this.state.messages.slice();
     messagesCopy.push({ user: message.user, text: message.text });
@@ -43,13 +54,6 @@ export default class ChatClient extends React.Component {
       user: context.state.user,
       text: message
     });
-  }
-
-  handleInputChange(e) {
-    var context = this;
-    var text = e.target.value;
-    this.setState({ userInput: text });
-    console.log('text:', text);
   }
 
   render() {
@@ -75,8 +79,8 @@ export default class ChatClient extends React.Component {
           <Form>
             <Form.Field inline>
               <label>{this.state.user}</label>
-              <Input placeholder='Your message' onChange={this.handleInputChange.bind(this)} />
-              <Button primary>Send</Button>
+              <Input placeholder='Your message' onChange={this.handleInputChange.bind(this)} value={this.state.userInput} />
+              <Button primary onClick={this.handleClick.bind(this)}>Send</Button>
             </Form.Field>
           </Form>
         </Message>
