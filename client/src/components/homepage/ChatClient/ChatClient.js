@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Grid, Form, TextArea, Button, Comment } from 'semantic-ui-react';
+import { Message, Grid, Form, Button, Comment, Input } from 'semantic-ui-react';
 
 export default class ChatClient extends React.Component {
   constructor(props) {
@@ -21,25 +21,38 @@ export default class ChatClient extends React.Component {
     var socket = this.socket;
     // Event handlers for messages
     socket.on('hello', function(data) {
-      console.log(data);
+      console.log(data.message);
     });
-    // this.sendMessage('test message');
+    socket.on('newMessage', function(message) {
+      context.handleNewMessage(message);
+    });
+    this.sendMessage('test message');
+  }
+
+  handleNewMessage(message) {
+    var messagesCopy = this.state.messages.slice();
+    messagesCopy.push({ user: message.user, text: message.text });
+    this.setState({ messages: messagesCopy });
   }
 
   sendMessage(message) {
     var context = this;
     var socket = this.socket;
-    socket.emit('newMessage', {
+    socket.emit('postMessage', {
       user: context.state.user,
-      message: message
+      text: message
     });
+  }
+
+  handleInputChange(e) {
+
   }
 
   render() {
     return (
       <Grid.Column width={12}>
         <Message>
-          <h1>Hello World</h1>
+          <h1>Chat with your fellow Membrainers!</h1>
           <Comment.Group>
 
             {this.state.messages.map((message, i) => (
@@ -56,7 +69,11 @@ export default class ChatClient extends React.Component {
             ))}
           </Comment.Group>
           <Form>
-            <TextArea placeholder='Your message goes here' autoHeight />
+            <Form.Field inline>
+              <label>{this.state.user}</label>
+              <Input placeholder='Your message' onChange={this.handleInputChange.bind(this)} />
+              <Button primary>Send</Button>
+            </Form.Field>
           </Form>
         </Message>
       </Grid.Column>

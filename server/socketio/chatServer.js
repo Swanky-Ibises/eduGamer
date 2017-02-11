@@ -3,11 +3,13 @@ exports.connectionHandler = function(socket) {
   socket.emit('hello', { message: 'You have joined the chat client!' });
 
   socket.on('connected', function(data) {
-
+    socket.emit('newUserJoined', { message: 'A new user has joined' });
   });
 
-  socket.on('newMessage', function(data) {
-    console.log(data);
+  socket.on('postMessage', function(data) {
+    var user = data.user;
+    var text = data.text;
+    socket.emit('newMessage', { user: user, text: text });
   });
 
   socket.on('disconnect', function() {
