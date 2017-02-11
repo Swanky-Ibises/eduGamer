@@ -34,7 +34,6 @@ render(
       <Route path="memorizetiles" component={MemorizeTiles}/>
 
       <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
-
       <Route path="leaderboard" component={Leaderboard}/>
       <Route path="profile" component={Profile}/>
       <Route path="scramblegame" component={GameScramble}/>
