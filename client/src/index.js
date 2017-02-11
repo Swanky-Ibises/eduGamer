@@ -3,17 +3,22 @@ import { render } from 'react-dom';
 import { IndexRoute, Router, Route, Link, hashHistory } from 'react-router';
 
 import App from './components/App';
-import SignUp from './components/SignUp';
-import Homepage from './components/Homepage';
-import LogIn from './components/Login';
+import Homepage from './components/homepage/Homepage';
+
 import Leaderboard from './components/Leaderboard';
-import {Profile} from './components/Profile';
-import GameScramble from './components/Scramble/GameScramble';
-import GameMemory from './components/GameMemory';
-import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
-import MemorizeTiles from './components/MemorizeTiles/MemorizeTiles';
+import Profile from './components/Profile';
+
+// Authentication
+import SignUp from './components/authentication/SignUp';
+import LogIn from './components/authentication/Login';
+
+// Games
+import GameScramble from './components/games/Scramble/GameScramble';
+import GameMemory from './components/games/GameMemory/GameMemory';
+import TypingSpeedmaster from './components/games/TypingSpeedmaster/TypingSpeedmaster';
+import MemorizeTiles from './components/games/MemorizeTiles/MemorizeTiles';
 import GameSimon from './components/GameSimon';
-import GameSudoku from './components/Sudoku/GameSudoku';
+import GameSudoku from './components/games/Sudoku/GameSudoku';
 
 const app = document.getElementById('app');
 
