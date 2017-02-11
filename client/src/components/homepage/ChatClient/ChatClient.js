@@ -5,14 +5,18 @@ export default class ChatClient extends React.Component {
   constructor(props) {
     super(props);
     this.socket = io();
+    this.state = {
+      user: localStorage.username,
+      messages: []
+    };
   }
 
   componentDidMount() {
+    var context = this;
     var socket = this.socket;
     // Event handlers for messages
     socket.on('hello', function(data) {
       console.log(data);
-      socket.emit('connected', {user: localStorage.username});
     });
   }
 
