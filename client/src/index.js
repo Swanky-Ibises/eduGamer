@@ -13,7 +13,7 @@ import GameMemory from './components/GameMemory';
 import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
 import MemorizeTiles from './components/MemorizeTiles/MemorizeTiles';
 import GameSimon from './components/GameSimon';
-import GameSudoku from './components/GameSudoku';
+import GameSudoku from './components/Sudoku/GameSudoku';
 
 const app = document.getElementById('app');
 
