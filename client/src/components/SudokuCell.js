@@ -16,7 +16,7 @@ export default class SudokuCell extends React.Component {
         <input type="text"
             value={this.props.value}
             onChange={this.handleChange.bind(this)}
-            data-errored={this.props.errored}
+            data-errored={this.props.incorrect}
             className="sudoku-cell"
             readOnly={this.props.readonly} />
       </Table.Cell>

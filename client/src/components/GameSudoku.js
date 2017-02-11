@@ -10,7 +10,7 @@ export default class GameSudoku extends React.Component {
     this.state = {
       board: sudoku.generate(),
       cells: {},
-      errored: []
+      incorrect: []
     };
   }
   //Create the board when starting
@@ -44,8 +44,7 @@ export default class GameSudoku extends React.Component {
   arrayCells() {
     var cells = Object.keys(this.state.cells);
     var arrayCell = [];
-    var i;
-    var j;
+    var i, j;
     for (i = 0, j = cells.length; i < j; i += 9) {
       arrayCell.push(cells.slice(i, i + 9));
     }
@@ -59,14 +58,14 @@ export default class GameSudoku extends React.Component {
     cells[keys[cellIndex]] = value;
     this.setState({
       cells: cells,
-      errored: []
+      incorrect: []
     });
   }
   //Check puzzle
   checkPuzzle() {
     var that=this;
     var conflicts = sudoku.getConflicts(that.state.cells);
-    var erroredFields = [];
+    var incorrectFields = [];
 
     if (!conflicts.length > 0) {
       return true;
@@ -75,14 +74,14 @@ export default class GameSudoku extends React.Component {
     //Check for conflicts
     conflicts.forEach(function(value, key) {
       value.errorFields.forEach(function(v, k) {
-        erroredFields.push(v);
+        incorrectFields.push(v);
       });
     });
 
-    var erroredQuadrant = conflicts[0].unit;
+    var incorrectQuadrant = conflicts[0].unit;
 
     that.setState({
-      errored: erroredFields
+      incorrect: incorrectFields
     });
   }
   //Reload the page
@@ -107,22 +106,25 @@ export default class GameSudoku extends React.Component {
             <Table.Row className = 'sudokuRow'>
               {row.map(function(cell) {
                 cellIndex++;
-                var errored = false;
+                var incorrect = false;
                 var readonly = false;
-                if (that.state.errored.indexOf(cellsIndexed[cellIndex]) !== -1) {
-                  errored = true;
+                //If the cell is incorrect, flag it
+                if (that.state.incorrect.indexOf(cellsIndexed[cellIndex]) !== -1) {
+                  incorrect = true;
                 }
+                //Check if given number
                 if (that.state.board[cellsIndexed[cellIndex]] !== undefined) {
                   readonly = 'readonly';
                   cell = that.state.board[cellsIndexed[cellIndex]];
                 } else {
+                  //Get rid of placeholders, but keep inputs
                   (that.state.cells[cellsIndexed[cellIndex]] === undefined) ? cell = '' : cell = that.state.cells[cellsIndexed[cellIndex]];
                 }
                 return <SudokuCell
                       index={cellIndex}
                       value={cell}
                       readonly={readonly}
-                      errored={errored}
+                      incorrect={incorrect}
                       updateHandler={that.updateCell.bind(that)}/>;
                 })}
               </Table.Row>
