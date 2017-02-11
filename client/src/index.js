@@ -13,12 +13,13 @@ import SignUp from './components/authentication/SignUp';
 import LogIn from './components/authentication/Login';
 
 // Games
-import GameScramble from './components/games/Scramble/GameScramble';
-import GameMemory from './components/games/GameMemory/GameMemory';
-import TypingSpeedmaster from './components/games/TypingSpeedmaster/TypingSpeedmaster';
-import MemorizeTiles from './components/games/MemorizeTiles/MemorizeTiles';
-import GameSimon from './components/GameSimon';
-import GameSudoku from './components/games/Sudoku/GameSudoku';
+import GameScramble from './components/Games/Scramble/GameScramble';
+import GameMemory from './components/Games/GameMemory/GameMemory';
+import TypingSpeedmaster from './components/Games/TypingSpeedmaster/TypingSpeedmaster';
+import MemorizeTiles from './components/Games/MemorizeTiles/MemorizeTiles';
+import GameSimon from './components/Games/Simon/GameSimon';
+import GameSudoku from './components/Games/Sudoku/GameSudoku';
+import GameMastermind from './components/Games/Mastermind/GameMastermind';
 
 const app = document.getElementById('app');
 
@@ -39,6 +40,7 @@ render(
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="simongame" component={GameSimon}/>
       <Route path="sudokugame" component={GameSudoku}/>
+      <Route path="mastermindgame" component={GameMastermind}/>
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>
