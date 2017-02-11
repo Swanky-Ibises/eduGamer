@@ -97,4 +97,10 @@ input[readonly]:hover {
 .leaderboardContainer {/*leaderboard style*/
   width: 80%;
   margin: 0 auto;
+  padding: 0 2%;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.leaderboardContainer table thead tr .leaderboardHeader {
+  text-align: center;
 }

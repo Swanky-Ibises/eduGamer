@@ -9,7 +9,7 @@ const LeaderboardTable = (props) => {
       <Table basic="very" celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{props.game.charAt(0).toUpperCase() + props.game.slice(1) + " Top Scores"}</Table.HeaderCell>
+            <Table.HeaderCell className="leaderboardHeader">{props.game.charAt(0).toUpperCase() + props.game.slice(1) + " Top Scores"}</Table.HeaderCell>
           </Table.Row>
           <Table.Row>
             <Table.HeaderCell><span>User</span></Table.HeaderCell>

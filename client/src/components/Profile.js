@@ -2,23 +2,33 @@ import React from 'react';
 import $ from 'jquery';
 import {Header, Table} from 'semantic-ui-react';
 
-export class Profile extends React.Component {
+export default class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
       username: '',
       highScoreMem: null,
       highScoreScram: null,
+      highScoreSimon: null,
+      highScoreTiles: null,
+      highScoreSudoku: null,
+      highScoreTyping: null,
       memScores: [],
-      scramScores: []
+      scramScores: [],
+      simonScores: [],
+      tilesScores: [],
+      sudokuScores: [],
+      typingScores: []
     };
   }
 
   componentDidMount() {
+    console.log('componentDidMount Profile');
     this.getUserInfo();
   }
 
   getUserInfo() {
+    console.log('Get user info');
     //hard code a username for now - can get the username from local.storage (or state, for persistence to work)
     //send a Get request to get the user info
     var context = this;
@@ -28,6 +38,7 @@ export class Profile extends React.Component {
       contentType: 'application/json',
       dataType: 'json',
       success: function(data) {
+        console.log("THA DATA", data);
         if (typeof data.redirect === 'string') {
           console.log('redirect to login!');
           // localStorage.username = null;
@@ -37,10 +48,18 @@ export class Profile extends React.Component {
         //retrieve data and setState
         context.setState({
           username: data.username,
-          highScoreMem: data.highScoreMem,
-          highScoreScram: data.highScoreScram,
-          memScores: data.memScores,
-          scramScores: data.scramScores
+          highScoreMem: data.memoryHigh,
+          highScoreScram: data.scrambleHigh,
+          highScoreSimon: data.simonHigh,
+          highScoreTiles: data.tilesHigh,
+          highScoreSudoku: data.sudokuHigh,
+          highScoreTyping: data.typingHigh,
+          memScores: data.matchingArray,
+          scramScores: data.scrambleArray,
+          simonScores: data.simonArray,
+          tilesScores: data.tilesArray,
+          sudokuScores: data.sudokuArray,
+          typingScores: data.typingArray
         });
       }
     });
@@ -108,6 +127,7 @@ export class Profile extends React.Component {
     //the logics to decide what elements to display
     //localStorage only stores strings
     //do a username check to avoid going into the next if statement causing error
+    console.log("STATE", this.state);
     if (!localStorage.username) {
       console.log('no localStorage username');
       return;
