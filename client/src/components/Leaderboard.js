@@ -6,12 +6,14 @@ import $ from 'jquery'
 export default class Leaderboard extends React.Component {
   constructor(props) {
     super(props);
-    this.games = ['scramble', 'matching', 'typing', 'simon'];
+    this.games = ['scramble', 'matching', 'typing', 'simon', 'tiles', 'sudoku'];
     this.state = {
       scrambleLeaders:[],
       matchingLeaders:[],
       typingLeaders:[],
-      simonLeaders: []
+      simonLeaders: [],
+      tilesLeaders: [],
+      sudokuLeaders: []
     }
   }
 
@@ -52,6 +54,10 @@ export default class Leaderboard extends React.Component {
         <LeaderboardTable leaders={this.state.typingLeaders} game={'typing'}/>
         <br/>
         <LeaderboardTable leaders={this.state.simonLeaders} game={'simon'}/>
+        <br/>
+        <LeaderboardTable leaders={this.state.tilesLeaders} game={'tiles'}/>
+        <br/>
+        <LeaderboardTable leaders={this.state.sudokuLeaders} game={'sudoku'}/>
       </div>
     )
   }

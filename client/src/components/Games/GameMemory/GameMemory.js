@@ -6,7 +6,7 @@ import GameMemoryCard from './GameMemoryCard.js';
 export default class GameMemory extends React.Component {
   constructor(props) {
     super(props);
-    this.gametype = 'memory',
+    this.gametype = 'matching',
     this.state = {
       score: 0,
       gameDisabled: false,
