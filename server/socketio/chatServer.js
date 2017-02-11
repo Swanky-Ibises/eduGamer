@@ -11,7 +11,6 @@ exports.connectionHandler = function(socket) {
   socket.on('postMessage', function(data) {
     var user = data.user;
     var text = data.text;
-    console.log(io);
     io.emit('newMessage', { user: user, text: text });
   });
 
