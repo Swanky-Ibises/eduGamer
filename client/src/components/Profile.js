@@ -107,6 +107,20 @@ export default class Profile extends React.Component {
     if (this.state.scramScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Scramble' score={this.state.highScoreScram} scoreArr={this.state.scramScores} key='Scramble' />);
     }
+    if (this.state.simonScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Simon' score={this.state.highScoreSimon} scoreArr={this.state.simonScores} key='Simon' />);
+
+    }
+    if (this.state.tilesScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Tiles' score={this.state.highScoreTiles} scoreArr={this.state.tilesScores} key='Tiles' />);
+    }
+    if (this.state.sudokuScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Sudoku' score={this.state.highScoreSudoku} scoreArr={this.state.sudokuScores} key='Sudoku' />);
+
+    }
+    if (this.state.typingScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Typing' score={this.state.highScoreTyping} scoreArr={this.state.typingScores} key='Typing' />);
+    }
     //----- Return the completed score element -------
     return (
       <div>

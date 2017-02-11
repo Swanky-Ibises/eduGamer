@@ -89,6 +89,7 @@ module.exports = {
     if (req.body.username) {
       var username = req.body.username;
       var gametype = req.body.gametype;
+      console.log('gametype in post score ', gametype);
       var score = req.body.score;
       User.findOne({username: username})
         .exec(function(err, userProfile) {
