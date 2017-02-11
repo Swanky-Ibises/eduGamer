@@ -9,7 +9,7 @@ import LogIn from './components/Login';
 import Leaderboard from './components/Leaderboard';
 import {Profile} from './components/Profile';
 import GameScramble from './components/Scramble/GameScramble';
-import GameMemory from './components/GameMemory';
+import GameMemory from './components/GameMemory/GameMemory';
 import TypingSpeedmaster from './components/TypingSpeedmaster/TypingSpeedmaster';
 import MemorizeTiles from './components/MemorizeTiles/MemorizeTiles';
 import GameSimon from './components/GameSimon';
