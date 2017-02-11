@@ -1,16 +1,17 @@
 import React from 'react';
 import LeaderboardTable from './GameLeaderboard.js'
 import {Header, Table} from 'semantic-ui-react'
-import $ from 'jQuery'
+import $ from 'jquery'
 
 export default class Leaderboard extends React.Component {
   constructor(props) {
     super(props);
-    this.games = ['scramble', 'memory', 'typing'];
+    this.games = ['scramble', 'matching', 'typing', 'simon'];
     this.state = {
       scrambleLeaders:[],
-      memoryLeaders:[],
-      typingLeaders:[]
+      matchingLeaders:[],
+      typingLeaders:[],
+      simonLeaders: []
     }
   }
 
@@ -43,9 +44,14 @@ export default class Leaderboard extends React.Component {
   render() {
     return (
       <div>
+        <h2>Scramble Top Scores</h2>
         <LeaderboardTable leaders={this.state.scrambleLeaders} />
-        <LeaderboardTable leaders={this.state.memoryLeaders} />
+        <h2>Matching Top Scores</h2>
+        <LeaderboardTable leaders={this.state.matchingLeaders} />
+        <h2>Typing Top Scores</h2>
         <LeaderboardTable leaders={this.state.typingLeaders} />
+        <h2>Simon Top Scores</h2>
+        <LeaderboardTable leaders={this.state.simonLeaders} />
       </div>
     )
   }

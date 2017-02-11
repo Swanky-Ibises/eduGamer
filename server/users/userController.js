@@ -26,10 +26,14 @@ module.exports = {
               var newUser = new User({
                 username: username,
                 password: hash,
-                highscoreMem: null,
-                highscoreScram: null,
-                memScores: [],
-                scramScores: []
+                matchingHigh: 0,
+                scrambleHigh: 0,
+                typingHigh: 0,
+                simonHigh: 0,
+                matchingArray: [],
+                scrambleArray: [],
+                typingArray: [],
+                simonArray: []
               });
               newUser.save(function(err, user) {
                 if (err) {
@@ -119,7 +123,7 @@ module.exports = {
         console.log('Error getting users', err);
         res.status(500).send("There's an error");
       } else {
-        res.status(200).send("Here's a user");
+        res.status(200).send(users);
         //filter the users by top 10 highest scores for a specific game
       }
     });
@@ -153,8 +157,7 @@ module.exports = {
   leaderBoard: function(req, res, next) {
    var gameHigh = req.params.gametype + 'High';
    console.log(gameHigh); //-> gametype=scrambleHigh
-    User.find({}).sort('-'+gameHigh).limit(10).exec(function(err, highScoreUsers) {
-
+    User.find({}).sort('-'+gameHigh).limit(4).exec(function(err, highScoreUsers) {
       res.send(highScoreUsers); //[{username: blah, highscore: 2}, {etce}]
     });
   }
