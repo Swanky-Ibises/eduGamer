@@ -2,7 +2,7 @@ import DecodeRow from './DecodeRow.js';
 import HintsRow from './HintsRow.js';
 import {Button, Grid} from 'semantic-ui-react';
 import classNames from 'classnames';
-import SubmitButton from './SubmitButton';
+import SubmitButton from './submitButton';
 
 //Creates a single row with guesses, submit button, and hints
 export default class Row extends React.Component {
