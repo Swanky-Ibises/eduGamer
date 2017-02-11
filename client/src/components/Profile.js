@@ -9,8 +9,16 @@ export default class Profile extends React.Component {
       username: '',
       highScoreMem: null,
       highScoreScram: null,
+      highScoreSimon: null,
+      highScoreTiles: null,
+      highScoreSudoku: null,
+      highScoreTyping: null,
       memScores: [],
-      scramScores: []
+      scramScores: [],
+      simonScores: [],
+      tilesScores: [],
+      sudokuScores: [],
+      typingScores: []
     };
   }
 
@@ -30,6 +38,7 @@ export default class Profile extends React.Component {
       contentType: 'application/json',
       dataType: 'json',
       success: function(data) {
+        console.log("THA DATA", data);
         if (typeof data.redirect === 'string') {
           console.log('redirect to login!');
           // localStorage.username = null;
@@ -41,8 +50,16 @@ export default class Profile extends React.Component {
           username: data.username,
           highScoreMem: data.memoryHigh,
           highScoreScram: data.scrambleHigh,
-          memScores: data.memScores,
-          scramScores: data.scramScores
+          highScoreSimon: data.simonHigh,
+          highScoreTiles: data.tilesHigh,
+          highScoreSudoku: data.sudokuHigh,
+          highScoreTyping: data.typingHigh,
+          memScores: data.matchingArray,
+          scramScores: data.scrambleArray,
+          simonScores: data.simonArray,
+          tilesScores: data.tilesArray,
+          sudokuScores: data.sudokuArray,
+          typingScores: data.typingArray
         });
       }
     });
@@ -90,6 +107,20 @@ export default class Profile extends React.Component {
     if (this.state.scramScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Scramble' score={this.state.highScoreScram} scoreArr={this.state.scramScores} key='Scramble' />);
     }
+    if (this.state.simonScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Simon' score={this.state.highScoreSimon} scoreArr={this.state.simonScores} key='Simon' />);
+
+    }
+    if (this.state.tilesScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Tiles' score={this.state.highScoreTiles} scoreArr={this.state.tilesScores} key='Tiles' />);
+    }
+    if (this.state.sudokuScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Sudoku' score={this.state.highScoreSudoku} scoreArr={this.state.sudokuScores} key='Sudoku' />);
+
+    }
+    if (this.state.typingScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Typing' score={this.state.highScoreTyping} scoreArr={this.state.typingScores} key='Typing' />);
+    }
     //----- Return the completed score element -------
     return (
       <div>
@@ -110,6 +141,7 @@ export default class Profile extends React.Component {
     //the logics to decide what elements to display
     //localStorage only stores strings
     //do a username check to avoid going into the next if statement causing error
+    console.log("STATE", this.state);
     if (!localStorage.username) {
       console.log('no localStorage username');
       return;
