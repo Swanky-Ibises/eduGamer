@@ -60,6 +60,7 @@ export default class Profile extends React.Component {
           tilesScores: data.tilesArray,
           mastermindScores: data.mastermindArray,
           typingScores: data.typingArray
+
         });
       }
     });
