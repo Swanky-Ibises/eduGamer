@@ -22,11 +22,7 @@ export default class Homepage extends React.Component {
           </Grid.Column>
           <Grid.Column width={2}></Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={2}></Grid.Column>
-          <ChatClient />
-          <Grid.Column width={2}></Grid.Column>
-        </Grid.Row>
+        <ChatClient />
       </Grid>
       </div>
     );

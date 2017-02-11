@@ -1,5 +1,6 @@
 import React from 'react';
-import { Message, Grid, Form, Button, Comment, Input } from 'semantic-ui-react';
+import { Message, Grid, Form, Button, Input, Feed } from 'semantic-ui-react';
+import $ from 'jquery';
 
 export default class ChatClient extends React.Component {
   constructor(props) {
@@ -9,10 +10,7 @@ export default class ChatClient extends React.Component {
       user: localStorage.username,
       userInput: '',
       messages: [
-                  {user: 'andy', text: 'hi guys!'},
-                  {user: 'kevin', text: 'wassup'},
-                  {user: 'josephine', text: 'trundle'},
-                  {user: 'eric', text: 'Want a protein shake?'}
+                  {user: 'Membrain Team', text: 'Check out the new games!'}
                 ]
     };
   }
@@ -27,13 +25,16 @@ export default class ChatClient extends React.Component {
     socket.on('newMessage', function(message) {
       context.handleNewMessage(message);
     });
-    this.sendMessage('test message');
+  }
+
+  componentDidUpdate() {
+    var chatBox = $('.chat-box');
+    chatBox.scrollTop(chatBox.prop("scrollHeight"));
   }
 
   handleInputChange(e) {
     var text = e.target.value;
     this.setState({ userInput: text });
-    console.log('text:', text);
   }
 
   handleClick() {
@@ -58,33 +59,39 @@ export default class ChatClient extends React.Component {
 
   render() {
     return (
-      <Grid.Column width={12}>
-        <Message>
-          <h1>Chat with your fellow Membrainers!</h1>
-          <Comment.Group>
-
-            {this.state.messages.map((message, i) => (
-              <Comment key={i}>
-                <Comment.Avatar src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
-                <Comment.Content>
-                  <Comment.Author as='a'>{message.user}</Comment.Author>
-                  <Comment.Metadata>
-                    <div>{Date.now()}</div>
-                  </Comment.Metadata>
-                  <Comment.Text>{message.text}</Comment.Text>
-                </Comment.Content>
-              </Comment>
-            ))}
-          </Comment.Group>
-          <Form>
-            <Form.Field inline>
-              <label>{this.state.user}</label>
-              <Input placeholder='Your message' onChange={this.handleInputChange.bind(this)} value={this.state.userInput} />
-              <Button primary onClick={this.handleClick.bind(this)}>Send</Button>
-            </Form.Field>
-          </Form>
-        </Message>
-      </Grid.Column>
+      <Grid.Row>
+        <Grid.Column width={4}></Grid.Column>
+        <Grid.Column width={8}>
+          <Message>
+            <h1>Chat with your fellow Membrainers!</h1>
+            <div className='chat-box'>
+              <Feed>
+                {this.state.messages.map((message, i) => (
+                  <Feed.Event key={i}>
+                    <Feed.Label>
+                      <img className='chat-icon' src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
+                    </Feed.Label>
+                    <Feed.Content>
+                      <Feed.Summary>
+                        <Feed.User>{message.user ? message.user : 'anonymous'}</Feed.User>
+                      </Feed.Summary>
+                      <Feed.Extra text>{message.text}</Feed.Extra>
+                    </Feed.Content>
+                  </Feed.Event>
+                ))}
+              </Feed>
+            </div>
+            <Form>
+              <Form.Field inline>
+                <label>{this.state.user}</label>
+                <Input placeholder='Your message' onChange={this.handleInputChange.bind(this)} value={this.state.userInput} />
+                <Button primary onClick={this.handleClick.bind(this)}>Send</Button>
+              </Form.Field>
+            </Form>
+          </Message>
+        </Grid.Column>
+        <Grid.Column width={4}></Grid.Column>
+      </Grid.Row>
     );
   }
 }
