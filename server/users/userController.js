@@ -30,10 +30,14 @@ module.exports = {
                 scrambleHigh: 0,
                 typingHigh: 0,
                 simonHigh: 0,
+                tilesHigh: 0,
+                sudokuHigh: 0,
                 matchingArray: [],
                 scrambleArray: [],
                 typingArray: [],
-                simonArray: []
+                simonArray: [],
+                tilesArray: [],
+                sudokuArray: []
               });
               newUser.save(function(err, user) {
                 if (err) {
@@ -85,6 +89,7 @@ module.exports = {
     if (req.body.username) {
       var username = req.body.username;
       var gametype = req.body.gametype;
+      console.log('gametype in post score ', gametype);
       var score = req.body.score;
       User.findOne({username: username})
         .exec(function(err, userProfile) {
@@ -143,10 +148,18 @@ module.exports = {
           console.log('fetched user', user);
           var userObject = {
             username: user.username,
-            highScoreMem: user.memoryHigh,
-            highScoreScram: user.scrambleHigh,
-            memScores: user.memoryArray,
-            scramScores: user.scrambleArray
+            matchingHigh: user.matchingHigh,
+            scrambleHigh: user.scrambleHigh,
+            typingHigh: user.typingHigh,
+            simonHigh: user.simonHigh,
+            tilesHigh: user.tilesHigh,
+            sudokuHigh: user.sudokuHigh,
+            matchingArray: user.matchingArray,
+            scrambleArray: user.scrambleArray,
+            typingArray: user.typingArray,
+            simonArray: user.simonArray,
+            tilesArray: user.tilesArray,
+            sudokuArray: user.sudokuArray
           };
           res.send(userObject);
         }
