@@ -20,7 +20,6 @@ export default class PopularGames extends React.Component {
           </Grid.Row>
           <Divider hidden />
           <Grid.Row>
-            <Link to="/simongame"><Button>Simon</Button></Link>
             <Link to="/sudokugame"><Button>Sudoku</Button></Link>
           </Grid.Row>
           <Divider hidden />
@@ -29,3 +28,5 @@ export default class PopularGames extends React.Component {
     );
   }
 }
+
+//            <Link to="/simongame"><Button>Simon</Button></Link>

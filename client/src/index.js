@@ -17,8 +17,9 @@ import GameScramble from './components/games/Scramble/GameScramble';
 import GameMemory from './components/games/GameMemory/GameMemory';
 import TypingSpeedmaster from './components/games/TypingSpeedmaster/TypingSpeedmaster';
 import MemorizeTiles from './components/games/MemorizeTiles/MemorizeTiles';
-import GameSimon from './components/GameSimon';
+import GameSimon from './components/games/Simon/GameSimon';
 import GameSudoku from './components/games/Sudoku/GameSudoku';
+import GameMastermind from './components/games/Mastermind/GameMastermind';
 
 const app = document.getElementById('app');
 
@@ -29,16 +30,14 @@ render(
       <IndexRoute component={Homepage}></IndexRoute>
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="memorygame" component={GameMemory}/>
-
-
       <Route path="memorizetiles" component={MemorizeTiles}/>
-
       <Route path="typingspeedmaster" component={TypingSpeedmaster}/>
       <Route path="leaderboard" component={Leaderboard}/>
       <Route path="profile" component={Profile}/>
       <Route path="scramblegame" component={GameScramble}/>
       <Route path="simongame" component={GameSimon}/>
       <Route path="sudokugame" component={GameSudoku}/>
+      <Route path="mastermindgame" component={GameMastermind}/>
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>
