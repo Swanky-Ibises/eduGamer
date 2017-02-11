@@ -46,6 +46,9 @@ export const NavBar = () => {
           <Link to="/memorizetiles">
             <Dropdown.Item> Memory Tiles </Dropdown.Item>
           </Link>
+          <Link to="/sudokugame">
+            <Dropdown.Item> Sudoku </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
 
