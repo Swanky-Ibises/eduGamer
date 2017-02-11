@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import {Header, Table} from 'semantic-ui-react';
 
-export class Profile extends React.Component {
+export default class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -15,10 +15,12 @@ export class Profile extends React.Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount Profile');
     this.getUserInfo();
   }
 
   getUserInfo() {
+    console.log('Get user info');
     //hard code a username for now - can get the username from local.storage (or state, for persistence to work)
     //send a Get request to get the user info
     var context = this;
@@ -37,8 +39,8 @@ export class Profile extends React.Component {
         //retrieve data and setState
         context.setState({
           username: data.username,
-          highScoreMem: data.highScoreMem,
-          highScoreScram: data.highScoreScram,
+          highScoreMem: data.memoryHigh,
+          highScoreScram: data.scrambleHigh,
           memScores: data.memScores,
           scramScores: data.scramScores
         });
