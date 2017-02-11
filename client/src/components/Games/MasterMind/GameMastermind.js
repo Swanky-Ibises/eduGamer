@@ -34,9 +34,9 @@ export default class GameMemory extends React.Component {
   }
 
   generateCode() {
-    var code = new Map();
-    var random = () => { return Math.floor(Math.random() * 6)};
-    var genCode = (i) => {
+    const code = new Map();
+    let random = () => { return Math.floor(Math.random() * 6)};
+    let genCode = (i) => {
       code.set(i, this.colors.get(random()));
     }
     //Generate 4 colors
@@ -46,7 +46,7 @@ export default class GameMemory extends React.Component {
   }
 
   activatePeg(event) {
-    console.log('activated peg!', event.target.name);
+    console.log('activated peg!', event.target.name, event.target.value);
     if (event.target.name.startsWith('peg')) {
       this.setState({selectedPeg: event.target.value});
     } else {
@@ -58,14 +58,14 @@ export default class GameMemory extends React.Component {
 
   submitPegs() {
     console.log('submitPegs called');
-    var code = new Map(this.state.code);
+    let code = new Map(this.state.code);
     console.log('current guesses', this.state.currentGuess);
-    var pegs = this.state.currentGuess;
-    var foundKey;
-    var exactMatches = 0;
-    var valueMatches = 0;
+    let pegs = this.state.currentGuess;
+    let foundKey;
+    let exactMatches = 0;
+    let valueMatches = 0;
 
-    var keyOf = (map, target) => {
+    let keyOf = (map, target) => {
       //ES6 is interesting, refactor later to match the rest which is mostly in ES5
       //Or refactor everything into ES6 instead of having bits and pieces
       for(let[key, value] of map) {
@@ -127,13 +127,14 @@ export default class GameMemory extends React.Component {
     return (
       <div className="mastermindGame">
         <h2> Mastermind </h2>
-        Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position.
+        Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position. You have ten turns.
+        <br />
         <br />
         <div className="clearfix">
           <DecodingBoard state={this.state} activatePeg={this.activatePeg.bind(this)} submitPegs={this.submitPegs.bind(this)}/>
           <CodePegs selectedPeg={this.state.selectedPeg} colors={this.colors} activatePeg={this.activatePeg.bind(this)}/>
         </div>
-        <EndGame endGame={this.state.endGame} success={this.state.success} reloadGame={this.reloadGame}/>
+        <EndGame endGame={this.state.endGame} success={this.state.success} reloadGame={this.reloadGame.bind(this)}/>
       </div>
       )
   }

@@ -9,11 +9,12 @@ export default class DecodingBoard extends React.Component {
       Array(n).fill().map((_, i) => f(i));
     }
   }
-
+  //Generate the decoding board
   render() {
-    var rows = [];
-    var generateRow = (i) => {
-      var rowName = 'decodeRow-' + i + 1;
+    let rows = [];
+    let rowName;
+    let generateRow = (i) => {
+      rowName = 'decodeRow-' + i + 1;
       rows.push(<Row name={rowName}
         key={i + 1}
         rowId = {i}

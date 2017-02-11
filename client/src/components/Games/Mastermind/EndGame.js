@@ -4,16 +4,16 @@ export default class EndGame extends React.Component {
     super(props);
   }
   render() {
-    var endGameInfoClass = classNames({
+    const endGameInfoClass = classNames({
       'endgame': true,
       'hidden': !this.props.endGame
     });
-    var endGameStatusClass = classNames({
+    const endGameStatusClass = classNames({
       'endgame-relative': true,
       'success': this.props.success,
       'failure': !this.props.success
     });
-    var infoText = this.props.success ? 'Congratulations!' : 'Game over';
+    const infoText = this.props.success ? 'Congratulations!' : 'Game over';
 
     return (
     <div className={endGameInfoClass}>

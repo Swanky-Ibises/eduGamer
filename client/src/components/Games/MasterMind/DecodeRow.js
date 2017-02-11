@@ -15,13 +15,15 @@ export default class DecodeRow extends React.Component {
   }
 
   render() {
-    var pegs = [];
-    var generatePeg = (i) => {
-      var idVal = this.props.name + '-' + i + 1;
+    let pegs = [];
+    let idVal;
+    let pegClass;
+    let generatePeg = (i) => {
+      idVal = this.props.name + '-' + i + 1;
       if (this.props.state.currentRow === this.props.rowId) {
-        var pegClass = this.props.state.currentGuess.get(i) ? 'peg ' + this.props.state.currentGuess.get(i) : 'peg';
+        pegClass = this.props.state.currentGuess.get(i) ? 'peg ' + this.props.state.currentGuess.get(i) : 'peg';
       } else {
-        var pegClass = 'peg';
+        pegClass = 'peg';
       }
       pegs.push(<Peg idVal={idVal} name={this.props.name} value={i + 1} key={idVal} pegClass={pegClass} isCurrentRow={this.props.isCurrentRow} activatePeg={this.props.activatePeg}/>);
     }

@@ -2,7 +2,9 @@ import DecodeRow from './DecodeRow.js';
 import HintsRow from './HintsRow.js';
 import {Button, Grid} from 'semantic-ui-react';
 import classNames from 'classnames';
+import SubmitButton from './SubmitButton';
 
+//Creates a single row with guesses, submit button, and hints
 export default class Row extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,6 @@ export default class Row extends React.Component {
 
   render() {
     var isCurrentRow = this.props.state.currentRow === this.props.rowId;
-    console.log('currentRow in row',isCurrentRow);
     var rowClassName = classNames({
       'row': true,
       'clearfix': true,
@@ -24,10 +25,6 @@ export default class Row extends React.Component {
     });
     var hintsRowName = 'hintsRow-' + this.props.rowId;
     var rowName = 'decodeRow-' + this.props.rowId;
-    var buttonClassName = classNames({
-      'submit': true,
-      'hidden': !(this.props.state.currentGuess.size >= this.props.state.pegsInRow && this.props.state.currentRow === this.props.rowId)
-    });
     return (
     <div className={rowClassName}>
       <div className="left">
@@ -39,7 +36,7 @@ export default class Row extends React.Component {
           activatePeg = {this.props.activatePeg}/>
       </div>
       <div className="left">
-        <Button className={buttonClassName} onClick={this.props.submitPegs}></Button>
+        <SubmitButton rowId={this.props.rowId} state={this.props.state} submitPegs={this.props.submitPegs}/>
       </div>
       <div className="right">
         <HintsRow name={hintsRowName} key={this.props.rowId} rowId={this.props.rowId} state={this.props.state}/>
