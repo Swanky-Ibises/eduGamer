@@ -6,16 +6,6 @@ var userController = require('./users/userController.js');
 var morgan = require('morgan');
 var app = express();
 
-// Socket.io
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-io.on('connection', function(socket) {
-  socket.emit('hello world', { hello: 'world' });
-  socket.on('something else', function(data) {
-    console.log(data);
-  });
-});
-
 //middlewares
 app.use(morgan('dev'));
 app.use(bodyparser.json());
@@ -56,7 +46,16 @@ app.post('/logout', userController.logout);
 app.get('/:username', userController.getUser);
 app.get('/leaderboard', userController.getAll);
 
-app.listen(port, function () {
+var server = app.listen(port, function () {
   console.log('Membrain server listening on port', port);
   console.log('process.env.NODE_ENV is:', process.env.NODE_ENV);
+});
+
+// Socket.io
+var io = require('socket.io')(server);
+io.on('connection', function(socket) {
+  socket.emit('hello', { message: 'You have joined the chat client!' });
+  socket.on('connected', function(data) {
+    console.log(data);
+  });
 });
