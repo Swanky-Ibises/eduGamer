@@ -7,6 +7,7 @@ export default class ChatClient extends React.Component {
     this.socket = io();
     this.state = {
       user: localStorage.username,
+      userInput: '',
       messages: [
                   {user: 'andy', text: 'hi guys!'},
                   {user: 'kevin', text: 'wassup'},
@@ -45,7 +46,10 @@ export default class ChatClient extends React.Component {
   }
 
   handleInputChange(e) {
-
+    var context = this;
+    var text = e.target.value;
+    this.setState({ userInput: text });
+    console.log('text:', text);
   }
 
   render() {
