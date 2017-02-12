@@ -4,6 +4,10 @@ body {
   background: #2185D0;
 }
 
+.scramble-input {
+  margin-right: 5px;
+}
+
 .score-table {
   margin-left:5%;
   margin-right:5%;

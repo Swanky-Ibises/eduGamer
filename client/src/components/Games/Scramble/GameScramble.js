@@ -2,7 +2,7 @@ import React from 'react';
 import { data }  from './Data.js';
 import { Timer } from './Timer.js';
 import { Score } from './Score.js';
-import { Button, Input, Message } from 'semantic-ui-react';
+import { Button, Input, Message, Form, Grid, Container } from 'semantic-ui-react';
 import $ from 'jquery';
 
 export default class GameScramble extends React.Component {
@@ -124,15 +124,21 @@ export default class GameScramble extends React.Component {
 
   render() {
     return (
-      <Message>
-        <Timer time={this.state.timeLeft} />
-        <h1> {this.state.shuffled} </h1>
-        <h4> {this.state.definition} </h4>
-        <Input placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
-        <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
-        <Score score={this.state.score}/>
-        {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
-      </Message>
+      <Grid>
+        <Grid.Column width={4}></Grid.Column>
+        <Grid.Column width={8}>
+        <Message>
+          <Timer time={this.state.timeLeft} />
+          <Score score={this.state.score}/>
+          <h1> {this.state.shuffled} </h1>
+          <h4> {this.state.definition} </h4>
+          <Input className='scramble-input' placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
+          <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
+          {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
+        </Message>
+        </Grid.Column>
+        <Grid.Column width={4}></Grid.Column>
+      </Grid>
     );
   }
 }
