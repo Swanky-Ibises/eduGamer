@@ -105,15 +105,15 @@ input[readonly]:hover {
   cursor: default;
 }
 /*-------Leaderboard-------*/
-.leaderboardContainer {
+.leaderboard-container {
   width: 80%;
   margin: 0 auto;
-  padding: 0 2%;
+  padding: 30px;
   border-radius: 4px;
   background-color: #fff;
 }
-.leaderboardContainer table thead tr .leaderboardHeader {
-  text-align: center;
+.leaderboard-table {
+  padding-bottom: 30px;
 }
 
 /* Homepage Chat Styling */
