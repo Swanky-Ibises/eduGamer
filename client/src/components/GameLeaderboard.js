@@ -18,7 +18,7 @@ const LeaderboardTable = (props) => {
         </Table.Header>
         <Table.Body>{props.leaders.map(function(leader, i){
           return (
-            <Table.Row>
+            <Table.Row key={i}>
               <Table.Cell>{leader.username}</Table.Cell>
               <Table.Cell>{leader[gameHigh]}</Table.Cell>
             </Table.Row>
