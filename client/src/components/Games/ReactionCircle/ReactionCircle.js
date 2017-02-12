@@ -8,8 +8,10 @@ export default class ReactionCircle extends React.Component {
 
   render() {
     return (
-      <h2>Reaction Circle</h2>
-      <h4>Test your reaction time...</h4>
+      <Message>
+        <h2>Reaction Circle</h2>
+        <h4>Test your reaction time...</h4>
+      </Message>
     );
   }
 }
