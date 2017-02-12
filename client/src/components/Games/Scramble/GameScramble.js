@@ -2,7 +2,7 @@ import React from 'react';
 import { data }  from './Data.js';
 import { Timer } from './Timer.js';
 import { Score } from './Score.js';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Input, Message } from 'semantic-ui-react';
 import $ from 'jquery';
 
 export default class GameScramble extends React.Component {
@@ -67,7 +67,8 @@ export default class GameScramble extends React.Component {
 
 
   //This method skips the word and changes the word to the next
-  skipWord() {
+  skipWord(e) {
+    e.preventDefault();
     this.setState({score: this.state.score - 1});
     this.changeWord();
   }
@@ -123,7 +124,7 @@ export default class GameScramble extends React.Component {
 
   render() {
     return (
-      <div>
+      <Message>
         <Timer time={this.state.timeLeft} />
         <h1> {this.state.shuffled} </h1>
         <h4> {this.state.definition} </h4>
@@ -131,7 +132,7 @@ export default class GameScramble extends React.Component {
         <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
         <Score score={this.state.score}/>
         {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
-      </div>
+      </Message>
     );
   }
 }
