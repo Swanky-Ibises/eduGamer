@@ -5,8 +5,10 @@ export default class MemorizeTiles extends React.Component {
   constructor(props) {
     super(props);
     this.timer = null;
+    this.fullRoundTimer = null;
     this.state = {
       gameStarted: false,
+      sessionTimer: 120,
       score: 0,
       timeLeft: 0,
       startedTimer: false,
@@ -21,6 +23,35 @@ export default class MemorizeTiles extends React.Component {
                     [0,0,0,0],
                     [0,0,0,0]]
     };
+  }
+
+  componentDidMount() {
+    this.roundTimer();
+  }
+
+  roundTimer() {
+    var context = this;
+    this.fullRoundTimer = setInterval(() => {
+      if (context.state.sessionTimer > 0) {
+        context.setState({sessionTimer: context.state.sessionTimer - 1});
+      } else {
+
+        $.ajax({
+          type:'POST',
+          url: '/api/v2/user/score',
+          data: JSON.stringify({username: localStorage.username, gametype: 'tiles', score: context.state.score}),
+          contentType: 'application/json',
+          success: function(response) {
+            console.log('Tiles scored posted');
+          }
+        });
+        context.clearTimer();
+      }
+    }, 1000);
+  }
+
+  clearTimer() {
+    clearInterval(this.fullRoundTimer);
   }
 
   componentWillMount() {
@@ -117,6 +148,8 @@ export default class MemorizeTiles extends React.Component {
     return (
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
+        <br />
+        <Header size='medium'>{this.state.sessionTimer}</Header>
         <br />
         <Header size='medium'>Score: <span className='memorize-tile-score'>{this.state.score}</span></Header>
 
