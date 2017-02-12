@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Button, Table, Message } from 'semantic-ui-react';
 import $ from 'jquery';
 import {sudoku} from './vendors/sudoku.js';
 import SudokuCell from './SudokuCell.js';
@@ -96,47 +96,49 @@ export default class GameSudoku extends React.Component {
     var cellIndex = -1;
 
     return (
-      <div className = 'sudokuBoard'>
-      <h1> Sudoku </h1>
-      <h3> No high scores. Just Sudoku. Press 'Check' to check for conflicts. If you fill the whole board with no conflicts, you win!</h3>
-      <Table celled fixed className = 'sudokuTable'>
-      <Table.Body>
-        {cells.map(function(row, index) {
-          return (
-            <Table.Row className = 'sudokuRow' key={index}>
-              {row.map(function(cell) {
-                cellIndex++;
-                var incorrect = false;
-                var readonly = false;
-                //If the cell is incorrect, flag it
-                if (that.state.incorrect.indexOf(cellsIndexed[cellIndex]) !== -1) {
-                  incorrect = true;
-                }
-                //Check if given number
-                if (that.state.board[cellsIndexed[cellIndex]] !== undefined) {
-                  readonly = 'readonly';
-                  cell = that.state.board[cellsIndexed[cellIndex]];
-                } else {
-                  //Get rid of placeholders, but keep inputs
-                  (that.state.cells[cellsIndexed[cellIndex]] === undefined) ? cell = '' : cell = that.state.cells[cellsIndexed[cellIndex]];
-                }
-                return <SudokuCell
-                      index={cellIndex}
-                      key={cellIndex}
-                      value={cell}
-                      readonly={readonly}
-                      incorrect={incorrect}
-                      updateHandler={that.updateCell.bind(that)}/>;
-                })}
-              </Table.Row>
-              );
-        })}
-      </Table.Body>
-      </Table>
-      <br />
-      <Button onClick={this.checkPuzzle.bind(this)}> Check </Button>
-      <Button onClick={this.resetPuzzle.bind(this)}> Reset </Button>
-    </div>
+      <Message>
+        <div className = 'sudokuBoard'>
+        <h1> Sudoku </h1>
+        <h3> No high scores. Just Sudoku. Press 'Check' to check for conflicts. If you fill the whole board with no conflicts, you win!</h3>
+        <Table celled fixed className = 'sudokuTable'>
+        <Table.Body>
+          {cells.map(function(row, index) {
+            return (
+              <Table.Row className = 'sudokuRow' key={index}>
+                {row.map(function(cell) {
+                  cellIndex++;
+                  var incorrect = false;
+                  var readonly = false;
+                  //If the cell is incorrect, flag it
+                  if (that.state.incorrect.indexOf(cellsIndexed[cellIndex]) !== -1) {
+                    incorrect = true;
+                  }
+                  //Check if given number
+                  if (that.state.board[cellsIndexed[cellIndex]] !== undefined) {
+                    readonly = 'readonly';
+                    cell = that.state.board[cellsIndexed[cellIndex]];
+                  } else {
+                    //Get rid of placeholders, but keep inputs
+                    (that.state.cells[cellsIndexed[cellIndex]] === undefined) ? cell = '' : cell = that.state.cells[cellsIndexed[cellIndex]];
+                  }
+                  return <SudokuCell
+                        index={cellIndex}
+                        key={cellIndex}
+                        value={cell}
+                        readonly={readonly}
+                        incorrect={incorrect}
+                        updateHandler={that.updateCell.bind(that)}/>;
+                  })}
+                </Table.Row>
+                );
+          })}
+        </Table.Body>
+        </Table>
+        <br />
+        <Button onClick={this.checkPuzzle.bind(this)}> Check </Button>
+        <Button onClick={this.resetPuzzle.bind(this)}> Reset </Button>
+      </div>
+    </Message>
     )
   }
 }
