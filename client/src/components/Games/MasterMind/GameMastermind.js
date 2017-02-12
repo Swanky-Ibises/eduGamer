@@ -5,7 +5,7 @@ import $ from 'jquery';
 import {Grid} from 'semantic-ui-react'
 import DecodingBoard from './DecodingBoard.js';
 import CodePegs from './CodePegs.js';
-import EndGame from './EndGame.js';
+import EndGame from './End_Game.js';
 
 export default class GameMemory extends React.Component {
   constructor(props) {
