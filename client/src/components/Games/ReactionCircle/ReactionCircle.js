@@ -5,9 +5,10 @@ export default class ReactionCircle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      milliseconds: 0,
-      seconds: 0,
-      countdown: 0
+      startTime: 0,
+      endTime: 0,
+      inProgress: false,
+      countdown: Infinity
     };
   }
 
@@ -17,8 +18,20 @@ export default class ReactionCircle extends React.Component {
 
   generateCountdown() {
     // generate random start time 1-4 seconds from now
-    var randomCountdown = Math.ceil(Math.random()*4);
+    var randomCountdown = Math.ceil(Math.random()*8);
     this.setState({countdown: randomCountdown});
+  }
+
+  handleGameClick() {
+    if (this.state.inProgress)
+  }
+
+  startTimer() {
+    this.setState({startTime: Date.now(), inProgress: true});
+  }
+
+  endTimer() {
+    this.setState({endTime: Date.now(), inProgress: false});
   }
 
   render() {
