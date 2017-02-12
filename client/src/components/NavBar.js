@@ -46,6 +46,9 @@ export const NavBar = () => {
           <Link to="/sudokugame">
             <Dropdown.Item> Sudoku </Dropdown.Item>
           </Link>
+          <Link to="/reactioncircle">
+            <Dropdown.Item> Reaction </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
 
