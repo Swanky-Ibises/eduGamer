@@ -49,8 +49,8 @@ body {
 
 /*------Sudoku------*/
 .sudokuBoard {
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
 }
 
 .sudokuTable {
@@ -60,6 +60,7 @@ body {
 
 .sudokuCell {
   padding: 0 !important;
+  margin-left: 3px;
 }
 
 .sudokuCell:nth-child(3n+1) {

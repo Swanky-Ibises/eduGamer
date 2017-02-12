@@ -101,9 +101,9 @@ export default class GameSudoku extends React.Component {
       <h3> No high scores. Just Sudoku. Press 'Check' to check for conflicts. If you fill the whole board with no conflicts, you win!</h3>
       <Table celled fixed className = 'sudokuTable'>
       <Table.Body>
-        {cells.map(function(row) {
+        {cells.map(function(row, index) {
           return (
-            <Table.Row className = 'sudokuRow'>
+            <Table.Row className = 'sudokuRow' key={index}>
               {row.map(function(cell) {
                 cellIndex++;
                 var incorrect = false;
@@ -122,6 +122,7 @@ export default class GameSudoku extends React.Component {
                 }
                 return <SudokuCell
                       index={cellIndex}
+                      key={cellIndex}
                       value={cell}
                       readonly={readonly}
                       incorrect={incorrect}
