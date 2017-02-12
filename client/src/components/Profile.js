@@ -71,7 +71,7 @@ export default class Profile extends React.Component {
     //---- Element for displaying one game ----
     var OneGameScoreDisplay = ({gameType, score, scoreArr})=>(
       <div className="game-profile">
-        <h2>Highest {gameType} Game Score: <span className="highscore">{score}</span></h2>
+        <h3>Highest {gameType} Game Score: <span className="highscore">{score}</span></h3>
         <div className="score-table">
           <Table celled striped>
             <Table.Header>
@@ -155,7 +155,7 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    var name = (localStorage.username) ? localStorage.username.toUpperCase() + "'s Profile" : '';
+    var name = localStorage.username ? localStorage.username + "'s Profile" : '';
 
     return (
       <Message>
