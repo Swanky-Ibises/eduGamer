@@ -13,13 +13,13 @@ import SignUp from './components/authentication/SignUp.js';
 import LogIn from './components/authentication/Login.js';
 
 // Games
-import GameScramble from './components/games/Scramble/GameScramble.js';
-import GameMemory from './components/games/GameMemory/GameMemory.js';
-import TypingSpeedmaster from './components/games/TypingSpeedmaster/TypingSpeedmaster.js';
-import MemorizeTiles from './components/games/MemorizeTiles/MemorizeTiles.js';
-import GameSimon from './components/games/Simon/GameSimon.js';
-import GameSudoku from './components/games/Sudoku/GameSudoku.js';
-import GameMastermind from './components/games/Mastermind/GameMastermind.js';
+import GameScramble from './components/Games/Scramble/GameScramble.js';
+import GameMemory from './components/Games/GameMemory/GameMemory.js';
+import TypingSpeedmaster from './components/Games/TypingSpeedmaster/TypingSpeedmaster.js';
+import MemorizeTiles from './components/Games/MemorizeTiles/MemorizeTiles.js';
+import GameSimon from './components/Games/Simon/GameSimon.js';
+import GameSudoku from './components/Games/Sudoku/GameSudoku.js';
+import GameMastermind from './components/Games/MasterMind/GameMastermind.js';
 
 const app = document.getElementById('app');
 
