@@ -32,6 +32,12 @@ export default class ChatClient extends React.Component {
     chatBox.scrollTop(chatBox.prop("scrollHeight"));
   }
 
+  componentWillUnmount() {
+    var socket = this.socket;
+    socket.off('hello');
+    socket.off('newMessage');
+  }
+
   handleInputChange(e) {
     var text = e.target.value;
     this.setState({ userInput: text });
