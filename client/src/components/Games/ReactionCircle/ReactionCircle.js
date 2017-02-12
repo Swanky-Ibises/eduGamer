@@ -81,6 +81,7 @@ export default class ReactionCircle extends React.Component {
   render() {
     return (
       <Message className='reaction-box'>
+        <br />
         <div className='reaction-wrapper'>
           <div className='reaction-element'>
             <h2>Reaction Circle</h2>
