@@ -54,9 +54,9 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <Container textAlign='left'>
-          <h1> Log in to Membrain </h1>
+        <Container>
           <Segment padded>
+          <h1> Log in to Membrain </h1>
           <p>{this.state.errorText}</p>
           <Form>
             <Form.Field>
