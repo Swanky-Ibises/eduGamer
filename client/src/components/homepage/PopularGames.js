@@ -8,18 +8,18 @@ export default class PopularGames extends React.Component {
       <Grid.Column width={4}>
         <Message>
           <Header size='large'>Popular Games</Header>
-          <Divider hidden />
-          <Grid.Row>
-            <Link to="/scramblegame"><Button>Scramble</Button></Link>
-            <Link to="/memorygame"><Button>Matching</Button></Link>
+          <br />
+          <Grid.Row className='popular-links'>
+            <Link className='popular-link' to="/scramblegame"><Button>Scramble</Button></Link>
+            <Link className='popular-link' to="/memorygame"><Button>Matching</Button></Link>
           </Grid.Row>
           <Divider hidden />
-          <Grid.Row>
-            <Link to="/typingspeedmaster"><Button>Typing</Button></Link>
-            <Link to="/memorizetiles"><Button>Tiles</Button></Link>
+          <Grid.Row className='popular-links' >
+            <Link className='popular-link' to="/typingspeedmaster"><Button>Typing</Button></Link>
+            <Link className='popular-link' to="/memorizetiles"><Button>Tiles</Button></Link>
           </Grid.Row>
           <Divider hidden />
-          <Grid.Row>
+          <Grid.Row className='popular-links' >
             <Link to="/sudokugame"><Button>Sudoku</Button></Link>
             <Link to="/reactioncircle"><Button>Reaction</Button></Link>
           </Grid.Row>
