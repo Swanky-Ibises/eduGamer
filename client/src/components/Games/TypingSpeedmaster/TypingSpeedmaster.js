@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Message, Form, TextArea } from 'semantic-ui-react';
+import { Message, Form, TextArea, Grid } from 'semantic-ui-react';
 
 export default class TypingSpeedmaster extends React.Component {
   constructor(props) {
@@ -93,14 +93,20 @@ export default class TypingSpeedmaster extends React.Component {
       <Message>
         <h1>This is typing speedmaster!</h1>
         <h2>Time taken: {this.state.timer}</h2>
-        <Message warning>
-          <h3>Enter this text as fast as you can: </h3>
-          <div className='typing-text'><h4>{this.state.targetText}</h4></div>
-        </Message>
-        {this.state.done && <h2>You win!!! Score: {this.state.score}</h2>}
-        <Form>
-          <TextArea placeholder='Type here' onChange={this.handleKeypress} />
-        </Form>
+        <Grid>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={8}>
+            <Message warning>
+              <h3>Enter this text as fast as you can: </h3>
+              <div className='typing-text'><h4>{this.state.targetText}</h4></div>
+            </Message>
+            {this.state.done && <h2>You win!!! Score: {this.state.score}</h2>}
+            <Form>
+              <TextArea placeholder='Type here' onChange={this.handleKeypress} />
+            </Form>
+          </Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+        </Grid>
       </Message>
     )
   }
