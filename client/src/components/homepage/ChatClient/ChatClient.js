@@ -37,7 +37,8 @@ export default class ChatClient extends React.Component {
     this.setState({ userInput: text });
   }
 
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     this.sendMessage(this.state.userInput);
     this.setState({userInput: ''});
   }
