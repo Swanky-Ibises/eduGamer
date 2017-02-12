@@ -341,7 +341,7 @@ input[type="radio"] {
   left: 0;
 }
 
-/* helpers */
+/* Helpers */
 
 .left {
   float: left;
@@ -359,4 +359,25 @@ input[type="radio"] {
 
 .hidden {
   display: none;
+}
+
+/* Reaction Circle Game */
+.reaction-circle {
+  height: 200px;
+  width: 200px;
+  background-color: grey;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reaction-circle-clicked {
+  background-color: #1bc725;
+}
+.start-button {
+  position: relative;
+  top: 70px;
+  left: 3px;
+}
+.ready-text {
+
 }
