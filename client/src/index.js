@@ -20,6 +20,7 @@ import MemorizeTiles from './components/Games/MemorizeTiles/MemorizeTiles.js';
 import GameSimon from './components/Games/Simon/GameSimon.js';
 import GameSudoku from './components/Games/Sudoku/GameSudoku.js';
 import GameMastermind from './components/Games/MasterMind/GameMastermind.js';
+import ReactionCircle from './components/Games/ReactionCircle/ReactionCircle.js';
 
 const app = document.getElementById('app');
 
@@ -38,6 +39,7 @@ render(
       <Route path="simongame" component={GameSimon}/>
       <Route path="sudokugame" component={GameSudoku}/>
       <Route path="mastermindgame" component={GameMastermind}/>
+      <Route path="reactioncircle" component={ReactionCircle}/>
       <Route path="login" component={LogIn}/>
       <Route path="signup" component={SignUp}/>
     </Route>

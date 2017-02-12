@@ -30,7 +30,8 @@ export default class SignUp extends React.Component {
   }
 
   //This method validates the form on submission. If validation is passed, the user information will be passed to the server and database
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     //Local storage is used in order to get persistent error messages after re rendering
     if (this.state.username.length < 4) {
       this.setState({errorText: 'Please enter a username with at least 4 characters'});
@@ -66,9 +67,9 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <div>
-        <Container textAlign='left'>
-          <h1> Sign up for Membrain </h1>
+        <Container>
           <Segment padded>
+          <h1> Sign up for Membrain </h1>
           <p>{this.state.errorText}</p>
           <Form>
             <Form.Field>
@@ -83,7 +84,7 @@ export default class SignUp extends React.Component {
               <label>Confirm Password</label>
               <Form.Input placeholder='Confirm Password' type='password' value={this.state.confirmPassword} onChange={this.updateConfirmPassword.bind(this)}/>
             </Form.Field>
-            <Button primary fluid type='submit' onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
+            <Button primary fluid onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
           </Form>
           <Divider horizontal>Or</Divider>
           <Link to="/login"><Button secondary fluid>Log In</Button></Link>

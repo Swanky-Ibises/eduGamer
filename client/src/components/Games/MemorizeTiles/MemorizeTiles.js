@@ -59,7 +59,8 @@ export default class MemorizeTiles extends React.Component {
   }
 
   componentWillUnmount() {
-    this.resetTimer();
+    clearInterval(this.timer);
+    clearInterval(this.fullRoundTimer);
   }
 
   resetTimer() {

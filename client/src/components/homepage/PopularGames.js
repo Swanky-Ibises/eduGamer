@@ -21,6 +21,7 @@ export default class PopularGames extends React.Component {
           <Divider hidden />
           <Grid.Row>
             <Link to="/sudokugame"><Button>Sudoku</Button></Link>
+            <Link to="/reactioncircle"><Button>Reaction</Button></Link>
           </Grid.Row>
           <Divider hidden />
         </Message>

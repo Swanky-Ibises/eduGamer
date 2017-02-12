@@ -2,6 +2,6 @@ import React from 'react';
 
 export const Timer = ({time}) => {
   return (
-    <div className="timer">Time Remaining : {time}</div>
+    <div className="timer"><h3>Time Remaining : {time}</h3></div>
   );
 };
