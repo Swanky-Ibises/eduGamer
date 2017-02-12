@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Header, Table} from 'semantic-ui-react';
+import {Header, Table, Message} from 'semantic-ui-react';
 
 export default class Profile extends React.Component {
   constructor() {
@@ -158,10 +158,10 @@ export default class Profile extends React.Component {
     var name = (localStorage.username) ? localStorage.username.toUpperCase() + "'s Profile" : '';
 
     return (
-      <div>
+      <Message>
         <h1>{name}</h1>
             {this.displayProfile()}
-      </div>
+      </Message>
     );
   }
 }
