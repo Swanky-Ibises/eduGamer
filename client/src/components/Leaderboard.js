@@ -53,11 +53,8 @@ export default class Leaderboard extends React.Component {
         <br/>
         <LeaderboardTable leaders={this.state.typingLeaders} game={'typing'}/>
         <br/>
-        <LeaderboardTable leaders={this.state.simonLeaders} game={'simon'}/>
-        <br/>
         <LeaderboardTable leaders={this.state.tilesLeaders} game={'tiles'}/>
-        <br/>
-        <LeaderboardTable leaders={this.state.sudokuLeaders} game={'sudoku'}/>
+
       </div>
     )
   }
