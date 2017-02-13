@@ -11,13 +11,13 @@ export default class HintsRow extends React.Component {
   }
 
   render() {
-    const hints = [];
-    let idVal;
-    let hintClass = '';
-    let exactMatches = this.props.state.exactMatches;
-    let valueMatches = this.props.state.valueMatches;
+    var hints = [];
+    var idVal;
+    var hintClass = '';
+    var exactMatches = this.props.state.exactMatches;
+    var valueMatches = this.props.state.valueMatches;
 
-    let generateHint = (i) => {
+    var generateHint = (i) => {
       hintClass = 'hint';
       idVal = this.props.name + '-' + i + 1;
 
