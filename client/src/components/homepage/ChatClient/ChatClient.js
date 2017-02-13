@@ -83,7 +83,7 @@ export default class ChatClient extends React.Component {
         <Grid.Column width={8}>
           <Message>
             <h1>Chat with your fellow Membrainers!</h1>
-            <h5>Currently Connected: {this.state.usersConnected} users</h5>
+            <h5>Currently connected: {this.state.usersConnected} users</h5>
             <div className='chat-box'>
               <Feed>
                 {this.state.messages.map((message, i) => (
