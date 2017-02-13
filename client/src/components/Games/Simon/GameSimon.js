@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid, Button, Message } from 'semantic-ui-react';
 
 export default class GameSimon extends React.Component {
   constructor(props) {
@@ -143,7 +143,8 @@ saveScore() {
 
   render() {
     return (
-      <div>
+      <div className="gameContainer">
+        <Message>
         <h2>Simon</h2>
         <h3>Score: { this.state.score }</h3>
         <h4>Memorize the colors and click them in order.</h4>
@@ -164,6 +165,7 @@ saveScore() {
         </div>
         <br/>
         {this.state.lose && <Button onClick={()=>window.location.reload()}>Try Again</Button>}
+        </Message>
       </div>
     );
   }

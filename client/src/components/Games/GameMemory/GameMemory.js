@@ -118,10 +118,12 @@ export default class GameMemory extends React.Component {
     }
 
     return (
+      <div className = "gameContainer">
       <Message>
         <br />
-        <h2>Matching - Match the Cards!</h2>
+        <h2>Matching</h2>
         <h3>Score: { this.state.score }</h3>
+        <h4>Match the Cards!</h4>
         <br /><br />
         <div className='ui grid'>
           <div className='four wide centered column'>
@@ -138,6 +140,7 @@ export default class GameMemory extends React.Component {
           </div>
         </div>
       </Message>
+      </div>
     );
   }
 }

@@ -91,7 +91,7 @@ export default class TypingSpeedmaster extends React.Component {
   render() {
     return (
       <Message>
-        <h1>This is typing speedmaster!</h1>
+        <h1>Typing Speedmaster!</h1>
         <h2>Time taken: {this.state.timer}</h2>
         <Grid>
           <Grid.Column width={4}></Grid.Column>

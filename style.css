@@ -20,6 +20,11 @@ body {
   margin-right: 5px;
 }
 
+.gameContainer {
+  margin-left: 25%;
+  margin-right:25%;
+}
+
 .score-table {
   margin-left: 30%;
   margin-right: 30%;
