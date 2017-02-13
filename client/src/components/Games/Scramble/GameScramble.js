@@ -135,6 +135,7 @@ export default class GameScramble extends React.Component {
           <h4> {this.state.definition} </h4>
           <Input className='scramble-input' placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
           <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
+          <br />
           {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
           <br />
           <br />
