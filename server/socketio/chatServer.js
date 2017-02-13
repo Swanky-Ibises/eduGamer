@@ -1,11 +1,14 @@
 var io = require('../server.js');
 
+var usersConnected = 0;
+
 exports.connectionHandler = function(socket) {
   console.log('User connected via socket.io');
   socket.emit('hello', { message: 'You have joined the chat client!' });
 
   socket.on('connected', function(data) {
-    io.emit('newUserJoined', { message: 'A new user has joined' });
+    usersConnected += 1;
+    io.emit('newUserJoined', { message: 'A new user has joined', usersConnected: usersConnected });
   });
 
   socket.on('postMessage', function(data) {
@@ -16,6 +19,7 @@ exports.connectionHandler = function(socket) {
 
   socket.on('disconnect', function() {
     console.log('User disconnected via socket.io');
-    io.emit('userLeft', { message: 'A user has left the chat client' });
+    usersConnected -= 1;
+    io.emit('userLeft', { message: 'A user has left the chat client', usersConnected: usersConnected });
   })
 };
