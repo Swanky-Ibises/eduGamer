@@ -10,12 +10,6 @@ export default class Row extends React.Component {
     super(props);
   }
 
-  times(n) {
-    return (f) => {
-      Array(n).fill().map((_, i) => f(i));
-    }
-  }
-
   render() {
     var isCurrentRow = this.props.state.currentRow === this.props.rowId;
     var rowClassName = classNames({

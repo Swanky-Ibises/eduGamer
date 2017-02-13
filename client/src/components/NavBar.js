@@ -31,23 +31,29 @@ export const NavBar = () => {
 
       <Dropdown item text='Games'>
         <Dropdown.Menu>
-          <Link to="/scramblegame">
-            <Dropdown.Item> Scramble </Dropdown.Item>
+          <Link to="/mastermindgame">
+            <Dropdown.Item> Mastermind </Dropdown.Item>
           </Link>
           <Link to="/memorygame">
             <Dropdown.Item> Matching </Dropdown.Item>
           </Link>
-          <Link to="/typingspeedmaster">
-            <Dropdown.Item> Typing </Dropdown.Item>
+          <Link to="/reactioncircle">
+            <Dropdown.Item> Reaction </Dropdown.Item>
           </Link>
-          <Link to="/memorizetiles">
-            <Dropdown.Item> Memory Tiles </Dropdown.Item>
+          <Link to="/scramblegame">
+            <Dropdown.Item> Scramble </Dropdown.Item>
+          </Link>
+          <Link to="/simongame">
+            <Dropdown.Item> Simon </Dropdown.Item>
           </Link>
           <Link to="/sudokugame">
             <Dropdown.Item> Sudoku </Dropdown.Item>
           </Link>
-          <Link to="/reactioncircle">
-            <Dropdown.Item> Reaction </Dropdown.Item>
+          <Link to="/memorizetiles">
+            <Dropdown.Item> Tiles </Dropdown.Item>
+          </Link>
+          <Link to="/typingspeedmaster">
+            <Dropdown.Item> Typing </Dropdown.Item>
           </Link>
         </Dropdown.Menu>
       </Dropdown>
@@ -68,57 +74,3 @@ export const NavBar = () => {
     </Menu>
   )
 }
-
-// export const NavBar = () => {
-
-//   var handleLogout = () => {
-//     console.log('hangleLogout has been invoked.');
-//     $.ajax({
-//       type: 'POST',
-//       url: '/logout',
-//       success: function(data) {
-//         window.location = data.redirect;
-//         console.log('Post for logout completed successfully.')
-//       }
-//     });
-//     //removes the username from localstorage
-//     localStorage.removeItem('username');
-//     console.log('localStorage username', localStorage.username);
-//   }
-
-//   return (
-//     <nav className="navbar navbar-inverse">
-//       <div className="container-fluid">
-//         <div className="navbar-header">
-//           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-//             <span className="sr-only">Toggle navigation</span>
-//             <span className="icon-bar"></span>
-//             <span className="icon-bar"></span>
-//             <span className="icon-bar"></span>
-//           </button>
-//           <Link className="navbar-brand" to="/">Home</Link>
-//         </div>
-//         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-//           <ul className="nav navbar-nav">
-//             <li><Link to="/leaderboard">Leaderboard</Link></li>
-//             { localStorage.username && <li><Link to="/profile">Profile</Link></li> }
-//             <li className="dropdown">
-//               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span className="caret"></span></a>
-//               <ul className="dropdown-menu">
-//                 <li><Link to="/memorygame">Memory Game</Link></li>
-//                 <li role="separator" className="divider"></li>
-//                 <li><Link to="/scramblegame">Scramble Game</Link></li>
-//               </ul>
-//             </li>
-//           </ul>
-//           <ul className="nav navbar-nav navbar-right">
-//             { !localStorage.username && <li><Link to="/login">Login</Link></li> }
-//             { localStorage.username && <li><Link to="/" onClick={handleLogout}>Logout</Link></li> }
-//             { !localStorage.username && <li><Link to="/signup">Signup</Link></li> }
-//           </ul>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// };
-

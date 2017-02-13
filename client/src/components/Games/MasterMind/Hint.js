@@ -4,7 +4,7 @@ export default class Hint extends React.Component {
   }
 
   shouldComponentUpdate (nextProps) {
-    return nextProps.state.currentRow = 1 <= nextProps.rowId;
+    return nextProps.state.currentRow - 1 <= nextProps.rowId;
   }
 
   render() {

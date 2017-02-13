@@ -31,13 +31,13 @@ module.exports = {
                 typingHigh: 0,
                 simonHigh: 0,
                 tilesHigh: 0,
-                sudokuHigh: 0,
+                mastermindHigh: 0,
                 matchingArray: [],
                 scrambleArray: [],
                 typingArray: [],
                 simonArray: [],
                 tilesArray: [],
-                sudokuArray: []
+                mastermindArray: []
               });
               newUser.save(function(err, user) {
                 if (err) {

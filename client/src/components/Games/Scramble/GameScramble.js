@@ -89,12 +89,11 @@ export default class GameScramble extends React.Component {
   //When component mounts, the timer starts and the state word will be shuffled
   componentDidMount() {
     this.interval = setInterval(this.decrementTimer.bind(this), 1000);
-    //this.setState({shuffled: this.shuffle(this.state.word)});
+    console.log("Close this console now. Don't cheat! Or... keep it up if you're really curious about the word.");
     this.changeWord();
   }
 
   //On dismount, the timer will stop.
-  //Josephine's note: This currently isn't used?
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -128,13 +127,18 @@ export default class GameScramble extends React.Component {
         <Grid.Column width={4}></Grid.Column>
         <Grid.Column width={8}>
         <Message>
-          <Timer time={this.state.timeLeft} />
+          <h2>Scramble</h2>
           <Score score={this.state.score}/>
+          <h4> Unscramble as many words as you can before time runs out! Skip if you can't figure it out.</h4>
+          <Timer time={this.state.timeLeft} />
           <h1> {this.state.shuffled} </h1>
           <h4> {this.state.definition} </h4>
           <Input className='scramble-input' placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
           <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
           {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
+          <br />
+          <br />
+          <h7 className = 'note'> These words are "difficult but common words that appear in everyday academic and business writing" (Vocabulary.com).</h7>
         </Message>
         </Grid.Column>
         <Grid.Column width={4}></Grid.Column>

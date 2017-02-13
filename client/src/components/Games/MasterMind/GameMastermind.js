@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
-import {Grid} from 'semantic-ui-react'
+import {Grid, Message} from 'semantic-ui-react'
 import DecodingBoard from './DecodingBoard.js';
 import CodePegs from './CodePegs.js';
 import EndGame from './End_Game.js';
@@ -34,19 +34,17 @@ export default class GameMemory extends React.Component {
   }
 
   generateCode() {
-    const code = new Map();
-    let random = () => { return Math.floor(Math.random() * 6)};
-    let genCode = (i) => {
+    var code = new Map();
+    var random = () => { return Math.floor(Math.random() * 6)};
+    var genCode = (i) => {
       code.set(i, this.colors.get(random()));
     }
     //Generate 4 colors
     this.times(this.codeLength)(genCode);
-    console.log('code is', code);
     return code;
   }
 
   activatePeg(event) {
-    console.log('activated peg!', event.target.name, event.target.value);
     if (event.target.name.startsWith('peg')) {
       this.setState({selectedPeg: event.target.value});
     } else {
@@ -57,17 +55,14 @@ export default class GameMemory extends React.Component {
   }
 
   submitPegs() {
-    console.log('submitPegs called');
-    let code = new Map(this.state.code);
-    console.log('current guesses', this.state.currentGuess);
-    let pegs = this.state.currentGuess;
-    let foundKey;
-    let exactMatches = 0;
-    let valueMatches = 0;
+    var code = new Map(this.state.code);
+    var pegs = this.state.currentGuess;
+    var foundKey;
+    var exactMatches = 0;
+    var valueMatches = 0;
 
-    let keyOf = (map, target) => {
+    var keyOf = (map, target) => {
       //ES6 is interesting, refactor later to match the rest which is mostly in ES5
-      //Or refactor everything into ES6 instead of having bits and pieces
       for(let[key, value] of map) {
         if (target === value) {
           return key;
@@ -114,7 +109,7 @@ export default class GameMemory extends React.Component {
     this.setState({
       success: false,
       endGame: false,
-      code: this.getCode(),
+      code: this.generateCode(),
       selectedPeg: this.colors.get(0),
       currentRow: 0,
       currentGuess: new Map(),
@@ -126,15 +121,17 @@ export default class GameMemory extends React.Component {
   render() {
     return (
       <div className="mastermindGame">
-        <h2> Mastermind </h2>
-        Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position. You have ten turns.
-        <br />
-        <br />
-        <div className="clearfix">
-          <DecodingBoard state={this.state} activatePeg={this.activatePeg.bind(this)} submitPegs={this.submitPegs.bind(this)}/>
-          <CodePegs selectedPeg={this.state.selectedPeg} colors={this.colors} activatePeg={this.activatePeg.bind(this)}/>
-        </div>
-        <EndGame endGame={this.state.endGame} success={this.state.success} reloadGame={this.reloadGame.bind(this)}/>
+        <Message>
+          <h2> Mastermind </h2>
+          Decoding game. Try and guess the pattern! Black dot means a guess is correct in color and position. White dot means right color but wrong position. You have ten turns. Choose a color on the right and click on the circles on the decoding board to fill them in.
+          <br />
+          <br />
+          <div className="clearfix">
+            <DecodingBoard state={this.state} activatePeg={this.activatePeg.bind(this)} submitPegs={this.submitPegs.bind(this)}/>
+            <CodePegs selectedPeg={this.state.selectedPeg} colors={this.colors} activatePeg={this.activatePeg.bind(this)}/>
+          </div>
+          <EndGame endGame={this.state.endGame} success={this.state.success} reloadGame={this.reloadGame.bind(this)} turns={this.state.currentRow}/>
+        </Message>
       </div>
       )
   }
