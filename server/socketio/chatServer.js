@@ -4,12 +4,8 @@ var usersConnected = 0;
 
 exports.connectionHandler = function(socket) {
   console.log('User connected via socket.io');
-  socket.emit('hello', { message: 'You have joined the chat client!' });
-
-  socket.on('connected', function(data) {
-    usersConnected += 1;
-    io.emit('userJoined', { message: 'A new user has joined', usersConnected: usersConnected });
-  });
+  usersConnected += 1;
+  io.emit('userJoined', { message: 'A user has joined the chat client', usersConnected: usersConnected });
 
   socket.on('postMessage', function(data) {
     var user = data.user;

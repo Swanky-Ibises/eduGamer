@@ -8,6 +8,7 @@ export default class ChatClient extends React.Component {
     this.socket = io();
     this.state = {
       user: localStorage.username,
+      usersConnected: 0,
       userInput: '',
       messages: [
                   {user: 'Membrain Team', text: 'Check out the new games!'}
@@ -24,6 +25,12 @@ export default class ChatClient extends React.Component {
     });
     socket.on('newMessage', function(message) {
       context.handleNewMessage(message);
+    });
+    socket.on('userJoined', function(data) {
+      context.handleUserJoinedOrLeft(data);
+    });
+    socket.on('userLeft', function(data) {
+      context.handleUserJoinedOrLeft(data);
     });
   }
 
@@ -55,6 +62,12 @@ export default class ChatClient extends React.Component {
     var messagesCopy = this.state.messages.slice();
     messagesCopy.push({ user: message.user, text: message.text });
     this.setState({ messages: messagesCopy });
+  }
+
+  handleUserJoinedOrLeft(data) {
+    var usersConnected = data.usersConnected;
+    this.setState({usersConnected: usersConnected});
+    console.log(usersConnected);
   }
 
   sendMessage(message) {
