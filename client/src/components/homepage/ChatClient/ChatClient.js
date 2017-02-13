@@ -20,9 +20,6 @@ export default class ChatClient extends React.Component {
     var context = this;
     var socket = this.socket;
     // Event handlers for messages
-    socket.on('hello', function(data) {
-      console.log(data.message);
-    });
     socket.on('newMessage', function(message) {
       context.handleNewMessage(message);
     });
@@ -41,8 +38,9 @@ export default class ChatClient extends React.Component {
 
   componentWillUnmount() {
     var socket = this.socket;
-    socket.off('hello');
     socket.off('newMessage');
+    socket.off('userJoined');
+    socket.off('userLeft');
   }
 
   handleInputChange(e) {
@@ -67,7 +65,6 @@ export default class ChatClient extends React.Component {
   handleUserJoinedOrLeft(data) {
     var usersConnected = data.usersConnected;
     this.setState({usersConnected: usersConnected});
-    console.log(usersConnected);
   }
 
   sendMessage(message) {
@@ -86,6 +83,7 @@ export default class ChatClient extends React.Component {
         <Grid.Column width={8}>
           <Message>
             <h1>Chat with your fellow Membrainers!</h1>
+            <h5>Currently Connected: {this.state.usersConnected} users</h5>
             <div className='chat-box'>
               <Feed>
                 {this.state.messages.map((message, i) => (
