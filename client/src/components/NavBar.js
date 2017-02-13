@@ -52,6 +52,9 @@ export const NavBar = () => {
           <Link to="/simongame">
             <Dropdown.Item> Simon </Dropdown.Item>
           </Link>
+          <Link to="/mastermindgame">
+            <Dropdown.Item> Mastermind </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
 
