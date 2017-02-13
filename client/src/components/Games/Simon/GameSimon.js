@@ -145,6 +145,7 @@ export default class GameSimon extends React.Component {
       <div>
         <h2>Simon</h2>
         <h3>Score: { this.state.score }</h3>
+        <h4>Memorize the colors and click them in order.</h4>
         <div className='simonSays'>
         <Grid padded>
           <Grid.Row>
