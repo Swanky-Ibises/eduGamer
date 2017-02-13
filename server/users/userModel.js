@@ -16,13 +16,13 @@ var UserSchema = new mongoose.Schema({
   typingHigh: Number,
   simonHigh: Number,
   tilesHigh: Number,
-  sudokuHigh: Number,
+  mastermindHigh: Number,
   matchingArray: [Number],
   scrambleArray: [Number],
   typingArray: [Number],
   simonArray: [Number],
   tilesArray: [Number],
-  sudokuArray: [Number]
+  mastermindArray: [Number]
 });
 
 

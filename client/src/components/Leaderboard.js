@@ -13,7 +13,7 @@ export default class Leaderboard extends React.Component {
       typingLeaders:[],
       simonLeaders: [],
       tilesLeaders: [],
-      sudokuLeaders: []
+      mastermindLeaders: []
     }
   }
 
@@ -58,6 +58,10 @@ export default class Leaderboard extends React.Component {
         <LeaderboardTable leaders={this.state.matchingLeaders} game='matching' />
         <br />
         <LeaderboardTable leaders={this.state.tilesLeaders} game='tiles' />
+        <br />
+        <LeaderboardTable leaders={this.state.simonLeaders} game='simon' />
+        <br />
+        <LeaderboardTable leaders={this.state.mastermindLeaders} game='mastermind' />
       </div>
     )
   }

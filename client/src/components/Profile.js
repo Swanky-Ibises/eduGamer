@@ -11,13 +11,13 @@ export default class Profile extends React.Component {
       highScoreScram: null,
       highScoreSimon: null,
       highScoreTiles: null,
-      highScoreSudoku: null,
+      highScoreMastermind: null,
       highScoreTyping: null,
       memScores: [],
       scramScores: [],
       simonScores: [],
       tilesScores: [],
-      sudokuScores: [],
+      mastermindScores: [],
       typingScores: []
     };
   }
@@ -52,13 +52,13 @@ export default class Profile extends React.Component {
           highScoreScram: data.scrambleHigh,
           highScoreSimon: data.simonHigh,
           highScoreTiles: data.tilesHigh,
-          highScoreSudoku: data.sudokuHigh,
+          highScoreMastermind: data.mastermindHigh,
           highScoreTyping: data.typingHigh,
           memScores: data.matchingArray,
           scramScores: data.scrambleArray,
           simonScores: data.simonArray,
           tilesScores: data.tilesArray,
-          sudokuScores: data.sudokuArray,
+          mastermindScores: data.mastermindArray,
           typingScores: data.typingArray
 
         });
@@ -115,10 +115,9 @@ export default class Profile extends React.Component {
     if (this.state.tilesScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Tiles' score={this.state.highScoreTiles} scoreArr={this.state.tilesScores} key='Tiles' />);
     }
-    if (this.state.sudokuScores.length !== 0) {
-      gameDisplay.push(<OneGameScoreDisplay gameType='Sudoku' score={this.state.highScoreSudoku} scoreArr={this.state.sudokuScores} key='Sudoku' />);
-
-    }
+    // if (this.state.mastermindScores.length !== 0) {
+    //   gameDisplay.push(<OneGameScoreDisplay gameType='Mastermind' score={this.state.highScoreMastermind} scoreArr={this.state.mastermindScores} key='Mastermind' />);
+    // }
     if (this.state.typingScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Typing' score={this.state.highScoreTyping} scoreArr={this.state.typingScores} key='Typing' />);
     }

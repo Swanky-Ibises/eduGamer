@@ -1,12 +1,38 @@
 import classNames from 'classnames';
+import $ from 'jquery';
 export default class EndGame extends React.Component {
   constructor(props) {
     super(props);
+    this.gametype = 'mastermind';
   }
-  //Send score
-  render() {
-    var score = this.props.turns === 10 ? 0 : 11 - this.props.turns;
 
+  //Send score
+  saveScore(score) {
+    console.log('score is being saved', score);
+    //post the score to the backend if user is logged in
+    if (localStorage.username) {
+      var obj = {
+        username: localStorage.username,
+        gametype: this.gametype,
+        score: score
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/scores',
+        data: JSON.stringify(obj),
+        contentType: 'application/json',
+        success: function(data) {
+          console.log('Data posted to server', data);
+        }
+      });
+    }
+  }
+
+  render() {
+    var score = (this.props.turns === 10) ? 0 : (10 - this.props.turns);
+    if (this.props.endGame) {
+      this.saveScore(score);
+    }
     var endGameInfoClass = classNames({
       'endgame': true,
       'hidden': !this.props.endGame
