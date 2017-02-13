@@ -5,6 +5,7 @@ export default class GameSimon extends React.Component {
   constructor(props) {
     super(props);
     this.timer = null;
+    this.gametype = 'simon';
     this.state = {
       score: 0,
       simon: this.generateSimon(),
@@ -100,6 +101,7 @@ export default class GameSimon extends React.Component {
           this.setState({lose: true,
             playerTurn: false});
           //Send score here
+          this.saveScore();
           console.log('You lose. Send score.');
         }
       }
@@ -118,11 +120,10 @@ export default class GameSimon extends React.Component {
   }
 
   //After the game is ended, this method makes an AJAX post request to the server
-  saveScore() {
+saveScore() {
     console.log('score is being saved');
     //post the score to the backend if user is logged in
     if (localStorage.username) {
-      console.log('scramble game username', localStorage.username);
       var obj = {
         username: localStorage.username,
         gametype: this.gametype,
