@@ -8,7 +8,7 @@ exports.connectionHandler = function(socket) {
 
   socket.on('connected', function(data) {
     usersConnected += 1;
-    io.emit('newUserJoined', { message: 'A new user has joined', usersConnected: usersConnected });
+    io.emit('userJoined', { message: 'A new user has joined', usersConnected: usersConnected });
   });
 
   socket.on('postMessage', function(data) {
