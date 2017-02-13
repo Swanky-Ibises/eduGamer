@@ -28,14 +28,11 @@ export default class Leaderboard extends React.Component {
   getGameLeaders (gameName) {
     var context = this;
     var gameLeaders = gameName + 'Leaders';
-    console.log("GAME NAME", gameName);
     $.ajax({
       type: 'GET',
       url: '/api/v2/leaderboard/'+ gameName,
       contentType: 'application/json',
       success: function(leaders) {
-        console.log("leaders", leaders);
-        console.log("game leaders", gameLeaders);
         var stateObj = {};
         stateObj[gameLeaders] = leaders;
         context.setState(stateObj);

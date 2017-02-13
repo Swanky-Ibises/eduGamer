@@ -153,13 +153,13 @@ module.exports = {
             typingHigh: user.typingHigh,
             simonHigh: user.simonHigh,
             tilesHigh: user.tilesHigh,
-            sudokuHigh: user.sudokuHigh,
+            mastermindHigh: user.mastermindHigh,
             matchingArray: user.matchingArray,
             scrambleArray: user.scrambleArray,
             typingArray: user.typingArray,
             simonArray: user.simonArray,
             tilesArray: user.tilesArray,
-            sudokuArray: user.sudokuArray
+            mastermindArray: user.mastermindArray
           };
           res.send(userObject);
         }
@@ -170,7 +170,7 @@ module.exports = {
   leaderBoard: function(req, res, next) {
    var gameHigh = req.params.gametype + 'High';
    console.log(gameHigh); //-> gametype=scrambleHigh
-    User.find({}).sort('-'+gameHigh).limit(4).exec(function(err, highScoreUsers) {
+    User.find({}).sort('-'+gameHigh).limit(3).exec(function(err, highScoreUsers) {
       res.send(highScoreUsers); //[{username: blah, highscore: 2}, {etce}]
     });
   }

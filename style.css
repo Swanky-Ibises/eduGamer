@@ -20,6 +20,11 @@ body {
   margin-right: 5px;
 }
 
+.profileContainer{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .gameContainer {
   margin-left: 25%;
   margin-right:25%;

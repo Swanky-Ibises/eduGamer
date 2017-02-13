@@ -23,13 +23,10 @@ export default class Profile extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount Profile');
     this.getUserInfo();
   }
 
   getUserInfo() {
-    console.log('Get user info');
-    //hard code a username for now - can get the username from local.storage (or state, for persistence to work)
     //send a Get request to get the user info
     var context = this;
     $.ajax({
@@ -38,10 +35,7 @@ export default class Profile extends React.Component {
       contentType: 'application/json',
       dataType: 'json',
       success: function(data) {
-        console.log("THA DATA", data);
         if (typeof data.redirect === 'string') {
-          console.log('redirect to login!');
-          // localStorage.username = null;
           localStorage.removeItem('username');
           window.location = data.redirect;
         }
@@ -115,9 +109,9 @@ export default class Profile extends React.Component {
     if (this.state.tilesScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Tiles' score={this.state.highScoreTiles} scoreArr={this.state.tilesScores} key='Tiles' />);
     }
-    // if (this.state.mastermindScores.length !== 0) {
-    //   gameDisplay.push(<OneGameScoreDisplay gameType='Mastermind' score={this.state.highScoreMastermind} scoreArr={this.state.mastermindScores} key='Mastermind' />);
-    // }
+    if (this.state.mastermindScores.length !== 0) {
+      gameDisplay.push(<OneGameScoreDisplay gameType='Mastermind' score={this.state.highScoreMastermind} scoreArr={this.state.mastermindScores} key='Mastermind' />);
+    }
     if (this.state.typingScores.length !== 0) {
       gameDisplay.push(<OneGameScoreDisplay gameType='Typing' score={this.state.highScoreTyping} scoreArr={this.state.typingScores} key='Typing' />);
     }
@@ -141,11 +135,9 @@ export default class Profile extends React.Component {
     //the logics to decide what elements to display
     //localStorage only stores strings
     //do a username check to avoid going into the next if statement causing error
-    console.log("STATE", this.state);
     if (!localStorage.username) {
-      console.log('no localStorage username');
       return;
-    } else if (this.state.scramScores.length === 0 && this.state.memScores.length === 0 && this.state.simonScores ===0 && this.state.tilesScores ===0 && this.state.mastermindScores ===0 && this.state.typingScores ===0) {
+    } else if (this.state.scramScores.length === 0 && this.state.memScores.length === 0 && this.state.simonScores.length === 0 && this.state.tilesScores.length === 0 && this.state.mastermindScores.length === 0 && this.state.typingScores.length === 0) {
       profileElem = (NoScoreDisplay);
     } else {
       profileElem = ( this.scoreDisplay());
@@ -157,10 +149,12 @@ export default class Profile extends React.Component {
     var name = localStorage.username ? localStorage.username + "'s Profile" : '';
 
     return (
+      <div className = "profileContainer">
       <Message>
         <h1>{name}</h1>
             {this.displayProfile()}
       </Message>
+      </div>
     );
   }
 }
