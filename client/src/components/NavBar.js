@@ -31,29 +31,29 @@ export const NavBar = () => {
 
       <Dropdown item text='Games'>
         <Dropdown.Menu>
-          <Link to="/scramblegame">
-            <Dropdown.Item> Scramble </Dropdown.Item>
+          <Link to="/mastermindgame">
+            <Dropdown.Item> Mastermind </Dropdown.Item>
           </Link>
           <Link to="/memorygame">
             <Dropdown.Item> Matching </Dropdown.Item>
           </Link>
-          <Link to="/typingspeedmaster">
-            <Dropdown.Item> Typing </Dropdown.Item>
-          </Link>
-          <Link to="/memorizetiles">
-            <Dropdown.Item> Memory Tiles </Dropdown.Item>
-          </Link>
-          <Link to="/sudokugame">
-            <Dropdown.Item> Sudoku </Dropdown.Item>
-          </Link>
           <Link to="/reactioncircle">
             <Dropdown.Item> Reaction </Dropdown.Item>
+          </Link>
+          <Link to="/scramblegame">
+            <Dropdown.Item> Scramble </Dropdown.Item>
           </Link>
           <Link to="/simongame">
             <Dropdown.Item> Simon </Dropdown.Item>
           </Link>
-          <Link to="/mastermindgame">
-            <Dropdown.Item> Mastermind </Dropdown.Item>
+          <Link to="/sudokugame">
+            <Dropdown.Item> Sudoku </Dropdown.Item>
+          </Link>
+          <Link to="/memorizetiles">
+            <Dropdown.Item> Tiles </Dropdown.Item>
+          </Link>
+          <Link to="/typingspeedmaster">
+            <Dropdown.Item> Typing </Dropdown.Item>
           </Link>
         </Dropdown.Menu>
       </Dropdown>
