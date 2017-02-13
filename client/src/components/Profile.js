@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Header, Table} from 'semantic-ui-react';
+import {Header, Table, Message} from 'semantic-ui-react';
 
 export default class Profile extends React.Component {
   constructor() {
@@ -71,7 +71,7 @@ export default class Profile extends React.Component {
     //---- Element for displaying one game ----
     var OneGameScoreDisplay = ({gameType, score, scoreArr})=>(
       <div className="game-profile">
-        <h2>Highest {gameType} Game Score: <span className="highscore">{score}</span></h2>
+        <h3>Highest {gameType} Game Score: <span className="highscore">{score}</span></h3>
         <div className="score-table">
           <Table celled striped>
             <Table.Header>
@@ -155,13 +155,13 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    var name = (localStorage.username) ? localStorage.username.toUpperCase() + "'s Profile" : '';
+    var name = localStorage.username ? localStorage.username + "'s Profile" : '';
 
     return (
-      <div>
+      <Message>
         <h1>{name}</h1>
             {this.displayProfile()}
-      </div>
+      </Message>
     );
   }
 }

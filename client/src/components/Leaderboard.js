@@ -1,6 +1,6 @@
 import React from 'react';
 import LeaderboardTable from './GameLeaderboard.js'
-import {Header, Table} from 'semantic-ui-react'
+import {Header, Table, Divider} from 'semantic-ui-react'
 import $ from 'jquery'
 
 export default class Leaderboard extends React.Component {
@@ -45,16 +45,19 @@ export default class Leaderboard extends React.Component {
 
   render() {
     return (
-      <div className="leaderboardContainer">
-        <br/>
-        <LeaderboardTable leaders={this.state.scrambleLeaders} game={'scramble'} />
-        <br/>
-        <LeaderboardTable leaders={this.state.matchingLeaders} game={'matching'}/>
-        <br/>
-        <LeaderboardTable leaders={this.state.typingLeaders} game={'typing'}/>
-        <br/>
-        <LeaderboardTable leaders={this.state.tilesLeaders} game={'tiles'}/>
-
+      <div className="leaderboard-container">
+        <h2>Global Leaderboard</h2>
+        <br />
+        <Divider />
+        <br />
+        <br />
+        <LeaderboardTable leaders={this.state.scrambleLeaders} game='scramble' />
+        <br />
+        <LeaderboardTable leaders={this.state.typingLeaders} game='typing' />
+        <br />
+        <LeaderboardTable leaders={this.state.matchingLeaders} game='matching' />
+        <br />
+        <LeaderboardTable leaders={this.state.tilesLeaders} game='tiles' />
       </div>
     )
   }

@@ -4,13 +4,21 @@ body {
   background: #2185D0;
 }
 
+.game-profile {
+  padding: 20px 0;
+}
+
+.popular-links {
+  padding-bottom: 10px;
+}
+
 .scramble-input {
   margin-right: 5px;
 }
 
 .score-table {
-  margin-left:5%;
-  margin-right:5%;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .typing-text {
@@ -101,15 +109,15 @@ input[readonly]:hover {
   cursor: default;
 }
 /*-------Leaderboard-------*/
-.leaderboardContainer {
+.leaderboard-container {
   width: 80%;
   margin: 0 auto;
-  padding: 0 2%;
+  padding: 30px;
   border-radius: 4px;
   background-color: #fff;
 }
-.leaderboardContainer table thead tr .leaderboardHeader {
-  text-align: center;
+.leaderboard-table {
+  padding-bottom: 30px;
 }
 
 /* Homepage Chat Styling */
