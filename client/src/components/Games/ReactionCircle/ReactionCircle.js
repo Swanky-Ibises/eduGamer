@@ -80,6 +80,7 @@ export default class ReactionCircle extends React.Component {
 
   render() {
     return (
+      <div className='gameContainer'>
       <Message className='reaction-box'>
         <br />
         <div className='reaction-wrapper'>
@@ -95,6 +96,7 @@ export default class ReactionCircle extends React.Component {
           </div>
         </div>
       </Message>
+      </div>
     );
   }
 }

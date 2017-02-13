@@ -6,7 +6,7 @@ import $ from 'jquery'
 export default class Leaderboard extends React.Component {
   constructor(props) {
     super(props);
-    this.games = ['scramble', 'matching', 'typing', 'simon', 'tiles', 'sudoku'];
+    this.games = ['scramble', 'matching', 'typing', 'simon', 'tiles', 'mastermind'];
     this.state = {
       scrambleLeaders:[],
       matchingLeaders:[],

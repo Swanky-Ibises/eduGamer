@@ -147,6 +147,7 @@ export default class MemorizeTiles extends React.Component {
 
   render() {
     return (
+      <div className="gameContainer">
       <Message>
         <Header size='huge'>Memorize Tiles</Header>
         <br />
@@ -191,36 +192,7 @@ export default class MemorizeTiles extends React.Component {
 
         <Button disabled={!this.state.playerPlaying} onClick={this.submitBoard.bind(this)}>Submit</Button>
       </Message>
+      </div>
     );
   }
 }
-
-/*
-Mock code
-<div className='memorize-tile-game'>
-  <div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-red'></div>
-  </div>
-  <div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-white'></div>
-  </div>
-  <div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-white'></div>
-    <div className='memorize-tile tile-red'></div>
-  </div>
-  <div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-red'></div>
-    <div className='memorize-tile tile-red'></div>
-  </div>
-</div>
-*/
