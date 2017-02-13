@@ -45,6 +45,7 @@ export default class Leaderboard extends React.Component {
 
   render() {
     return (
+
       <div className="leaderboard-container">
         <h2>Global Leaderboard</h2>
         <br />
@@ -62,6 +63,7 @@ export default class Leaderboard extends React.Component {
         <LeaderboardTable leaders={this.state.simonLeaders} game='simon' />
         <br />
         <LeaderboardTable leaders={this.state.mastermindLeaders} game='mastermind' />
+
       </div>
     )
   }

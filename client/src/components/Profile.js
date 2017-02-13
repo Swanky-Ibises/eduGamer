@@ -145,7 +145,7 @@ export default class Profile extends React.Component {
     if (!localStorage.username) {
       console.log('no localStorage username');
       return;
-    } else if (this.state.scramScores.length === 0 && this.state.memScores.length === 0) {
+    } else if (this.state.scramScores.length === 0 && this.state.memScores.length === 0 && this.state.simonScores ===0 && this.state.tilesScores ===0 && this.state.mastermindScores ===0 && this.state.typingScores ===0) {
       profileElem = (NoScoreDisplay);
     } else {
       profileElem = ( this.scoreDisplay());
