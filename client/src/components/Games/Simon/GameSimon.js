@@ -17,10 +17,6 @@ export default class GameSimon extends React.Component {
       timer: 0,
     };
   }
-    //Give 1 second per color flash with animation to add black flashes in between changes
-    //Turn playerTurn true
-    //Check if key inputs is the same length as the current and if they match
-    //If it is, turn playerTurn false and blink
 
   componentDidMount() {
     //Generate the colors array
@@ -35,7 +31,6 @@ export default class GameSimon extends React.Component {
     this.resetTimer();
   }
 
-  //Clear timer
   componentWillUnmount() {
     clearInterval(this.timer);
   }
@@ -47,22 +42,17 @@ export default class GameSimon extends React.Component {
   }
 
   simonTimer() {
-    console.log('game start');
     var that = this;
     //Function called every 500 ms
     this.timer = setInterval(()=>{
       //Check if done showing colors
-      console.log(that.state.timer);
       if(that.state.timer > that.state.level * 2) {
-        console.log('stop timer');
         //Clear timer
         clearInterval(that.timer);
         that.resetTimer();
         //Start player turn
-        console.log('player turn start');
         that.setState({playerTurn: true});
       } else {
-        console.log('change Simon color');
           if (that.state.timer % 2 === 0) {
             that.setState({color: 'black',
               timer: that.state.timer + 1});
@@ -75,11 +65,10 @@ export default class GameSimon extends React.Component {
 
   generateSimon() {
     var order = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 50; i++) {
       var num = Math.round(Math.random()*3);
       order.push(num);
     }
-    console.log('simon is', order);
     return order;
   }
 
@@ -99,10 +88,8 @@ export default class GameSimon extends React.Component {
     }
     return colors;
   }
-
+  //Check inputs
   checkKey(value) {
-    console.log('input received');
-    var that = this;
     if(this.state.playerTurn){
       var inputs = this.state.input;
       inputs.push(value);
@@ -117,12 +104,11 @@ export default class GameSimon extends React.Component {
         }
       }
       if (inputs.length === this.state.level) {
-        console.log('You have beat level', this.state.level);
         //Increase score and level, clear input and prevent any inputs
         this.setState({
-          score: this.state.score++,
+          score: this.state.score + 1,
           input: [],
-          level: this.state.level++,
+          level: this.state.level + 1,
           playerTurn: false
         });
         //Start next round
@@ -164,7 +150,6 @@ export default class GameSimon extends React.Component {
           <Grid.Row>
           <Grid.Column width={6}/>
           <Grid.Column width={4} color={this.state.color}/>
-          {this.state.color}
           </Grid.Row>
           <Grid.Row/>
         </Grid>
