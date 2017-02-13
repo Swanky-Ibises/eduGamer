@@ -4,79 +4,75 @@ import { Grid, Button } from 'semantic-ui-react';
 export default class GameSimon extends React.Component {
   constructor(props) {
     super(props);
+    this.timer = null;
     this.state = {
       score: 0,
       simon: this.generateSimon(),
       colors: [],
       color: 'black',
       lose: false,
-      key: -1,
       playerTurn: false,
+      input: [],
       level: 1,
-      levelCheck: 0
+      timer: 0,
     };
   }
+    //Give 1 second per color flash with animation to add black flashes in between changes
+    //Turn playerTurn true
+    //Check if key inputs is the same length as the current and if they match
+    //If it is, turn playerTurn false and blink
 
   componentDidMount() {
-    var that = this;
+    //Generate the colors array
     this.setState({
-      colors: this.generateColors()});
-    setTimeout(function() {that.playSimon();}, 500);
+      colors: this.generateColors()}
+      );
+    //Start timer
+    this.simonTimer();
   }
-  //Play game
-  playSimon() {
-    console.log('lets play');
+
+  componentWillMount() {
+    this.resetTimer();
+  }
+
+  //Clear timer
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  //reset timer
+  resetTimer() {
+    this.setState({timer: 0});
+    clearInterval(this.timer);
+  }
+
+  simonTimer() {
+    console.log('game start');
     var that = this;
-    //Don't allow button press until Simon has showed combo
-    that.setState({playerTurn: false});
-    for(var i = 0; i < that.state.level; i++){
-      (function(index) {
-        //time out after adding to the level
-        setTimeout(function() {
-          that.setState(
-          {key: that.state.simon[index]},
-          function() { that.setState({
-            level: that.state.level + 1})});}, i * 500);
-    })(i);
-     } //Reset check game to start checking again
-     setTimeout(function() { that.checkGame(); },
-                that.state.level * 500 + 100);
-  }
-
-  checkGame() {
-    this.setState({levelCheck: 0, playerTurn: true});
-  }
-
-  checkKey(key) {
-    if(this.state.playerTurn){
-      console.log('input', key);
-      key === this.state.simon[this.state.levelCheck] ?
-      this.levelCorrect() :
-      this.levelIncorrect();
-    }
-  }
-
-  levelCorrect() {
-    var that = this;
-    this.setState({levelCheck: this.state.levelCheck + 1}, function() {
-      if(this.state.levelCheck === this.state.level) {
-        this.setState({score: this.state.score + 1});
-        this.setState({level: this.state.level + 1}, function() {
-          setTimeout(function() {
-            that.playSimon();
-          }, 1000);
-        })
+    //Function called every 500 ms
+    this.timer = setInterval(()=>{
+      //Check if done showing colors
+      console.log(that.state.timer);
+      if(that.state.timer > that.state.level * 2) {
+        console.log('stop timer');
+        //Clear timer
+        clearInterval(that.timer);
+        that.resetTimer();
+        //Start player turn
+        console.log('player turn start');
+        that.setState({playerTurn: true});
+      } else {
+        console.log('change Simon color');
+          if (that.state.timer % 2 === 0) {
+            that.setState({color: 'black',
+              timer: that.state.timer + 1});
+        } else {
+            that.setState({color: that.state.colors[Math.floor(that.state.timer/2)], timer: that.state.timer + 1});
+        }
       }
-    })
+    }, 500);
   }
 
-  levelIncorrect() {
-    this.setState({playerTurn:false, lose: true});
-    //this.saveScore();
-    console.log('save score goes here');
-  }
-
-  //Adds to Simon array
   generateSimon() {
     var order = [];
     for (var i = 0; i < 10; i++) {
@@ -92,65 +88,47 @@ export default class GameSimon extends React.Component {
     var simon = this.state.simon;
     for (var i = 0; i < simon.length; i++){
       if(simon[i] === 0) {
-        colors.push('black');
         colors.push('red');
       } else if (simon[i] === 1) {
-        colors.push('black');
         colors.push('violet');
       } else if (simon[i] === 2) {
-        colors.push('black');
         colors.push('green');
       } else if (simon[i] === 3) {
-        colors.push('black');
         colors.push('yellow');
       }
     }
-    console.log('colors are', colors);
     return colors;
   }
-  //Not re-rendering color, probably sync issue
-  // simonColor(num) {
-  //   if(num === 0) {
-  //     return 'red';
-  //   } else if (num === 1) {
-  //     return 'violet';
-  //   } else if (num === 2) {
-  //     return 'green';
-  //   } else if (num === 3) {
-  //     return 'yellow';
-  //   } else {
-  //     return 'black';
-  //   }
-  // }
-  // simonColor(num){
-  //   setTimeout(()=>{
-  //     if(num === 0) {
-  //       this.color = 'red';
-  //       this.setState({color: 'red'});
-  //       //return 'red';
-  //     } else if (num === 1) {
-  //       this.color = 'violet';
-  //       //return 'violet';
-  //       this.setState({color: 'violet'});
-  //     } else if (num === 2) {
-  //       this.color = 'green';
-  //       //return 'green';
-  //       this.setState({color: 'green'});
-  //     } else if (num === 3) {
-  //       this.color = 'yellow';
-  //       //return 'yellow';
-  //       this.setState({color: 'yellow'});
-  //     }
-  //     console.log('num is', num);
-  //   }, 500);
-  //     setTimeout(()=>{
-  //       this.color = 'black';
-  //       this.setState({color: 'black'})
-  //     }, 400);
-  // }
 
-  handleButton(value) {
-    this.checkKey(value);
+  checkKey(value) {
+    console.log('input received');
+    var that = this;
+    if(this.state.playerTurn){
+      var inputs = this.state.input;
+      inputs.push(value);
+      this.setState({input: inputs});
+      //Check for incorrect input
+      for(var i = 0; i < inputs.length; i++) {
+        if(this.state.simon[i] !== this.state.input[i]) {
+          this.setState({lose: true,
+            playerTurn: false});
+          //Send score here
+          console.log('You lose. Send score.');
+        }
+      }
+      if (inputs.length === this.state.level) {
+        console.log('You have beat level', this.state.level);
+        //Increase score and level, clear input and prevent any inputs
+        this.setState({
+          score: this.state.score++,
+          input: [],
+          level: this.state.level++,
+          playerTurn: false
+        });
+        //Start next round
+        this.simonTimer();
+      }
+    }
   }
 
   //After the game is ended, this method makes an AJAX post request to the server
@@ -180,7 +158,6 @@ export default class GameSimon extends React.Component {
     return (
       <div>
         <h2>Simon</h2>
-        <h3>Sorry! This game isn't quite functioning at the moment. Check back later.</h3>
         <h3>Score: { this.state.score }</h3>
         <div className='simonSays'>
         <Grid padded>
