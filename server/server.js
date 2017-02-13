@@ -39,7 +39,7 @@ db.once('open', function() {
 
 
 //define port
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 var rootPath = path.join(__dirname, '/..');
 var publicPath = path.join(rootPath, '/compiled/public');
