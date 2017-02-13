@@ -41,6 +41,7 @@ export default class ChatClient extends React.Component {
     socket.off('newMessage');
     socket.off('userJoined');
     socket.off('userLeft');
+    socket.disconnect();
   }
 
   handleInputChange(e) {
