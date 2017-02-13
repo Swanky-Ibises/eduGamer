@@ -16,7 +16,9 @@ export default class GameScramble extends React.Component {
       shuffled: null,
       score: 0,
       timeLeft: 45,
-      done: false
+      done: false,
+      showHint: false,
+      hint: [null, null]
     };
   }
 
@@ -49,7 +51,9 @@ export default class GameScramble extends React.Component {
     this.setState({
       word: newWord,
       definition: wordData[newWord.toLowerCase()],
-      shuffled: this.shuffle(newWord)
+      shuffled: this.shuffle(newWord),
+      hint: [newWord[0], newWord[newWord.length - 1]],
+      showHint: false
     });
   }
 
@@ -85,6 +89,9 @@ export default class GameScramble extends React.Component {
     }
   }
 
+  showHint () {
+    this.setState({showHint: true});
+  }
 
   //When component mounts, the timer starts and the state word will be shuffled
   componentDidMount() {
@@ -133,7 +140,10 @@ export default class GameScramble extends React.Component {
           <Timer time={this.state.timeLeft} />
           <h1> {this.state.shuffled} </h1>
           <h4> {this.state.definition} </h4>
+          {this.state.showHint && <span>Hint: The word starts with {this.state.hint[0]} and ends with {this.state.hint[1]}.</span>}
+          <br />
           <Input className='scramble-input' placeholder="Enter Word" onChange={this.changeInput.bind(this)} disabled={this.state.done}/>
+          <Button onClick={this.showHint.bind(this)} disabled={this.state.done}>Show Hint</Button>
           <Button onClick={this.skipWord.bind(this)} disabled={this.state.done}>Skip</Button>
           <br />
           {this.state.done && <Button onClick={this.reload.bind(this)}>Try Again</Button>}
