@@ -96,8 +96,8 @@ export default class GameSudoku extends React.Component {
     var cellIndex = -1;
 
     return (
+      <div className = 'sudokuBoard'>
       <Message>
-        <div className = 'sudokuBoard'>
         <h1> Sudoku </h1>
         <h3> No high scores. Just Sudoku. Press 'Check' to check for conflicts. If you fill the whole board with no conflicts, you win!</h3>
         <Table celled fixed className = 'sudokuTable'>
@@ -137,8 +137,8 @@ export default class GameSudoku extends React.Component {
         <br />
         <Button onClick={this.checkPuzzle.bind(this)}> Check </Button>
         <Button onClick={this.resetPuzzle.bind(this)}> Reset </Button>
-      </div>
     </Message>
+    </div>
     )
   }
 }
