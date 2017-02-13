@@ -7,7 +7,7 @@ export default class PopularGames extends React.Component {
     return (
       <Grid.Column width={4}>
         <Message>
-          <Header size='large'>Popular Games</Header>
+          <Header size='large'>Games</Header>
           <br />
           <Grid.Row className='popular-links'>
             <Link className='popular-link' to="/scramblegame"><Button>Scramble</Button></Link>
@@ -24,10 +24,12 @@ export default class PopularGames extends React.Component {
             <Link to="/reactioncircle"><Button>Reaction</Button></Link>
           </Grid.Row>
           <Divider hidden />
+          <Grid.Row className='popular-links' >
+            <Link to="/simongame"><Button>Simon</Button></Link>
+          </Grid.Row>
+          <Divider hidden />
         </Message>
       </Grid.Column>
     );
   }
 }
-
-//            <Link to="/simongame"><Button>Simon</Button></Link>
