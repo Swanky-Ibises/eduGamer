@@ -65,7 +65,7 @@ export default class MemorizeTiles extends React.Component {
 
   resetTimer() {
     this.setState({
-      timeLeft: 10,
+      timeLeft: 5,
       startedTimer: false
     });
     clearInterval(this.timer);
