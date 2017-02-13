@@ -29,6 +29,10 @@ body {
   margin-left:5%;
   margin-right:5%;
 }
+
+.note {
+  color: #d4d4d5;
+}
 .memorize-tile-game {
   margin-top: 10px;
 }
