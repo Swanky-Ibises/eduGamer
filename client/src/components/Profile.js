@@ -76,7 +76,7 @@ export default class Profile extends React.Component {
           <Table celled striped>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell> # </Table.HeaderCell>
+                <Table.HeaderCell>  </Table.HeaderCell>
                   {scoreArr.map((eachScore, ind)=>{
                       return <Table.HeaderCell key={ind}> {ind + 1} </Table.HeaderCell>;
                     })
