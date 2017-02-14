@@ -69,7 +69,16 @@ This component is similar to SignUp.js but is a login form instead.
 - GameMemoryCard.js: A single card
 
 #### MasterMind ####
-- Description goes here
+- CodePegs.js: Displays the colored, selectable circles on the right of all the possible colors
+- DecodeRow.js: Displays a single row of four circles that can be colored by clicking
+- DecodingBoard.js: Displays the entire decoding board consisting of ten rows
+- End_Game.js: Handles end game conditions
+- GameMastermind.js: Sets the states and sets up the game
+- Hint.js: Displays a single hint -- black circle, white circle, white circle with X
+- HintsRow.js: Displays four hints
+- Peg.js: Displays a single colored circle
+- Row.js: Displays each row including the decode row, submit button, and hints
+- Submit_Button.js: Displays the submit button which is hidden until all four circles in the decode row are filled in
 
 #### MemorizeTiles (Memorize a tile pattern) ####
 - MemorizeTiles.js: The main component storing the state of the game board and all logical interactions and rendering the game
@@ -84,10 +93,12 @@ This component is similar to SignUp.js but is a login form instead.
 - Timer.js: Timer component for the game
 
 #### Simon ####
-- Description goes here
+- GameSimon.js: Contains all logic and rendering for the game
 
 #### Sudoku ####
-- Description goes here
+- vendors/sudoku.js: Sudoku library used to generate Sudoku puzzles
+- GameSudoku.js: Contains all the logic for the game and renders the entire grid
+- SudokuCell.js: Renders individual cell of the Sudoku grid
 
 #### TypingSpeedmaster (Speed typing) ####
 - TypingSpeedmaster.js: The main component of the game. Makes a GET request to the numbersapi.com API for random trivia text.
