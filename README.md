@@ -21,31 +21,76 @@ To start the application on a local machine:
 ## Style Guide
 [Style guidelines for this project](STYLE-GUIDE.md)
 
-## End-Goal: ##
+## Project Inheritance ##
 
-We envisioned a plethora of games that test mental capabilities, including but not limited to a memory card game, a word scramble game, maybe even a 'trick' game that forces the user to think 'outside the box'. The website will track the user's performance and give them a timeline showing how they've improved or not. The leaderboard will show the top 10 scores accross all users within a specific game as well as the current users highest score. Unless the game has a set number of attempts (say a 20 question test), ideally the game would have a timer on it that defines an end point when the score is calculated and submitted to the server.
+Our team inherited a small codebase with a vision to make a collection of educational games. We expanded the project with 7 new games, word of the day, a chat client, and leaderboard.
 
-## Main Components and their purposes: ##
+## Main Components: (/client/src/components) ##
 
-  index.js:
-  In order to provide the 'illusion' of multiple pages, react-router has to be implemented to direct react to render the proper component. This file contains all routes used to render and make available the proper html elements and the functions that interact with them.
+- index.js:
+React Router is used to serve multiple routes/pages and is the hub of all components.
 
-  config.js:
-  The API used here is from https://market.mashape.com/wordsapi/wordsapi. You'll be able to generate your own wordsapi key and enter it in this file.
+- App.js:
+Template into which components are injected. The navbar is initialized here.
 
-  App.js:
-  Currently renders the whole webpage through the navbar, which is the one constant element that should be rendered throughout the whole website. The state is currently not used, but is left there for future use.
+- NavBar.js:
+Contains links to the homepage, leaderboard, all the games, profile, and sign-in/sign-up components.
 
-  NavBar.js:
-  Contains a logout function and renders the other components when the proper link is clicked on.
+- Leaderboard.js: Main component for the leaderboard. Gets the highscores from the Renders each game's leaderboard using GameLeaderboard.js.
 
-  SignUp.js:
-  This component is a sign up form that makes posts requests to the server with data containing the username and password.
-  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
+- GameLeaderboard.js: Renders a leaderboard table for the specified game.
 
-  Login.js:
-  This component is a login form that is similar to the SignUp form in that it makes posts requests to the server with data containing the username and password.
-  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
+- Profile.js: Displays a user's individual profile with game score history and topscore.
+
+### Homepage (/homepage) ###
+- Homepage.js: Displays a welcome banner and renders the homepage subcomponents.
+
+#### ChatClient (/ChatClient) ####
+- ChatClient.js: Connects to socket.io and allows sending and receiving chat messages. Renders the chat client.
+
+#### Popular Games ####
+- PopularGames.js: Displays a list of links for popular games
+
+#### Word of the Day ####
+- WordOfTheDay.js: Gets the word of the day from the wordnik API and renders the word, part of speech, and definition.
+
+### Authentication (/authentication) ###
+- SignUp.js:
+This component is a sign up form that makes POST requests with a user's username and password.
+In order to keep the user login persistent, the username is stored in local storage.
+
+- Login.js:
+This component is similar to SignUp.js but is a login form instead.
+
+### Games: (/Games) ###
+
+#### GameMemory (Card matching): ####
+- GameMemory.js: The main component storing the state of the game board
+- GameMemoryCard.js: A single card
+
+#### MasterMind ####
+- Description goes here
+
+#### MemorizeTiles (Memorize a tile pattern) ####
+- MemorizeTiles.js: The main component storing the state of the game board and all logical interactions and rendering the game
+
+#### ReactionCircle (Reaction tessting) ####
+- ReactionCircle.js: Contains all logic and rendering for the game
+
+#### Scramble (Unscramble the word with a definition) ####
+- Data.js: JSON data of words and definitions
+- GameScramble.js: The main component and storage of state for the game
+- Score.js: Score component for the game
+- Timer.js: Timer component for the game
+
+#### Simon ####
+- Description goes here
+
+#### Sudoku ####
+- Description goes here
+
+#### TypingSpeedmaster (Speed typing) ####
+- TypingSpeedmaster.js: The main component of the game. Makes a GET request to the numbersapi.com API for random trivia text.
 
 ## Back-End Components: ##
 
@@ -64,3 +109,7 @@ We envisioned a plethora of games that test mental capabilities, including but n
     V1: /leaderboard is now
     V2: /api/v2/leaderboard/:gametype
     API V2 is more specific in exposing a route that returns a leaderboard for one game specified in the gametype parameter.
+
+### Socket.io Chat Server ###
+- server/server.js: Routes socket connections to chatServer.js
+- server/socket/io/chatServer.js: Keeps a count of connected users. When a user sends a message, the message is emitted to all connected clients. When a user connects or disconnects, all clients are notified.
