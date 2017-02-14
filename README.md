@@ -74,7 +74,7 @@ This component is similar to SignUp.js but is a login form instead.
 #### MemorizeTiles (Memorize a tile pattern) ####
 - MemorizeTiles.js: The main component storing the state of the game board and all logical interactions and rendering the game
 
-#### ReactionCircle (Reaction testing) ####
+#### ReactionCircle (Reaction tessting) ####
 - ReactionCircle.js: Contains all logic and rendering for the game
 
 #### Scramble (Unscramble the word with a definition) ####
@@ -109,3 +109,7 @@ This component is similar to SignUp.js but is a login form instead.
     V1: /leaderboard is now
     V2: /api/v2/leaderboard/:gametype
     API V2 is more specific in exposing a route that returns a leaderboard for one game specified in the gametype parameter.
+
+### Socket.io Chat Server ###
+- server/server.js: Routes socket connections to chatServer.js
+- server/socket/io/chatServer.js: Keeps a count of connected users. When a user sends a message, the message is emitted to all connected clients. When a user connects or disconnects, all clients are notified.
