@@ -5,6 +5,7 @@ export default class GameMemoryCard extends React.Component {
     super(props);
   }
 
+  //Flip the card
   handleClick(e) {
     if (!this.props.card.flipped) {
       this.props.checkMatch(this.props.card.value, this.props.index);

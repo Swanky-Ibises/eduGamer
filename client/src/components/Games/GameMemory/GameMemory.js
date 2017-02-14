@@ -30,6 +30,7 @@ export default class GameMemory extends React.Component {
     this.shuffleCards();
   }
 
+  //Check if the two cards match
   checkMatch(cardValue, cardIndex) {
     var cards = this.state.cards;
     var score = this.state.score;
@@ -77,6 +78,7 @@ export default class GameMemory extends React.Component {
     }
   }
 
+  //Shuffle the cards
   shuffleCards() {
     var cardsCopy = this.state.cards.slice();
 

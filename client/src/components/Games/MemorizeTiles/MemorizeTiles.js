@@ -29,13 +29,14 @@ export default class MemorizeTiles extends React.Component {
     this.roundTimer();
   }
 
+  //Creates timer for overall game
   roundTimer() {
     var context = this;
     this.fullRoundTimer = setInterval(() => {
       if (context.state.sessionTimer > 0) {
         context.setState({sessionTimer: context.state.sessionTimer - 1});
       } else {
-
+        //Save score if game is over
         $.ajax({
           type:'POST',
           url: '/api/v2/user/score',
@@ -50,6 +51,7 @@ export default class MemorizeTiles extends React.Component {
     }, 1000);
   }
 
+  //Clears the round timer
   clearTimer() {
     clearInterval(this.fullRoundTimer);
   }
@@ -63,6 +65,7 @@ export default class MemorizeTiles extends React.Component {
     clearInterval(this.fullRoundTimer);
   }
 
+  //Resets the timer for memorizing the timer
   resetTimer() {
     this.setState({
       timeLeft: 5,
@@ -71,6 +74,7 @@ export default class MemorizeTiles extends React.Component {
     clearInterval(this.timer);
   }
 
+  //Resets the player board
   resetPlayerBoard() {
     this.setState({
       playerBoard: [[0,0,0,0],
@@ -80,6 +84,7 @@ export default class MemorizeTiles extends React.Component {
     })
   }
 
+  //Start the game and timer
   startGame() {
     this.generateGameBoard();
     this.setState({
@@ -89,6 +94,7 @@ export default class MemorizeTiles extends React.Component {
     this.timerStart();
   }
 
+  //Starts the timer
   timerStart() {
     var context = this;
     this.timer = setInterval(() => {
@@ -102,6 +108,7 @@ export default class MemorizeTiles extends React.Component {
     }, 1000);
   }
 
+  //Set up the player board states
   setupPlayerBoard() {
     this.setState({
       gameStarted: true,
@@ -109,6 +116,7 @@ export default class MemorizeTiles extends React.Component {
     });
   }
 
+  //Handle tile clicks
   clickTile(rowIndex, tileIndex) {
     var board = this.state.playerBoard.slice();
     board[rowIndex][tileIndex] === 0 ? board[rowIndex][tileIndex] = 1 : board[rowIndex][tileIndex] = 0;
@@ -118,6 +126,7 @@ export default class MemorizeTiles extends React.Component {
     });
   }
 
+  //Submit board for verification for accuracy
   submitBoard() {
     // Slow but easy way to compare arrays
     if (JSON.stringify(this.state.gameBoard) === JSON.stringify(this.state.playerBoard)) {
@@ -132,6 +141,7 @@ export default class MemorizeTiles extends React.Component {
     this.resetTimer();
   }
 
+  //Generates the game board
   generateGameBoard() {
     var zeroOrOne = function() {
       return Math.round(Math.random());

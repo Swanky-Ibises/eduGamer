@@ -2,6 +2,7 @@
 import React from 'react'
 import {Header, Table} from 'semantic-ui-react'
 
+//Creates leaderboard table for given game
 const LeaderboardTable = (props) => {
   let gameHigh = props.game+"High";
   return (

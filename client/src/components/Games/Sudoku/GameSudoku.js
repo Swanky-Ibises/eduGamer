@@ -85,6 +85,7 @@ export default class GameSudoku extends React.Component {
     });
   }
   //Reload the page
+  //Resetting the states does not work because it doesn't clear the inputs properly
   resetPuzzle() {
     window.location.reload();
   }

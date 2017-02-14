@@ -1,3 +1,4 @@
+//Creates a single peg -- colored circle
 export default class Peg extends React.Component {
   constructor(props) {
     super(props);

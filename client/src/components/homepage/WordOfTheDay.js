@@ -16,6 +16,7 @@ export default class WordOfTheDay extends React.Component {
     this.getWordOfTheDay();
   }
 
+  //Get word of the day from wordnik api
   getWordOfTheDay() {
     var context = this;
     $.ajax({

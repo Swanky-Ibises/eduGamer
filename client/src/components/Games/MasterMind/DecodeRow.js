@@ -1,5 +1,6 @@
 import Peg from './Peg.js';
 
+//Creates a row on the decoding board that includes four pegs
 export default class DecodeRow extends React.Component {
   constructor(props) {
     super(props);

@@ -5,11 +5,11 @@ export default class SudokuCell extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  //Handle inputs
   handleChange (event) {
     this.props.updateHandler(this.props.index, event.target.value);
   }
-
+  //Render a cell on the board
   render() {
     return (
       <Table.Cell className = 'sudokuCell' textAlign='center' width={1}>

@@ -42,6 +42,7 @@ export default class GameSimon extends React.Component {
     clearInterval(this.timer);
   }
 
+  //Timer used to display the flashing colors that are to be copied
   simonTimer() {
     var that = this;
     //Function called every 500 ms
@@ -64,6 +65,7 @@ export default class GameSimon extends React.Component {
     }, 500);
   }
 
+  //Randomly generates 50 numbers between 0 and 3
   generateSimon() {
     var order = [];
     for (var i = 0; i < 50; i++) {
@@ -72,7 +74,7 @@ export default class GameSimon extends React.Component {
     }
     return order;
   }
-
+  //Generates colors corresponding to the numbers
   generateColors() {
     var colors = [];
     var simon = this.state.simon;
