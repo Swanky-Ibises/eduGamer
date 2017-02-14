@@ -50,11 +50,17 @@ We envisioned a plethora of games that test mental capabilities, including but n
 ## Back-End Components: ##
 
    server/users/userModel.js:
-    The schema in use by MongoDB is defined here. User scores are recorded in an array, with the highest scores of each game in their own property.
+    User information is stored in a MongoDB using Mongoose as an ORM. The schema accepts a unique username field as a string (required) and a password as a string (required). User scores are recorded in an array, with the highest scores of each game in their own property. For each new game added, create a new field for the new game scores array and new game high score.
 
    server/users/userController.js:
-    All methods that interact directly with the database are defined in userController.js.
+    All methods that interact directly with the database are defined in userController.js. For each new game added update the getUser controller userObject to include the new game high score and array to hold all scores.
 
    server/server.js:
     Handles all post/get requests and connections to the DB. Also determines what route is chosen when the user clicks on 'profile' page depending on whether or not they're logged in.
 
+    API V2 refactors the routes from the original API to a more RESTful model.
+
+    EX:
+    V1: /leaderboard is now
+    V2: /api/v2/leaderboard/:gametype
+    API V2 is more specific in exposing a route that returns a leaderboard for one game specified in the gametype parameter.
