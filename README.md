@@ -25,25 +25,44 @@ To start the application on a local machine:
 
 Our team inherited a small codebase with a vision to make a collection of educational games. We expanded the project with 7 new games, word of the day, a chat client, and leaderboard.
 
-## Main Components: ##
+## Main Components: (/client/src/components) ##
 
-index.js:
+- index.js:
 React Router is used to serve multiple routes/pages and is the hub of all components.
 
-App.js:
+- App.js:
 Template into which components are injected. The navbar is initialized here.
 
-NavBar.js:
+- NavBar.js:
 Contains links to the homepage, leaderboard, all the games, profile, and sign-in/sign-up components.
 
-SignUp.js:
+- Leaderboard.js: Main component for the leaderboard. Gets the highscores from the Renders each game's leaderboard using GameLeaderboard.js.
+
+- GameLeaderboard.js: Renders a leaderboard table for the specified game.
+
+- Profile.js: Displays a user's individual profile with game score history and topscore.
+
+### Homepage (/homepage) ###
+- Homepage.js: Displays a welcome banner and renders the homepage subcomponents.
+
+#### ChatClient (/ChatClient) ####
+- ChatClient.js: Connects to socket.io and allows sending and receiving chat messages. Renders the chat client.
+
+#### Popular Games ####
+- PopularGames.js: Displays a list of links for popular games
+
+#### Word of the Day ####
+- WordOfTheDay.js: Gets the word of the day from the wordnik API and renders the word, part of speech, and definition.
+
+### Authentication (/authentication) ###
+- SignUp.js:
 This component is a sign up form that makes POST requests with a user's username and password.
 In order to keep the user login persistent, the username is stored in local storage.
 
-Login.js:
+- Login.js:
 This component is similar to SignUp.js but is a login form instead.
 
-### Games: ###
+### Games: (/Games) ###
 
 #### GameMemory (Card matching): ####
 - GameMemory.js: The main component storing the state of the game board
