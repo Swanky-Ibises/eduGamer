@@ -25,6 +25,7 @@ export default class Leaderboard extends React.Component {
     }
   }
 
+//Gets game leaders from server
   getGameLeaders (gameName) {
     var context = this;
     var gameLeaders = gameName + 'Leaders';

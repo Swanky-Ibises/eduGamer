@@ -19,7 +19,7 @@ export default class TypingSpeedmaster extends React.Component {
   }
 
   componentWillMount() {
-    // Replaces 'Some text' above
+    // Replaces placeholder text above
     this.getTargetText();
   }
 

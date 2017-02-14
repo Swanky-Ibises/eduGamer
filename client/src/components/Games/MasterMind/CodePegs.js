@@ -1,4 +1,5 @@
 import Peg from './Peg.js';
+//Creates the pegs on the right side
 export default class CodePegs extends React.Component {
   constructor(props) {
     super(props);

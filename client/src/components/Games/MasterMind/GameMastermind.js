@@ -7,6 +7,7 @@ import DecodingBoard from './DecodingBoard.js';
 import CodePegs from './CodePegs.js';
 import EndGame from './End_Game.js';
 
+//Creates main components of the game
 export default class GameMemory extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,7 @@ export default class GameMemory extends React.Component {
       Array(n).fill().map((_, i) => f(i));
     }
   }
-
+  //Generate the code
   generateCode() {
     var code = new Map();
     var random = () => { return Math.floor(Math.random() * 6)};
@@ -44,6 +45,7 @@ export default class GameMemory extends React.Component {
     return code;
   }
 
+  //Activate the peg by click
   activatePeg(event) {
     if (event.target.name.startsWith('peg')) {
       this.setState({selectedPeg: event.target.value});
@@ -54,6 +56,7 @@ export default class GameMemory extends React.Component {
     }
   }
 
+  //Sends the four pegs for decoding
   submitPegs() {
     var code = new Map(this.state.code);
     var pegs = this.state.currentGuess;
@@ -88,6 +91,7 @@ export default class GameMemory extends React.Component {
       }
     }
 
+    //Look for exact match
     if (exactMatches === this.state.pegsInRow) {
       this.setState({
         endGame: true,
@@ -104,7 +108,7 @@ export default class GameMemory extends React.Component {
     });
 
   }
-
+  //Reset the states to reload the game
   reloadGame() {
     this.setState({
       success: false,

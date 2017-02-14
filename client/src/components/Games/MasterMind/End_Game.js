@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import $ from 'jquery';
+//Handle endgame
+//Name of file follows different naming convention due to issues with Heroku deployment
 export default class EndGame extends React.Component {
   constructor(props) {
     super(props);

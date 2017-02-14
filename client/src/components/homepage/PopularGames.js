@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import { Grid, Header, Button, Message, Divider } from 'semantic-ui-react';
 
+//Shows all the available games
 export default class PopularGames extends React.Component {
   render() {
     return (

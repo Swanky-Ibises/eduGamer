@@ -1,4 +1,5 @@
 import Hint from './Hint.js';
+//Generates four hints based on matches
 export default class HintsRow extends React.Component {
   constructor(props) {
     super(props);

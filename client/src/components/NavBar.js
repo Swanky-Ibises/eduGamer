@@ -16,9 +16,8 @@ export const NavBar = () => {
     });
     //removes the username from localstorage
     localStorage.removeItem('username');
-    console.log('localStorage username', localStorage.username);
   }
-
+  //Create navigation bar
   return (
     <Menu color='blue'>
       <Link to="/">

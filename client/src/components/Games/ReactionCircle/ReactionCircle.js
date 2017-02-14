@@ -32,6 +32,7 @@ export default class ReactionCircle extends React.Component {
     }, 1000);
   }
 
+  //Start the game, set up states
   startGame(e) {
     var context = this;
     e.preventDefault();
@@ -48,25 +49,27 @@ export default class ReactionCircle extends React.Component {
     });
   }
 
+  //Check states and check if win or lose
   handleCircleClick() {
     if (this.state.locked && this.state.inProgress) {
-      console.log('failed');
       this.loseGame();
     } else if (!this.state.locked && this.state.inProgress) {
-      console.log('win');
       this.winGame();
     }
   }
 
+  //End timer when you win
   winGame() {
     this.endTimer();
   }
 
+  //End timer when you lose
   loseGame() {
     this.setState({fail: true});
     this.endTimer();
   }
 
+  //End timer and set score
   endTimer() {
     var now = Date.now();
     clearInterval(this.timer);

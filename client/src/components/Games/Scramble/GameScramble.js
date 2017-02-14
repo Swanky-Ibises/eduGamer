@@ -1,10 +1,13 @@
 import React from 'react';
+//Import data. 1000 vocabulary words are from Vocabulary.com.
 import { data }  from './Data.js';
 import { Timer } from './Timer.js';
 import { Score } from './Score.js';
 import { Button, Input, Message, Form, Grid, Container } from 'semantic-ui-react';
 import $ from 'jquery';
 
+//Known issues: Can continue typing and starting new words as long as there is no mouse click out of the input box
+//However, the additions to the scores are not posted
 export default class GameScramble extends React.Component {
   constructor(props) {
     super(props);

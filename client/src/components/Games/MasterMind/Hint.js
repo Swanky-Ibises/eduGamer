@@ -1,3 +1,4 @@
+//Generate a single hint (black, white, or X-ed circle)
 export default class Hint extends React.Component {
   constructor(props) {
     super(props);

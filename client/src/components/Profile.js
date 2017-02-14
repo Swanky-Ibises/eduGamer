@@ -138,7 +138,7 @@ export default class Profile extends React.Component {
     if (!localStorage.username) {
       return;
     } else if (this.state.scramScores.length === 0 && this.state.memScores.length === 0 && this.state.simonScores.length === 0 && this.state.tilesScores.length === 0 && this.state.mastermindScores.length === 0 && this.state.typingScores.length === 0) {
-      profileElem = (NoScoreDisplay);
+      profileElem = (NoScoreDisplay); //Show no score instead of zeros if user has no scores
     } else {
       profileElem = ( this.scoreDisplay());
     }
