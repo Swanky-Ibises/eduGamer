@@ -25,27 +25,53 @@ To start the application on a local machine:
 
 Our team inherited a small codebase with a vision to make a collection of educational games. We expanded the project with 7 new games, word of the day, a chat client, and leaderboard.
 
-## Main Components and their purposes: ##
+## Main Components: ##
 
-  index.js:
-  In order to provide the 'illusion' of multiple pages, react-router has to be implemented to direct react to render the proper component. This file contains all routes used to render and make available the proper html elements and the functions that interact with them.
+index.js:
+React Router is used to serve multiple routes/pages and is the hub of all components.
 
-  config.js:
-  The API used here is from https://market.mashape.com/wordsapi/wordsapi. You'll be able to generate your own wordsapi key and enter it in this file.
+App.js:
+Template into which components are injected. The navbar is initialized here.
 
-  App.js:
-  Currently renders the whole webpage through the navbar, which is the one constant element that should be rendered throughout the whole website. The state is currently not used, but is left there for future use.
+NavBar.js:
+Contains links to the homepage, leaderboard, all the games, profile, and sign-in/sign-up components.
 
-  NavBar.js:
-  Contains a logout function and renders the other components when the proper link is clicked on.
+SignUp.js:
+This component is a sign up form that makes POST requests with a user's username and password.
+In order to keep the user login persistent, the username is stored in local storage.
 
-  SignUp.js:
-  This component is a sign up form that makes posts requests to the server with data containing the username and password.
-  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
+Login.js:
+This component is similar to SignUp.js but is a login form instead.
 
-  Login.js:
-  This component is a login form that is similar to the SignUp form in that it makes posts requests to the server with data containing the username and password.
-  Note: In order to keep the user logged in across components and also have persistent error messages that don't disappear after a re-render, we store the username and error messages in the local storage object. Upon a dismount, the error message local storage object is cleared but the local storage username persists.
+### Games: ###
+
+#### GameMemory (Card matching): ####
+- GameMemory.js: The main component storing the state of the game board
+- GameMemoryCard.js: A single card
+
+#### MasterMind ####
+- Description goes here
+
+#### MemorizeTiles (Memorize a tile pattern) ####
+- MemorizeTiles.js: The main component storing the state of the game board and all logical interactions and rendering the game
+
+#### ReactionCircle (Reaction testing) ####
+- ReactionCircle.js: Contains all logic and rendering for the game
+
+#### Scramble (Unscramble the word with a definition) ####
+- Data.js: JSON data of words and definitions
+- GameScramble.js: The main component and storage of state for the game
+- Score.js: Score component for the game
+- Timer.js: Timer component for the game
+
+#### Simon ####
+- Description goes here
+
+#### Sudoku ####
+- Description goes here
+
+#### TypingSpeedmaster (Speed typing) ####
+- TypingSpeedmaster.js: The main component of the game. Makes a GET request to the numbersapi.com API for random trivia text.
 
 ## Back-End Components: ##
 
